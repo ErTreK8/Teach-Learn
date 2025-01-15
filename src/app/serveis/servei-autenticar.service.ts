@@ -2,14 +2,12 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFireModule } from '@angular/fire/compat'; 
 import firebase from "@firebase/app-compat" // --- versió 8.16  
-import "firebase/auth";             // --- versió 8.16  
 
 // hem afegit /compat/ en la versió 23-24
 import 'firebase/compat/auth';
 
 // hem afegit aquest import a la versió 23-24
 import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth'; 
-import { ServeiLogService } from './servei-log.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,10 +18,10 @@ export class ServeiAutenticarService {
   usuari: any
 
   email = ''
-  psw= ''
-
-  constructor(public auth: AngularFireAuth, private serveiLog: ServeiLogService) { }
+  psw = ''
   
+  constructor(public auth: AngularFireAuth) { }
+
   googleLogin() {
     signInWithPopup(getAuth(), new firebase.auth.GoogleAuthProvider())
       .then((result) => {
@@ -43,32 +41,11 @@ export class ServeiAutenticarService {
         this.email = this.usuari.email
         console.log('Email: ' + this.email + " - Nom: " + this.usuari.displayName)
         this.loginOK = true
-        this.serveiLog.sHaConnectat(this.usuari.email)
-
       }).catch((error) => {
         console.log("--->", error.message)
         console.log('Error al fer el Google login');
         this.loginOK = false
       });
-      
-  }
-
-  login() {
-    // signInWithEmailAndPassword() és una Promise que permetrà utilitzar .then i .catch 
-    this.auth.signInWithEmailAndPassword(this.email, this.psw)
-    .then( user => {
-      console.log('Usuari: ', user);
-      this.usuari=user;
-	  this.usuari.email=this.email;
-      this.psw='';
-      this.loginOK= true;
-      this.serveiLog.sHaConnectat(this.usuari.email)
-
-    })
-    .catch( error => {
-      console.log("--->", error.message)
-      console.log("Error al fer login amb l'email login");   
-    })  
   }
 
   // logout 

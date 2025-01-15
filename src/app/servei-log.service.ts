@@ -12,9 +12,10 @@ export class ServeiLogService {
   // log de la connexió
   sHaConnectat(usr: any) {
     const dades: entradaLog= { op: 'login', usuari: usr}
-    this.bd.object(this.bdLog+Date().toString()).update(dades) 
-    // update equival a insert si no existeix l'element
+    this.bd.object(this.bdLog+Date().toString()).update(dades) // update equival a
+   // insert si no existeix l'element
     .then( d => { console.log("Dades inserides correctament al Log") })
     .catch( error => { console.log("Error accedint al Log") })
     }
 }
+    
