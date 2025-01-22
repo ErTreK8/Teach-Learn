@@ -10,12 +10,38 @@ import { AngularFireAuthModule} from '@angular/fire/compat/auth';
 import { environment} from '../environments/environment';
 import { FormsModule } from '@angular/forms';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { PaginaHomeComponent } from './pagina-home/pagina-home.component';
+import { RegisterComponent } from './register/register.component';
+import { BuscadorCursosComponent } from './buscador-cursos/buscador-cursos.component';
+import { CursoComponent } from './curso/curso.component';
+import { ClaseComponent } from './clase/clase.component';
+import { PerfilPropioComponent } from './perfil-propio/perfil-propio.component';
+import { PerfilAjenoComponent } from './perfil-ajeno/perfil-ajeno.component';
+import { ModificarPerfilComponent } from './modificar-perfil/modificar-perfil.component';
+import { BusadorUsuarioComponent } from './busador-usuario/busador-usuario.component';
+import { CrearResenyaComponent } from './crear-resenya/crear-resenya.component';
+import { PaginaChatsComponent } from './pagina-chats/pagina-chats.component';
+import { AMBCursosComponent } from './ambcursos/ambcursos.component';
+import { AMBClasesComponent } from './ambclases/ambclases.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    PaginaHomeComponent,
+    RegisterComponent,
+    BuscadorCursosComponent,
+    CursoComponent,
+    ClaseComponent,
+    PerfilPropioComponent,
+    PerfilAjenoComponent,
+    ModificarPerfilComponent,
+    BusadorUsuarioComponent,
+    CrearResenyaComponent,
+    PaginaChatsComponent,
+    AMBCursosComponent,
+    AMBClasesComponent
   ],
   imports: [
     BrowserModule,
