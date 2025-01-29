@@ -21,8 +21,6 @@ import { ModificarPerfilComponent } from './modificar-perfil/modificar-perfil.co
 import { BusadorUsuarioComponent } from './busador-usuario/busador-usuario.component';
 import { CrearResenyaComponent } from './crear-resenya/crear-resenya.component';
 import { PaginaChatsComponent } from './pagina-chats/pagina-chats.component';
-import { AMBCursosComponent } from './ambcursos/ambcursos.component';
-import { AMBClasesComponent } from './ambclases/ambclases.component';
 
 
 @NgModule({
@@ -39,9 +37,7 @@ import { AMBClasesComponent } from './ambclases/ambclases.component';
     ModificarPerfilComponent,
     BusadorUsuarioComponent,
     CrearResenyaComponent,
-    PaginaChatsComponent,
-    AMBCursosComponent,
-    AMBClasesComponent
+    PaginaChatsComponent
   ],
   imports: [
     BrowserModule,
