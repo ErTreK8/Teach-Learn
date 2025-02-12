@@ -21,6 +21,7 @@ import { ModificarPerfilComponent } from './modificar-perfil/modificar-perfil.co
 import { BusadorUsuarioComponent } from './busador-usuario/busador-usuario.component';
 import { CrearResenyaComponent } from './crear-resenya/crear-resenya.component';
 import { PaginaChatsComponent } from './pagina-chats/pagina-chats.component';
+import { CalendarComponent } from './calendar/calendar.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { PaginaChatsComponent } from './pagina-chats/pagina-chats.component';
     ModificarPerfilComponent,
     BusadorUsuarioComponent,
     CrearResenyaComponent,
-    PaginaChatsComponent
+    PaginaChatsComponent,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,

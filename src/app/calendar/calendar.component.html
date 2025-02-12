@@ -1,0 +1,34 @@
+<div class="calendar">
+    <div class="calendar-header">
+      <span class="month-picker">{{ monthNamesFull[currentMonth] }}</span>
+      <div class="year-picker">
+        <span class="year-change" (click)="prevYear()">&#x3C;</span>
+        <span>{{ currentYear }}</span>
+        <span class="year-change" (click)="nextYear()">&#x3E;</span>
+      </div>
+    </div>
+  
+    <div class="calendar-body">
+      <div class="calendar-week-days">
+        <div>Dl</div>
+        <div>Dt</div>
+        <div>Dc</div>
+        <div>Dj</div>
+        <div>Dv</div>
+        <div>Ds</div>
+        <div>Dg</div>
+      </div>
+      <div class="calendar-days">
+        <div *ngFor="let day of calendarDays">
+          <span *ngIf="day !== 0">{{ day }}</span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="month-list">
+      <div *ngFor="let month of monthNamesAbbr; let i = index" (click)="selectMonth(i)">
+        {{ month }}
+      </div>
+    </div>
+  </div>
+  
