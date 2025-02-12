@@ -1,0 +1,32 @@
+.calendar {
+    width: 300px;
+    margin: auto;
+    background: #f4f4f4;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+  }
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+  }
+  .year-picker {
+    display: flex;
+    align-items: center;
+  }
+  .year-change {
+    cursor: pointer;
+    padding: 5px;
+  }
+  .calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+  }
+  .calendar-days div {
+    padding: 10px;
+    background: white;
+    border-radius: 5px;
+  }
+  
