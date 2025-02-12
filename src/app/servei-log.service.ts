@@ -8,5 +8,7 @@ export class ServeiLogService {
   bdLog = '/log/';
 
   constructor(private bd: AngularFireDatabase) { }
+
+  
 }
     
