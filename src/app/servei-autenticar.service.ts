@@ -43,7 +43,6 @@ export class ServeiAutenticarService {
         this.email = this.usuari.email
         console.log('Email: ' + this.email + " - Nom: " + this.usuari.displayName)
         this.loginOK = true
-        this.serveiLog.sHaConnectat(this.usuari.email)
 
       }).catch((error) => {
         console.log("--->", error.message)
@@ -62,7 +61,6 @@ export class ServeiAutenticarService {
 	  this.usuari.email=this.email;
       this.psw='';
       this.loginOK= true;
-      this.serveiLog.sHaConnectat(this.usuari.email)
 
     })
     .catch( error => {
