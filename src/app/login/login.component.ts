@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServeiAutenticarService } from '../servei-autenticar.service';
+import { Router } from '@angular/router'; // Importa Router para redireccionar al usuario después del login
 
 @Component({
   selector: 'app-login',
@@ -8,20 +9,28 @@ import { ServeiAutenticarService } from '../servei-autenticar.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public serveiAutenticar: ServeiAutenticarService) { }
+  constructor(
+    public serveiAutenticar: ServeiAutenticarService,
+    private router: Router // Inyecta Router en el constructor
+  ) { }
 
   ngOnInit(): void {
-    this.serveiAutenticar.loginOK=false;
+    this.serveiAutenticar.loginOK = false;
   }
 
-  googleLogin() {
-    this.serveiAutenticar.googleLogin()
-  }
-  logout() {
-    this.serveiAutenticar.logout()
-  }
-
+  // Método para iniciar sesión con email y contraseña
   login() {
-    //this.serveiAutenticar.login();
+    this.serveiAutenticar.login()
+      .then(() => {
+        this.router.navigate(['/home']); // Cambia '/dashboard' por la ruta que desees
+      })
+      .catch((error) => {
+        console.error('Error en el login:', error);
+      });
+  }
+
+  // Método para cerrar sesión
+  logout() {
+    this.serveiAutenticar.logout();
   }
 }

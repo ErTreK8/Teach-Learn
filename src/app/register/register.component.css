@@ -1,66 +1,104 @@
-body {
-    background-color: #518094 !important;
+#todo {
+    background-color: #518094;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-}
-
-.container {
-    background-color: #f8f8f8 !important;
+    padding: 0;
+  }
+  
+  .container {
+    background-color: #f8f8f8;
     border-radius: 10px;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative; /* Necesario para el pseudo-elemento */
-    padding: 1em 4em 4em 4em;  
-}
-.container::before {
-    content: "";
-    position: absolute;
-    top: -20px; /* Ajusta según sea necesario */
-    left: 8px; /* Ajusta según sea necesario */
-    width: 0;
-    height: 0;
+    padding: 1em 4em 4em 4em;
+    width: 100%;
+    max-width: 500px;  /* Ancho máximo para pantallas grandes */
+    margin: 1em;
 
-    border-left: 15px solid transparent;
-    border-right: 15px solid transparent;
-    border-bottom: 20px solid white; /* Color del triángulo */
-}
-.custom-input {
-    font-size: 1.5em;
-    border: none;
-    background-color: #eceeefbe;             /* Fondo gris */
-    border-bottom: 1px solid #000;      /* Borde inferior de 1px negro */
-    border-radius: 0;     
-    margin-top: 20px;              /* Elimina bordes redondeados si los tuviera */
-    padding: 8px;
-    width: 20em;
-}
-.custom-button {
-    margin-top: 15px;                   /* Espaciado superior para separar el botón de los inputs */
-    /* Opcional: Puedes personalizar aún más el botón, por ejemplo: */
-    background-color: #253047;             /* Fondo oscuro */
-    border: none;  
-    color: white;
-    border-radius: 10px;                     /* Sin borde */
-    padding: 10px 20px;                 /* Espaciado interno */
   }
   
-form {
+  
+  /* Inputs personalizados */
+  .custom-input {
+    font-size: 1.5em;
+    border: none;
+    background-color: #eceeefbe; /* Fondo gris */
+    border-bottom: 1px solid #000; /* Borde inferior de 1px negro */
+    border-radius: 0;
+    margin-top: 20px;
+    padding: 8px;
+    width: 100%;  /* Ocupa el ancho completo del contenedor */
+    box-sizing: border-box;
+    margin-bottom: 1.2em;
+
+  }
+  
+  /* Botón personalizado */
+  .custom-button {
+    margin-top: 15px;
+    background-color: #253047;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    cursor: pointer;
+  }
+  .linkk{	
+    text-decoration: none;
+    color: #0c5399;
+  }
+  .custom-button:hover {
+    background-color: #1e2d3c; /* Color de fondo al pasar el mouse */
+  }
+  
+  /* Estilo para el formulario si lo usas */
+  form {
     display: flex;
     flex-direction: column;
-}
-
-
-
-img {
+    width: 100%;
+  }
+  
+  /* Imagen del logo */
+  img {
     width: 200px;
-    margin-bottom: 20px;
     margin-top: 20px;
+    margin-bottom: 20px;
     align-self: center;
     border-radius: 50%; /* Hace que el logo sea circular */
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75); /* Sombra alrededor del logo */
-}
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75); /* Sombra alrededor del logo */
+  }
+  
+  /* Media queries para dispositivos pequeños */
+  @media screen and (max-width: 480px) {
+    .container {
+      padding: 2.5em;  /* Menos padding en pantallas pequeñas */
+      margin: 1em;
+    }
+  
+    .custom-input {
+      font-size: 1.2em;
+      padding: 6px;
+      margin-bottom: 3em;
+    }
+  
+    .custom-button {
+      font-size: 1em;
+      padding: 8px 16px;
+      margin-bottom: 3em;
+
+    }
+  
+    img {
+      width: 150px;
+      margin-top: 10px;
+      margin-bottom: 3em;
+    }
+    
+  }
