@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.serveiAutenticar.loginOK=false;
+    localStorage.removeItem("email");
   }
 
   googleLogin() {
@@ -22,6 +23,6 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    //this.serveiAutenticar.login();
+    this.serveiAutenticar.login();
   }
 }
