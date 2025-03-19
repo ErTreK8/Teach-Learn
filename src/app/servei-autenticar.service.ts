@@ -41,6 +41,8 @@ export class ServeiAutenticarService {
 
         // si el login ha anat bé la variable email guardarà el compte de GMail
         this.email = this.usuari.email
+        localStorage.setItem("email",this.email);
+        localStorage.setItem("uid",this.usuari.uid)
         console.log('Email: ' + this.email + " - Nom: " + this.usuari.displayName)
         this.loginOK = true
         this.serveiLog.sHaConnectat(this.usuari.email)
