@@ -1,13 +1,5 @@
 /* Estilos globales */
-body {
-    background-color: #518094;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-  }
+
   
   .container {
     background-color: #f8f8f8;
@@ -24,17 +16,7 @@ body {
 
   }
   
-  .container::before {
-    content: "";
-    position: absolute;
-    top: -20px; /* Ajusta según sea necesario */
-    left: 8px;  /* Ajusta según sea necesario */
-    width: 0;
-    height: 0;
-    border-left: 15px solid transparent;
-    border-right: 15px solid transparent;
-    border-bottom: 20px solid white; /* Color del triángulo */
-  }
+
   
   /* Inputs personalizados */
   .custom-input {
