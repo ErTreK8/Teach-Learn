@@ -1,0 +1,44 @@
+<head>
+  <link rel="stylesheet" href="./calendar.component.css">
+</head>
+<div class="calendar">
+  <div class="calendar-header">
+    <span class="month-picker" (click)="toggleMonthList()">{{ monthNamesFull[currentMonth] }}</span>
+    <div class="year-picker" id="year-picker">
+      <span class="year-month-change" (click)="prevYear()">&#x3C;&#x3C;</span>
+      <span class="year-month-change" (click)="prevMonth()">&#x3C;</span>
+      <span>{{ currentYear }}</span>
+      <span class="year-month-change" (click)="nextMonth()">&#x3E;</span>
+      <span class="year-month-change" (click)="nextYear()">&#x3E;&#x3E;</span>
+    </div>
+  </div>
+  <div class="calendar-body">
+    <div class="calendar-week-days">
+      <div>Dl</div>
+      <div>Dt</div>
+      <div>Dc</div>
+      <div>Dj</div>
+      <div>Dv</div>
+      <div>Ds</div>
+      <div>Dg</div>
+    </div>
+    <div class="calendar-days">
+      <div *ngFor="let day of calendarDays">
+        <span *ngIf="day !== 0">{{ day }}</span>
+      </div>  
+    </div>
+  </div>
+  <div class="date-time-formate">
+    <div class="day-text-formate">{{currentDate | date: 'EE'}}</div>
+    <div class="date-time-value">
+      <div class="date-formate">{{ currentDate | date: 'dd - MMMM yyyy' }}</div>
+    </div>
+  </div>
+  <div class="month-list" [class.show]="showMonthList">
+    <div *ngFor="let month of monthNamesAbbr; let i = index" (click)="selectMonth(i)">
+      {{ month }}
+    </div>
+  </div>
+</div>
+
+

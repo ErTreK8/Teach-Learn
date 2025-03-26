@@ -1,89 +1,84 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import firebase from 'firebase/compat/app'; // Importa firebase para usar GoogleAuthProvider
+import { AngularFireModule } from '@angular/fire/compat'; 
+import firebase from "@firebase/app-compat" // --- versió 8.16  
+import "firebase/auth";             // --- versió 8.16  
+
+// hem afegit /compat/ en la versió 23-24
 import 'firebase/compat/auth';
-import { Router } from '@angular/router'; // Importa Router para redireccionar después del login
-import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
+
+// hem afegit aquest import a la versió 23-24
+import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth'; 
+import { ServeiLogService } from './servei-log.service';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class ServeiAutenticarService {
-  loginOK = false; // Indica si el usuario está logueado
-  usuari: any; // Almacena los datos del usuario logueado
-  email = ''; // Almacena el email del usuario
-  psw = ''; // Almacena la contraseña del usuario
 
-  constructor(public auth: AngularFireAuth, private router: Router) {}
+  loginOK=false
+  usuari: any
 
-  // Método para iniciar sesión con email y contraseña
+  email = ''
+  psw= ''
+
+  constructor(public auth: AngularFireAuth, private serveiLog: ServeiLogService) { }
+  
+  googleLogin() {
+    signInWithPopup(getAuth(), new firebase.auth.GoogleAuthProvider())
+      .then((result) => {
+        // Si ens hem pogut connectar podem obtenir les credencials que ens permetran accedir a l'API de Google
+        var credencial = GoogleAuthProvider.credentialFromResult(result);
+        console.log("credencial -->", credencial)
+
+        // Si tenim les credencials en podem extreure un token
+        var token = credencial?.accessToken;
+        console.log("token-->", token)
+
+        // si el login ha anat bé la variable usuari guardarà les dades
+        this.usuari = result.user
+        console.log('Usuari de Google: ', this.usuari);
+
+        // si el login ha anat bé la variable email guardarà el compte de GMail
+        this.email = this.usuari.email
+        localStorage.setItem("email",this.email);
+        localStorage.setItem("uid",this.usuari.uid)
+        console.log('Email: ' + this.email + " - Nom: " + this.usuari.displayName)
+        this.loginOK = true
+
+      }).catch((error) => {
+        console.log("--->", error.message)
+        console.log('Error al fer el Google login');
+        this.loginOK = false
+      });
+      
+  }
+
   login() {
-    return this.auth
-      .signInWithEmailAndPassword(this.email, this.psw)
-      .then((user) => {
-        console.log('Usuario:', user);
-        this.usuari = user;
-        this.usuari.email = this.email;
-        this.psw = ''; // Limpia la contraseña por seguridad
-        this.loginOK = true;
+    // signInWithEmailAndPassword() és una Promise que permetrà utilitzar .then i .catch 
+    this.auth.signInWithEmailAndPassword(this.email, this.psw)
+    .then( user => {
+      console.log('Usuari: ', user);
+      this.usuari=user;
+	  this.usuari.email=this.email;
+      this.psw='';
+      this.loginOK= true;
 
-        // Guarda el nombre de usuario en el localStorage
-        if (user.user) {
-          localStorage.setItem('username', user.user.displayName || this.email);
-        }
-
-        // Redirige al usuario después del login
-        this.router.navigate(['/dashboard']); // Cambia '/dashboard' por la ruta que desees
-      })
-      .catch((error) => {
-        console.error('Error en el login:', error.message);
-        this.loginOK = false;
-      });
+    })
+    .catch( error => {
+      console.log("--->", error.message)
+      console.log("Error al fer login amb l'email login");   
+    })  
   }
 
-  // Método para cerrar sesión
+  // logout 
   logout() {
-    this.auth
-      .signOut()
-      .then(() => {
-        console.log('Sesión cerrada correctamente');
-        this.email = '';
-        this.psw = '';
-        this.usuari = null;
-        this.loginOK = false;
-
-        // Elimina el nombre de usuario del localStorage
-        localStorage.removeItem('username');
-
-        // Redirige al usuario a la página de login
-        this.router.navigate(['./']); // Cambia '/login' por la ruta que desees
-      })
-      .catch((error) => {
-        console.error('Error al cerrar sesión:', error.message);
-      });
+    console.log('Hem tancat la sessió');
+    this.auth.signOut();
+	this.email=''
+    this.psw=''
+    this.usuari = null;
+    this.loginOK = false
   }
 
-  // Método para registrar un nuevo usuario con email y contraseña
-  register(email: string, password: string) {
-    return this.auth
-      .createUserWithEmailAndPassword(email, password)
-      .then((user) => {
-        console.log('Usuario registrado:', user);
-        this.usuari = user;
-        this.usuari.email = email;
-        this.loginOK = true;
-
-        // Guarda el nombre de usuario en el localStorage
-        if (user.user) {
-          localStorage.setItem('username', user.user.displayName || email);
-        }
-
-        // Redirige al usuario después del registro
-        this.router.navigate(['/dashboard']); // Cambia '/dashboard' por la ruta que desees
-      })
-      .catch((error) => {
-        console.error('Error en el registro:', error.message);
-        this.loginOK = false;
-      });
-  }
 }

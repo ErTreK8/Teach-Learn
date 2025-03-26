@@ -21,8 +21,9 @@ import { ModificarPerfilComponent } from './modificar-perfil/modificar-perfil.co
 import { BusadorUsuarioComponent } from './busador-usuario/busador-usuario.component';
 import { CrearResenyaComponent } from './crear-resenya/crear-resenya.component';
 import { PaginaChatsComponent } from './pagina-chats/pagina-chats.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
+import { CalendarComponent } from './calendar/calendar.component';
+import { ChatComponent } from './chat/chat.component';
+
 
 
 @NgModule({
@@ -40,8 +41,8 @@ import { FooterComponent } from './footer/footer.component';
     BusadorUsuarioComponent,
     CrearResenyaComponent,
     PaginaChatsComponent,
-    HeaderComponent,
-    FooterComponent
+    CalendarComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,

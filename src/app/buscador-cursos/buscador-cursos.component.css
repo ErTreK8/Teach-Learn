@@ -1,0 +1,252 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  background-color: #518094;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: row;
+}
+
+.container-cursos {
+    display: flex;
+    flex-direction: column;
+    background-color: #5c5c5cbe; 
+    padding: 20px; 
+    border-radius: 15px; 
+    width: 0%;
+    max-width: 60%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+}
+
+.menu-cursos {
+    background-color: #ffffff; 
+    padding: 10px;
+    margin-bottom: 20px;           
+    border-radius: 15px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+/* desaparece con pantalla pequeña */
+
+@media only screen and (max-width: 1200px){   
+    .container{ 
+        display: none;    
+    }
+    .container-cursos{
+      margin: 2em;
+      width: 90%;
+    }
+}
+
+@media only screen and (max-width: 1400px){   
+  .container{ 
+    margin-left: -10em;
+  }
+  
+}
+@media only screen and (max-width: 1300px){   
+  .container{ 
+    margin-left: -19em;
+  }
+  
+}
+
+@media only screen and (max-width: 1350px){   
+  .container{ 
+    margin-left: -10em;
+  }
+  
+}
+
+@media only screen and (max-width: 1250px){   
+  .container{ 
+    margin-left: -20em;
+  }
+  
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+[class*="col-"]{float: left;}
+
+/* Extra small devices (phones, 575px and down) */
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+/* Small devices (portrait tablets and large phones, 576px and up) */
+@media only screen and (min-width: 576px){
+    .col-sm-1 {width: 8.33%;}
+    .col-sm-2 {width: 16.66%;}
+    .col-sm-3 {width: 25%;}
+    .col-sm-4 {width: 33.33%;}
+    .col-sm-5 {width: 41.66%;}
+    .col-sm-6 {width: 50%;}
+    .col-sm-7 {width: 58.33%;}
+    .col-sm-8 {width: 66.66%;}
+    .col-sm-9 {width: 75%;}
+    .col-sm-10 {width: 83.33%;}
+    .col-sm-11 {width: 91.66%;}
+    .col-sm-12 {width: 100%;}
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .col-md-1 {width: 8.33%;}
+    .col-md-2 {width: 16.66%;}
+    .col-md-3 {width: 25%;}
+    .col-md-4 {width: 33.33%;}
+    .col-md-5 {width: 41.66%;}
+    .col-md-6 {width: 50%;}
+    .col-md-7 {width: 58.33%;}
+    .col-md-8 {width: 66.66%;}
+    .col-md-9 {width: 75%;}
+    .col-md-10 {width: 83.33%;}
+    .col-md-11 {width: 91.66%;}
+    .col-md-12 {width: 100%;}
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .col-lg-1 {width: 8.33%;}
+    .col-lg-2 {width: 16.66%;}
+    .col-lg-3 {width: 25%;}
+    .col-lg-4 {width: 33.33%;}
+    .col-lg-5 {width: 41.66%;}
+    .col-lg-6 {width: 50%;}
+    .col-lg-7 {width: 58.33%;}
+    .col-lg-8 {width: 66.66%;}
+    .col-lg-9 {width: 75%;}
+    .col-lg-10 {width: 83.33%;}
+    .col-lg-11 {width: 91.66%;}
+    .col-lg-12 {width: 100%;}
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px){
+  .col-xl-1 {width: 8.33%;}
+  .col-xl-2 {width: 16.66%;}
+  .col-xl-3 {width: 25%;}
+  .col-xl-4 {width: 33.33%;}
+  .col-xl-5 {width: 41.66%;}
+  .col-xl-6 {width: 50%;}
+  .col-xl-7 {width: 58.33%;}
+  .col-xl-8 {width: 66.66%;}
+  .col-xl-9 {width: 75%;}
+  .col-xl-10 {width: 83.33%;}
+  .col-xl-11 {width: 91.66%;}
+  .col-xl-12 {width: 100%;}
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1400px){
+    .col-xxl-1 {width: 8.33%;}
+    .col-xxl-2 {width: 16.66%;}
+    .col-xxl-3 {width: 25%;}
+    .col-xxl-4 {width: 33.33%;}
+    .col-xxl-5 {width: 41.66%;}
+    .col-xxl-6 {width: 50%;}
+    .col-xxl-7 {width: 58.33%;}
+    .col-xxl-8 {width: 66.66%;}
+    .col-xxl-9 {width: 75%;}
+    .col-xxl-10 {width: 83.33%;}
+    .col-xxl-11 {width: 91.66%;}
+    .col-xxl-12 {width: 100%;}
+}
+
+/* BUSCADOR */
+#buscador {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#search {
+    flex: 1;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    outline: none;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+#search:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}
+
+#searchButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    height: 40px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: white;
+    /* Imagen de fondo */
+    background-image: url('https://img.icons8.com/ios-filled/50/000000/search--v1.png');
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position: center;
+}
+
+#searchButton:hover {
+    background-color: #0056b3;
+    color: white;
+}
+
+/* Responsive adjustments */
+@media only screen and (max-width: 768px) {
+    .container-cursos {
+        width: 90%;
+        margin: 10px;
+    }
+
+    .menu-cursos {
+        flex-direction: column;
+        height: auto;
+    }
+
+    #buscador {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    #searchButton {
+        width: 100%;
+    }
+}

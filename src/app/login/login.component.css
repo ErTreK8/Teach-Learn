@@ -1,12 +1,5 @@
-#todo {
-    background-color: #518094;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-  }
+/* Estilos globales */
+
   
   .container {
     background-color: #f8f8f8;
@@ -23,6 +16,7 @@
 
   }
   
+
   
   /* Inputs personalizados */
   .custom-input {
@@ -52,7 +46,7 @@
   }
   .linkk{	
     text-decoration: none;
-    color: #0c5399;
+    color: #5188be;
   }
   .custom-button:hover {
     background-color: #1e2d3c; /* Color de fondo al pasar el mouse */
@@ -102,3 +96,4 @@
     }
     
   }
+  
