@@ -48,6 +48,26 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     this.updateCalendar();
   }
 
+  prevMonth() {
+    if (this.currentMonth === 0) {
+      this.currentMonth = 11;
+      this.currentYear--;
+    } else {
+      this.currentMonth--;
+    }
+    this.updateCalendar();
+  }
+
+  nextMonth() {
+    if (this.currentMonth === 11) {
+      this.currentMonth = 0;
+      this.currentYear++;
+    } else {
+      this.currentMonth++;
+    }
+    this.updateCalendar();
+  }
+
   selectMonth(index: number) {
     this.currentMonth = index;
     this.showMonthList = false;
@@ -75,10 +95,9 @@ export class CalendarComponent implements OnInit, AfterViewInit {
 
   updateDateFormate() {
     const today = new Date();
-    const day = today.getDate();
-    const month = this.monthNamesFull[today.getMonth()];
-    const year = today.getFullYear();
-    this.dateFormate.nativeElement.innerHTML = `${day} - ${month} ${year}`;
+    const options: Intl.DateTimeFormatOptions = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+    const formattedDate = today.toLocaleDateString('es-ES', options);
+    this.dateFormate.nativeElement.innerHTML = formattedDate;
   }
 
   generateCalendar(month: number, year: number) {
