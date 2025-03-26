@@ -80,5 +80,24 @@ export class ServeiAutenticarService {
     this.usuari = null;
     this.loginOK = false
   }
+  register(email: string, password: string): Promise<void> {
+    return this.auth.createUserWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        // Si el registro es exitoso, guardamos los datos del usuario
+        this.usuari = userCredential.user;
+        this.email = this.usuari?.email || '';
+        console.log('Usuario registrado con éxito:', this.usuari);
+
+        // Opcional: guardar datos en localStorage
+        localStorage.setItem("email", this.email);
+        localStorage.setItem("uid", this.usuari?.uid || '');
+
+        this.loginOK = true;
+      })
+      .catch((error) => {
+        console.error('Error al registrar el usuario:', error.message);
+        throw error; // Lanza el error para manejarlo en el componente
+      });
+  }
 
 }

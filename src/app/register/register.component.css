@@ -8,37 +8,37 @@ body {
 }
 
 .container {
-    background-color: #f8f8f8 !important;
+    background-color: #f8f8f8;
     border-radius: 10px;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative; /* Necesario para el pseudo-elemento */
-    padding: 1em 4em 4em 4em;  
-}
-.container::before {
-    content: "";
-    position: absolute;
-    top: -20px; /* Ajusta según sea necesario */
-    left: 8px; /* Ajusta según sea necesario */
-    width: 0;
-    height: 0;
+    padding: 1em 4em 4em 4em;
+    width: 100%;
+    max-width: 500px;  /* Ancho máximo para pantallas grandes */
+    margin: 1em;
 
-    border-left: 15px solid transparent;
-    border-right: 15px solid transparent;
-    border-bottom: 20px solid white; /* Color del triángulo */
-}
+  }
+  .linkk{	
+    margin-top: 1em;
+    text-decoration: none;
+    color: #5188be;
+  }
 .custom-input {
     font-size: 1.5em;
     border: none;
-    background-color: #eceeefbe;             /* Fondo gris */
-    border-bottom: 1px solid #000;      /* Borde inferior de 1px negro */
-    border-radius: 0;     
-    margin-top: 20px;              /* Elimina bordes redondeados si los tuviera */
+    background-color: #eceeefbe; /* Fondo gris */
+    border-bottom: 1px solid #000; /* Borde inferior de 1px negro */
+    border-radius: 0;
+    margin-top: 0px;
     padding: 8px;
-    width: 20em;
-}
+    width: 100%;  /* Ocupa el ancho completo del contenedor */
+    box-sizing: border-box;
+    margin-bottom: 1em;
+
+  }
 .custom-button {
     margin-top: 15px;                   /* Espaciado superior para separar el botón de los inputs */
     /* Opcional: Puedes personalizar aún más el botón, por ejemplo: */
@@ -64,3 +64,4 @@ img {
     border-radius: 50%; /* Hace que el logo sea circular */
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75); /* Sombra alrededor del logo */
 }
+
