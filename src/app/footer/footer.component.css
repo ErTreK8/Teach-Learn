@@ -1,0 +1,32 @@
+*{
+    padding: 0;
+    margin:0;
+    font-family: 'Actor', sans-serif;
+}
+
+footer {
+    margin-top: 5vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+img{
+    height: 20vh;
+    width: 30vh;
+    display: flex;
+    justify-content: center;
+}
+
+#separa {
+    margin-top: 2vh
+}
+a {
+    text-decoration: none;
+    color: #0097b2
+}
+p {
+    color:gray;
+}
