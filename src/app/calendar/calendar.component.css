@@ -3,8 +3,8 @@
 .calendar {
   height: 26.5rem;
   width: 20rem;
-  margin: 0em;
-  
+  margin: 1em;
+  margin-left: 3em;
   background-color: white;
   border-radius: 25px;
   padding: 35px 50px 0px 50px;
