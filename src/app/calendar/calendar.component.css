@@ -1,14 +1,10 @@
-.container
-{
-  position: fixed;
-  margin-right: -62em;
-}
+
 
 .calendar {
   height: 26.5rem;
   width: 20rem;
-  margin: 3em;
-  margin-bottom: 64em;
+  margin: 0em;
+  
   background-color: white;
   border-radius: 25px;
   padding: 35px 50px 0px 50px;

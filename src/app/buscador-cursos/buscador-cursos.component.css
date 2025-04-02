@@ -12,10 +12,8 @@ html, body {
 
 body {
   display: flex;
-  justify-content: center;
-  align-items: center;
   min-height: 100vh;
-  flex-direction: row;
+ 
 }
 
 .container-cursos {
@@ -23,9 +21,8 @@ body {
     flex-direction: column;
     background-color: #5c5c5cbe; 
     padding: 20px; 
+    width: 80%;
     border-radius: 15px; 
-    width: 0%;
-    max-width: 60%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin: 20px;
 }
@@ -39,6 +36,8 @@ body {
     flex-direction: column;
     align-items: center;
 }
+
+
 
 
 
