@@ -5,6 +5,7 @@ header {
     flex-direction: row;
     position: sticky;
     justify-content: space-between;
+    background-color: white;
   }
   
   

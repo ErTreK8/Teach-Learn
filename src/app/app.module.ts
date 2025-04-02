@@ -23,11 +23,13 @@ import { CrearResenyaComponent } from './crear-resenya/crear-resenya.component';
 import { PaginaChatsComponent } from './pagina-chats/pagina-chats.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { ChatComponent } from './chat/chat.component';
+import { HeaderComponent } from './header/header.component';
 
 
 
 @NgModule({
   declarations: [
+    
     AppComponent,
     LoginComponent,
     PaginaHomeComponent,
@@ -42,7 +44,8 @@ import { ChatComponent } from './chat/chat.component';
     CrearResenyaComponent,
     PaginaChatsComponent,
     CalendarComponent,
-    ChatComponent
+    ChatComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
