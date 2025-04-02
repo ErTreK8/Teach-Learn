@@ -1,100 +1,106 @@
 /* Estilos globales */
+body {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  min-height: 100vh; /* Asegura que ocupe toda la altura de la pantalla */
+  margin: 0; /* Elimina márgenes por defecto */
+  background-color: #518094; /* Fondo del body */
+  font-family: 'Arial', sans-serif;
+}
 
-  
+.container {
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2em 4em; /* Ajusta el padding para mayor espacio */
+  width: 100%;
+  max-width: 500px; /* Ancho máximo para pantallas grandes */
+  margin: 0 auto; /* Centra horizontalmente */
+}
+
+/* Inputs personalizados */
+.custom-input {
+  font-size: 1.2em;
+  border: none;
+  background-color: #eceeefbe; /* Fondo gris */
+  border-bottom: 2px solid #000; /* Borde inferior más grueso */
+  margin-top: 20px;
+  padding: 10px;
+  width: 100%; /* Ocupa el ancho completo del contenedor */
+  box-sizing: border-box;
+  margin-bottom: 1.5em;
+  transition: border-color 0.3s ease;
+}
+
+.custom-input:focus {
+  border-color: #6d67cf; /* Cambia el color del borde al enfocar */
+  outline: none;
+}
+
+/* Botón personalizado */
+.custom-button {
+  margin-top: 15px;
+  background-color: #253047;
+  border: none;
+  color: white;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.custom-button:hover {
+  background-color: #1e2d3c; /* Color de fondo al pasar el mouse */
+  transform: scale(1.05); /* Efecto de zoom al pasar el mouse */
+}
+
+/* Enlace personalizado */
+.linkk {
+  margin-top: 1em;
+  text-align: center;
+}
+
+.linkk a {
+  text-decoration: none;
+  color: #5188be;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.linkk a:hover {
+  color: #1e2d3c; /* Cambia el color al pasar el mouse */
+}
+
+/* Imagen del logo */
+.logo {
+  width: 150px;
+  margin-bottom: 20px;
+  border-radius: 50%; /* Hace que el logo sea circular */
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75); /* Sombra alrededor del logo */
+}
+
+/* Media queries para dispositivos pequeños */
+@media screen and (max-width: 480px) {
   .container {
-    background-color: #f8f8f8;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative; /* Necesario para el pseudo-elemento */
-    padding: 1em 4em 4em 4em;
-    width: 100%;
-    max-width: 500px;  /* Ancho máximo para pantallas grandes */
-    margin: 1em;
-
+      padding: 1.5em; /* Menos padding en pantallas pequeñas */
   }
-  
 
-  
-  /* Inputs personalizados */
   .custom-input {
-    font-size: 1.5em;
-    border: none;
-    background-color: #eceeefbe; /* Fondo gris */
-    border-bottom: 1px solid #000; /* Borde inferior de 1px negro */
-    border-radius: 0;
-    margin-top: 20px;
-    padding: 8px;
-    width: 100%;  /* Ocupa el ancho completo del contenedor */
-    box-sizing: border-box;
-    margin-bottom: 1.2em;
+      font-size: 1em;
+      padding: 8px;
+  }
 
-  }
-  
-  /* Botón personalizado */
   .custom-button {
-    margin-top: 15px;
-    background-color: #253047;
-    border: none;
-    color: white;
-    border-radius: 10px;
-    padding: 10px 20px;
-    font-size: 1.2em;
-    cursor: pointer;
-  }
-  .linkk{	
-    margin-top: 1em;
-    text-decoration: none;
-    color: #5188be;
-  }
-  .custom-button:hover {
-    background-color: #1e2d3c; /* Color de fondo al pasar el mouse */
-  }
-  
-  /* Estilo para el formulario si lo usas */
-  form {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
-  
-  /* Imagen del logo */
-  img {
-    width: 200px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    align-self: center;
-    border-radius: 50%; /* Hace que el logo sea circular */
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75); /* Sombra alrededor del logo */
-  }
-  
-  /* Media queries para dispositivos pequeños */
-  @media screen and (max-width: 480px) {
-    .container {
-      padding: 2.5em;  /* Menos padding en pantallas pequeñas */
-      margin: 1em;
-    }
-  
-    .custom-input {
-      font-size: 1.2em;
-      padding: 6px;
-      margin-bottom: 3em;
-    }
-  
-    .custom-button {
       font-size: 1em;
       padding: 8px 16px;
-      margin-bottom: 3em;
-
-    }
-  
-    img {
-      width: 150px;
-      margin-top: 10px;
-      margin-bottom: 3em;
-    }
-    
   }
-  
+
+  .logo {
+      width: 120px;
+  }
+}

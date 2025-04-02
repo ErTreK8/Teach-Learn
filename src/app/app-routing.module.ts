@@ -9,7 +9,7 @@ import { HomeComponent } from './home/home.component';
 
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },  // Página principal
+  { path: 'login', component: LoginComponent },  // Página principal
   { 
     path: '', 
     component: PaginaHomeComponent,  // Componente que contiene el Navbar
