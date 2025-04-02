@@ -4,13 +4,17 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { BuscadorCursosComponent } from './buscador-cursos/buscador-cursos.component';
 import { PerfilPropioComponent } from './perfil-propio/perfil-propio.component';
+import { PaginaHomeComponent } from './pagina-home/pagina-home.component';
+
 
 
 const routes: Routes = [
   { path: '', component: LoginComponent },  // Página principal
   { path: 'register', component: RegisterComponent },
   { path: 'buscadorCursos', component: BuscadorCursosComponent } ,
-  { path: 'perfilPropio', component: PerfilPropioComponent } // Página de perfil propio
+  { path: 'perfilPropio', component: PerfilPropioComponent }, // Página de perfil propio
+  { path: 'home', component: PaginaHomeComponent } // Página de perfil propio
+
 
 ];
 
