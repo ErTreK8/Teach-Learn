@@ -1,1 +1,64 @@
-<p>crear-resenya works!</p>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teach and learn</title>
+    <link rel="stylesheet" href="./crear-resenya.component.css">
+</head>
+<body>    
+    <div class="container">
+        <div class="header">
+            <div class="title">RESSENYES</div>
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const stars = document.querySelectorAll(".star");
+                const selectedValue = document.getElementById("selected-value");
+                let rating = 0;
+    
+                stars.forEach(star => {
+                    star.addEventListener("mouseover", function() {
+                        resetStars();
+                        highlightStars(this.getAttribute("data-value"));
+                    });
+    
+                    star.addEventListener("click", function() {
+                        rating = this.getAttribute("data-value");
+                        selectedValue.textContent = rating;
+                    });
+    
+                    star.addEventListener("mouseout", function() {
+                        resetStars();
+                        highlightStars(rating);
+                    });
+                });
+    
+                function highlightStars(limit) {
+                    stars.forEach(star => {
+                        if (star.getAttribute("data-value") <= limit) {
+                            star.classList.add("selected");
+                        }
+                    });
+                }
+    
+                function resetStars() {
+                    stars.forEach(star => star.classList.remove("selected"));
+                }
+            });
+        </script>
+        <label for="review">Escriu la teva ressenya</label>
+        <form action="#">
+            <div class="stars" id="rating">
+                <span class="star" data-value="1">★</span>
+                <span class="star" data-value="2">★</span>
+                <span class="star" data-value="3">★</span>
+                <span class="star" data-value="4">★</span>
+                <span class="star" data-value="5">★</span>
+            </div>
+            <textarea id="review" placeholder="Escriu aquí..."></textarea>
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+</body>
+</html>
