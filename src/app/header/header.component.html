@@ -1,33 +1,35 @@
 <header>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="./header.component.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <div>
-    <img
-      class="logo"
-      id="logo"
-      src="../../assets/logoMini.png"
-      alt="teacher&learn logo"
-    />
+    <!-- Usamos template reference "logo" para acceder al elemento -->
+    <img class="logo" #logo id="logo" src="../../assets/logoMini.png" alt="teacher&learn logo" />
   </div>
   <div>
     <div id="menu">
       <div id="Modo">
-        <p id="modo">MODO ALUMNO</p>
-        <div id="barra"></div>
+        <!-- Template reference "modo" -->
+        <p id="modo" #modo>MODO ALUMNO</p>
+        <!-- Template reference "barra" -->
+        <div id="barra" #barra></div>
       </div>
       <div id="CanviaModo">
         <label class="switch">
-          <input id="check" type="checkbox" />
+          <!-- Manejamos el cambio del checkbox con Angular -->
+          <input id="check" type="checkbox" (change)="toggleMode($event)" />
           <span class="slider round"></span>
         </label>
       </div>
-      <a href="javascript:void(0);" class="icon" onclick="hamburgesa()">
-        <img src="../../assets/account_circle.png" alt="Perfil" id="FotoUser" />
-        <h3 id="hambuergerDisplay">▼</h3>
+      <!-- Manejamos el click con Angular -->
+      <a href="javascript:void(0);" class="icon" (click)="hamburgesa()">
+        <!-- Template reference "FotoUser" -->
+        <img src="./assets/account_circle.png" alt="Perfil" id="FotoUser" #FotoUser />
+        <!-- Template reference "hambuergerDisplay" -->
+        <h3 id="hambuergerDisplay" #hambuergerDisplay>▼</h3>
       </a>
     </div>
-    <nav id="myLinks" style="display: none" class="navLinks">
-      <ul id="nav">
+    <!-- Template reference "myLinks" -->
+    <nav id="myLinks" #myLinks style="display: none;" class="navLinks">
+      <ul id="nav" #nav>
         <a href="#">Cursos</a>
         <a href="#">Usuarios</a>
         <a href="#">Perfil</a>
@@ -35,6 +37,4 @@
       </ul>
     </nav>
   </div>
-  <script src="./home.js"></script>
 </header>
-
