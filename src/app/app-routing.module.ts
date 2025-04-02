@@ -6,6 +6,7 @@ import { BuscadorCursosComponent } from './buscador-cursos/buscador-cursos.compo
 import { PerfilPropioComponent } from './perfil-propio/perfil-propio.component';
 import { PaginaHomeComponent } from './pagina-home/pagina-home.component';
 
+
 const routes: Routes = [
   { path: '', component: LoginComponent },  // Página principal
   { 
