@@ -18,11 +18,11 @@ export class LoginComponent implements OnInit {
   googleLogin() {
     this.serveiAutenticar.googleLogin()
   }
-  logout() {
-    this.serveiAutenticar.logout()
-  }
+  // logout() {
+  //   this.serveiAutenticar.logout()
+  // }
 
-  login() {
-    this.serveiAutenticar.login();
-  }
+  // login() {
+  //   this.serveiAutenticar.login();
+  // }
 }
