@@ -19,7 +19,7 @@ h1 {
   list-style: none;
 }
 
-.container {
+.containerChat {
   display: flex;
   width: 90%;
   max-width: 1200px;

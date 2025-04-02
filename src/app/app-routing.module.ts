@@ -6,6 +6,7 @@ import { BuscadorCursosComponent } from './buscador-cursos/buscador-cursos.compo
 import { PerfilPropioComponent } from './perfil-propio/perfil-propio.component';
 import { PaginaHomeComponent } from './pagina-home/pagina-home.component';
 import { HomeComponent } from './home/home.component';
+import { ChatComponent } from './chat/chat.component';
 
 
 const routes: Routes = [
@@ -17,8 +18,8 @@ const routes: Routes = [
       { path: 'register', component: RegisterComponent },
       { path: 'buscadorCursos', component: BuscadorCursosComponent } ,
       { path: 'perfilPropio', component: PerfilPropioComponent }, // Página de perfil propio
-      { path: 'homeAlfred', component: HomeComponent } // Página de perfil propio
-
+      { path: 'homeAlfred', component: HomeComponent }, // Página de perfil propio
+      { path: 'chat', component: ChatComponent  } // Página de perfil propio
     ]
   }
   
