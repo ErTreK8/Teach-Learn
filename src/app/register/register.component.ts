@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ServeiAutenticarService } from '../servei-autenticar.service';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { User } from '../modelsdedades/nweUser';
 
 @Component({
@@ -14,7 +14,7 @@ export class RegisterComponent {
   confirmPassword: string = '';
   errorMessage: string = '';
 
-  constructor(private serveiAutenticar: ServeiAutenticarService) {}
+  constructor(private db: AngularFireDatabase) {}
 
   register(): void {
     if (this.password !== this.confirmPassword) {
@@ -22,14 +22,25 @@ export class RegisterComponent {
       return;
     }
 
-    this.serveiAutenticar.register(this.email, this.password)
+    const userId = this.generateUserId(); // Genera un ID único para el usuario
+    const userData = {
+      email: this.email,
+      password: this.password, // Nota: No es seguro guardar contraseñas en texto plano
+    };
+
+    this.db.object(`/Usuario/${userId}`).set(userData)
       .then(() => {
-        console.log('Registro exitoso');
+        console.log('Usuario registrado con éxito en Realtime Database:', userData);
         // Redirigir al login o mostrar un mensaje de éxito
       })
       .catch((error) => {
-        console.error('Error al registrar:', error.message);
-        this.errorMessage = error.message;
+        console.error('Error al registrar el usuario en Realtime Database:', error.message);
+        this.errorMessage = 'Error al registrar el usuario. Inténtalo de nuevo.';
       });
+  }
+
+  // Método para generar un ID único para el usuario
+  private generateUserId(): string {
+    return Math.random().toString(36).substr(2, 9); // Genera un ID aleatorio
   }
 }
