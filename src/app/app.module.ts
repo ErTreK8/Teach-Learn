@@ -24,6 +24,7 @@ import { PaginaChatsComponent } from './pagina-chats/pagina-chats.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { ChatComponent } from './chat/chat.component';
 import { HeaderComponent } from './header/header.component';
+import { HomeComponent } from './home/home.component';
 
 
 
@@ -45,7 +46,8 @@ import { HeaderComponent } from './header/header.component';
     PaginaChatsComponent,
     CalendarComponent,
     ChatComponent,
-    HeaderComponent
+    HeaderComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

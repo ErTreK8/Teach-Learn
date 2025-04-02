@@ -1,0 +1,194 @@
+* {
+    margin: 0px;
+    padding: 0px;
+  }
+  
+  /* HOME */
+  .box {
+    border: 1px solid black;
+    border-radius: 3px;
+    color: #518094;
+    margin: 0.25em;
+    padding: 1em;
+  }
+  
+  .wrapper {
+    display: flex;
+  }
+  
+  .title {
+    text-align: center;
+    color: black;
+  }
+  
+  .subtitle, .sidebar, .content, .sidebar2 {
+    border: 0em;
+  }
+  
+  .sidebar {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    max-height: 80vh;
+    margin-top: 0.5em;
+  }
+  
+  .sidebar-top,
+  .sidebar-bottom {
+    padding: 1em;
+    border-bottom: 1px solid rgb(0, 0, 0);
+  }
+  
+  .content {
+    flex: 6;
+    background-color: white;
+    border-radius: 1.5em;
+    border-top-left-radius: 0em;
+    width: 90%;
+    height: 80vh;
+    margin-top: 0.5em;
+    margin-left: 0.5;
+  }
+  
+  .sidebar2 {
+    flex: 2;
+    background-color: #ffffff; 
+    border-radius: 1.5em;
+    border-top-left-radius: 0em;
+    height: 83.5vh;
+    margin-top: 0.5em;
+    margin-left: 1em;
+    margin-right: 1.5em;
+  }
+  
+  body {
+    background-color: #518094;
+  }
+  
+  .container-calendario {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 3em;
+    margin: 15px;
+    height: 14em;
+    text-align: center;
+  }
+  
+  .section {
+    background-color: white;
+    border-radius: 1.5em;
+    border-top-left-radius: 0em;
+    border: 0;
+  }
+  
+  .section1 {
+    margin-top: -1em;
+    margin-bottom: 1em;
+    min-height: 36.5vh;
+  }
+  
+  .section2 {
+    margin-top: 1em;
+    margin-bottom: -1em;
+    min-height: 36.5vh;
+  }
+  
+  /* USUARIOS RECIENTES (Alumno) */
+  .general {
+    display: flex;
+    align-items: center;
+    color: black;
+    margin: -1em;
+    border-radius: 1em;
+    background-color: rgb(197, 197, 197);
+  }
+  
+  .general:hover {
+    background-color: rgb(152, 182, 195);
+  }
+  
+  .foto {
+    width: 15%;
+    height: auto;
+    border: 10%;
+    border-color: black;
+    border-radius: 50%;
+    margin: 0.2em;
+  }
+  
+  .foto img {
+    background-color: white;
+    border-radius: 50%;
+    width: 100%;
+    padding: 5%;
+    height: auto;
+    margin-top: 5%;
+    margin-left: 5%;
+  }
+  
+  .texto {
+    margin-left: 5%;
+    height: fit-content;
+  }
+  
+  .etiqueta {
+    margin: 0.5em;
+    padding: 0.5em;
+  }
+  
+  /* CURSOS */
+  .menu-cursos {
+    background-color: rgb(197, 197, 197);
+    color: black;
+    padding: 1em;
+    margin: 1em;
+    border-radius: 15px;
+  }
+  .content{
+    margin-right: 1em;
+  }
+  
+  .titulo {
+    display: flex;
+  }
+  
+  .titulo h1 {
+    margin-right: 1em;
+  }
+  
+  .titulo h2 {
+    margin-top: 0.35em;
+  }
+  
+  .menu-cursos:hover {
+    background-color: rgb(152, 182, 195);
+  }
+  
+  .text {
+    padding-bottom: 0.5em;
+  }
+  
+  @media only screen and (max-width: 1600px) {
+    .sidebar2 {
+      display: none;
+    }
+    .content {
+      margin-left: 15%;
+      width: 130%;
+    }
+    .sidebar {
+      margin-left: -1%;
+      width: 120%;
+    }
+  }
+  
+  @media only screen and (max-width: 760px) {
+    .section {
+      display: none;
+    }
+    .content {
+      width: 130%;
+      margin-left: -20%;
+    }
+  }
+  
