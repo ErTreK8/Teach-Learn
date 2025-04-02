@@ -1,11 +1,97 @@
-<div class="chat-container">
-    <div class="messages" *ngFor="let message of messages">
-      <div class="message">
-        <span class="sender">{{ message.sender }}</span>: {{ message.text }}
-      </div>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./index.css">
+    <title>Chat</title>
+</head>
+<body class="main-body">
+    <h1>Contactos con quien hablar</h1>
+    <div class="container">
+        <div class="sidebar">
+            <ul>
+                <li>
+                    <button class="contact-btn">
+                        <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar">
+                        <h3>Eustaquio Barreco</h3>
+                    </button>
+                </li>
+                <li>
+                    <button class="contact-btn">
+                        <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar">
+                        <h3>Eustaquio Barreco</h3>
+                    </button>
+                </li>
+                <li>
+                    <button class="contact-btn">
+                        <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar">
+                        <h3>Eustaquio Barreco</h3>
+                    </button>
+                </li>
+                <li>
+                    <button class="contact-btn">
+                        <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar">
+                        <h3>Eustaquio Barreco</h3>
+                    </button>
+                </li>
+                <li>
+                    <button class="contact-btn">
+                        <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar">
+                        <h3>Eustaquio Barreco</h3>
+                    </button>
+                </li>
+                <li>
+                    <button class="contact-btn">
+                        <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar">
+                        <h3>Eustaquio Barreco</h3>
+                    </button>
+                </li>
+                <li>
+                    <button class="contact-btn">
+                        <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar">
+                        <h3>Eustaquio Barreco</h3>
+                    </button>
+                </li>
+                <li>
+                    <button class="contact-btn">
+                        <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar">
+                        <h3>Eustaquio Barreco</h3>
+                    </button>
+                </li>
+                <li>
+                    <button class="contact-btn">
+                        <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar">
+                        <h3>Eustaquio Barreco</h3>
+                    </button>
+                </li>
+                <li>
+                    <button class="contact-btn">
+                        <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar">
+                        <h3>Eustaquio Barreco</h3>
+                    </button>
+                </li>
+            </ul>
+        </div>
+
+        <div class="chat-section">
+            <div class="chat-header">
+                <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar-large">
+                <h3>Eustaquio Barreco</h3>
+            </div>
+
+            <div class="messages-container">
+                <div class="message alumne">Mensaje del Alumno</div>
+                <div class="message profe">Mensaje del Profesor</div>
+                <div class="message alumne">Otro mensaje del Alumno</div>
+                <div class="message profe">Otro mensaje largo del Profesor que se extiende por varias líneas y prueba la funcionalidad de la interfaz.</div>
+            </div>
+
+            <div class="input-container">
+                <input type="text" id="newMessage" placeholder="Escribe tu mensaje...">
+                <button class="send-btn">Enviar</button>
+            </div>
+        </div>
     </div>
-  
-    <input [(ngModel)]="newMessage" placeholder="Escribe un mensaje..." />
-    <button (click)="sendMessage()">Enviar</button>
-  </div>
-  
+</body>
+</html>
