@@ -5,17 +5,19 @@ import { LoginComponent } from './login/login.component';
 import { BuscadorCursosComponent } from './buscador-cursos/buscador-cursos.component';
 import { PerfilPropioComponent } from './perfil-propio/perfil-propio.component';
 import { PaginaHomeComponent } from './pagina-home/pagina-home.component';
+import { HomeComponent } from './home/home.component';
 
 
 const routes: Routes = [
   { path: '', component: LoginComponent },  // Página principal
   { 
-    path: 'home', 
+    path: '', 
     component: PaginaHomeComponent,  // Componente que contiene el Navbar
     children: [
       { path: 'register', component: RegisterComponent },
       { path: 'buscadorCursos', component: BuscadorCursosComponent } ,
-      { path: 'perfilPropio', component: PerfilPropioComponent } // Página de perfil propio
+      { path: 'perfilPropio', component: PerfilPropioComponent }, // Página de perfil propio
+      { path: 'homeAlfred', component: HomeComponent } // Página de perfil propio
 
     ]
   }
