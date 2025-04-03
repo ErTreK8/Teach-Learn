@@ -11,14 +11,15 @@ import { ChatComponent } from './chat/chat.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },  // Página principal
+  { path: 'register', component: RegisterComponent },
+
   { 
     path: '', 
     component: PaginaHomeComponent,  // Componente que contiene el Navbar
     children: [
-      { path: 'register', component: RegisterComponent },
       { path: 'buscadorCursos', component: BuscadorCursosComponent } ,
       { path: 'perfilPropio', component: PerfilPropioComponent }, // Página de perfil propio
-      { path: 'homeAlfred', component: HomeComponent }, // Página de perfil propio
+      { path: 'home', component: HomeComponent }, // Página de perfil propio
       { path: 'chat', component: ChatComponent  } // Página de perfil propio
     ]
   }

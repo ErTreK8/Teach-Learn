@@ -15,12 +15,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    min-height: 100vh;
+    min-height: 100%;
     padding: 20px;
+    margin: 0;
 }
 
 /* Contenedor principal */
 .container-cursos {
+    height: 100%;
     display: flex;
     flex-direction: column;
     background-color: rgba(92, 92, 92, 0.9); /* Fondo más oscuro */
@@ -29,7 +31,7 @@ body {
     max-width: 1200px; /* Limita el ancho máximo */
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
-    margin: 20px auto;
+    margin: 18px auto;
     transition: all 0.3s ease-in-out; /* Transición suave para cambios */
 }
 

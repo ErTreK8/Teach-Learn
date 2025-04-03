@@ -1,38 +1,41 @@
-<div class="container custom-container">
-    <img src="../../assets/logoGris.png" alt="Teach&Learn" class="logo">
-    <div *ngIf="errorMessage" class="text-danger mt-2">{{ errorMessage }}</div>
 
-    <input
-        type="email"
-        name="email"
-        id="email"
-        placeholder="Email"
-        class="form-control form-control-lg custom-input"
-        [(ngModel)]="email"
-    />
-    <input
-        type="password"
-        name="psw"
-        id="psw"
-        placeholder="contraseña"
-        class="form-control form-control-lg custom-input"
-        [(ngModel)]="password"
-    />
-    <input
-        type="password"
-        name="confirmPsw"
-        id="confirmPsw"
-        placeholder="Confirmar contraseña"
-        class="form-control form-control-lg custom-input"
-        [(ngModel)]="confirmPassword"
-    />
-    <button
-        class="btn btn-outline-light btn-lg px-5 custom-button"
-        type="submit"
-        (click)="register()">
-        Registrarse
-    </button>
-    <div class="linkk">
-        <p class="mb-0 ">have an account? <a [routerLink]="'/'" class=" linkk fw-bold">Sign Up</a></p>
-      </div>
-</div>
+<body>
+    <div class="container custom-container">
+        <img src="../../assets/logoGris.png" alt="Teach&Learn" class="logo">
+        <div *ngIf="errorMessage" class="text-danger mt-2">{{ errorMessage }}</div>
+    
+        <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Email"
+            class="form-control form-control-lg custom-input"
+            [(ngModel)]="email"
+        />
+        <input
+            type="password"
+            name="psw"
+            id="psw"
+            placeholder="contraseña"
+            class="form-control form-control-lg custom-input"
+            [(ngModel)]="password"
+        />
+        <input
+            type="password"
+            name="confirmPsw"
+            id="confirmPsw"
+            placeholder="Confirmar contraseña"
+            class="form-control form-control-lg custom-input"
+            [(ngModel)]="confirmPassword"
+        />
+        <button
+            class="btn btn-outline-light btn-lg px-5 custom-button"
+            type="submit"
+            (click)="register()">
+            Registrarse
+        </button>
+        <div class="linkk">
+            <p class="mb-0 ">have an account? <a [routerLink]="'/login'" class=" linkk fw-bold">Sign Up</a></p>
+          </div>
+    </div>
+</body>

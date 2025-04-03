@@ -1,11 +1,10 @@
 body {
-    background-color: #518094 !important;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    height: 100%;
 }
+
 
 .container {
     background-color: #f8f8f8;
@@ -18,7 +17,7 @@ body {
     padding: 1em 4em 4em 4em;
     width: 100%;
     max-width: 500px;  /* Ancho máximo para pantallas grandes */
-    margin: 1em;
+    margin: 0em;
 
   }
   .linkk{	
