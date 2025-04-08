@@ -4,12 +4,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireAuthModule} from '@angular/fire/compat/auth';
-import { environment} from '../environments/environment';
-import { FormsModule } from '@angular/forms';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { environment } from '../environments/environment';
 import { PaginaHomeComponent } from './pagina-home/pagina-home.component';
 import { RegisterComponent } from './register/register.component';
 import { BuscadorCursosComponent } from './buscador-cursos/buscador-cursos.component';
@@ -25,11 +24,6 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { ChatComponent } from './chat/chat.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
-import { getDatabase, ref, set } from 'firebase/database';
-import { v4 as uuidv4 } from 'uuid'; // Para generar un ID único para el usuario
-import { EmailVerificationService } from './email-verification.service'; // Servicio personalizado para enviar correos
-
-
 
 @NgModule({
   declarations: [
@@ -54,13 +48,13 @@ import { EmailVerificationService } from './email-verification.service'; // Serv
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.fireBaseConfig),
-    AngularFireAuthModule,
-    AngularFireDatabaseModule,
-    FormsModule,
-    ReactiveFormsModule // Agrega esta línea
+    AngularFireModule.initializeApp(environment.fireBaseConfig), // Inicializa Firebase aquí
+    AngularFireAuthModule, // Autenticación de Firebase
+    AngularFireDatabaseModule, // Base de datos de Firebase
+    FormsModule, // Formularios tradicionales (ngModel)
+    ReactiveFormsModule // Formularios reactivos
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

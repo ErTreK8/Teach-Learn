@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { getDatabase, ref, set } from 'firebase/database';
-import { v4 as uuidv4 } from 'uuid'; // Para generar un ID único para el usuario
-import { EmailVerificationService } from '../email-verification.service'; // Servicio personalizado para enviar correos
+import { getAuth, signInAnonymously } from 'firebase/auth';
+import { getDatabase, ref, set } from 'firebase/database'; // Importa getDatabase aquí
+import { v4 as uuidv4 } from 'uuid';
+import { EmailVerificationService } from '../email-verification.service';
 
 @Component({
   selector: 'app-register',
@@ -46,8 +47,6 @@ export class RegisterComponent {
   get confirmPassword() { return this.registerForm.get('confirmPassword'); }
 
   register(): void {
-    console.log('Botón de registro presionado');
-
     if (this.registerForm.invalid) {
       console.log('Formulario inválido');
       return;
@@ -59,35 +58,46 @@ export class RegisterComponent {
     const userId = uuidv4();
     const verificationCode = Math.random().toString(36).substr(2, 8);
 
-    const db = getDatabase();
-    const usersRef = ref(db, `Usuario/${userId}`);
+    // Obtener la instancia de Firebase Auth
+    const auth = getAuth();
 
-    const userData = {
-      idUsr: userId,
-      email,
-      password, // Asegúrate de cifrar esto en producción
-      esAdmin: false,
-      fotoPerfil: '',
-      descripcion: '',
-      verified: false,
-      verificationCode
-    };
+    // Autenticación Anónima
+    signInAnonymously(auth)
+      .then(() => {
+        console.log('Usuario autenticado anónimamente');
 
-    set(usersRef, userData)
+        // Obtener la instancia de la base de datos
+        const db = getDatabase();
+
+        // Guardar los datos del usuario en el Realtime Database
+        const usersRef = ref(db, `Usuario/${userId}`);
+
+        const userData = {
+          idUsr: userId,
+          email,
+          password, // Asegúrate de cifrar esto en producción
+          esAdmin: false,
+          fotoPerfil: '',
+          descripcion: '',
+          verified: false,
+          verificationCode
+        };
+
+        return set(usersRef, userData); // Guarda los datos
+      })
       .then(() => {
         console.log('Datos del usuario guardados en el Realtime Database');
 
-        this.emailVerificationService.sendEmailVerificationCode(email, verificationCode)
-          .then(() => {
-            alert('Se ha enviado un código de verificación a tu correo electrónico.');
-            this.router.navigate(['/verify-email'], { queryParams: { userId } });
-          })
-          .catch((error) => {
-            this.errorMessage = 'Error al enviar el correo de verificación.';
-          });
+        // Enviar el código de verificación al correo electrónico
+        return this.emailVerificationService.sendEmailVerificationCode(email, verificationCode);
+      })
+      .then(() => {
+        alert('Se ha enviado un código de verificación a tu correo electrónico.');
+        this.router.navigate(['/verify-email'], { queryParams: { userId } });
       })
       .catch((error) => {
-        this.errorMessage = 'Error al guardar los datos del usuario.';
+        console.error('Error durante el registro:', error);
+        this.errorMessage = 'Error al registrar el usuario.';
       });
   }
 }
