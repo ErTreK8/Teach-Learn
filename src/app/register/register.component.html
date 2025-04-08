@@ -1,41 +1,64 @@
-
-<body>
-    <div class="container custom-container">
-        <img src="../../assets/logoGris.png" alt="Teach&Learn" class="logo">
-        <div *ngIf="errorMessage" class="text-danger mt-2">{{ errorMessage }}</div>
-    
-        <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="Email"
-            class="form-control form-control-lg custom-input"
-            [(ngModel)]="email"
-        />
-        <input
-            type="password"
-            name="psw"
-            id="psw"
-            placeholder="contraseña"
-            class="form-control form-control-lg custom-input"
-            [(ngModel)]="password"
-        />
-        <input
-            type="password"
-            name="confirmPsw"
-            id="confirmPsw"
-            placeholder="Confirmar contraseña"
-            class="form-control form-control-lg custom-input"
-            [(ngModel)]="confirmPassword"
-        />
-        <button
-            class="btn btn-outline-light btn-lg px-5 custom-button"
-            type="submit"
-            (click)="register()">
-            Registrarse
-        </button>
-        <div class="linkk">
-            <p class="mb-0 ">have an account? <a [routerLink]="'/login'" class=" linkk fw-bold">Sign Up</a></p>
-          </div>
-    </div>
-</body>
+<div class="container custom-container">
+    <img src="../../assets/logoGris.png" alt="Teach&Learn" class="logo">
+    <div *ngIf="errorMessage" class="text-danger mt-2">{{ errorMessage }}</div>
+  
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+      <!-- Campo de Email -->
+      <input
+        type="email"
+        name="email"
+        id="email"
+        placeholder="Email"
+        class="form-control form-control-lg custom-input"
+        formControlName="email"
+      />
+      <!-- Validaciones para Email -->
+      <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="text-danger">
+        <span *ngIf="email?.errors?.['required']">El email es requerido.</span>
+        <span *ngIf="email?.errors?.['email']">Por favor, ingresa un email válido.</span>
+      </div>
+  
+      <!-- Campo de Contraseña -->
+      <input
+        type="password"
+        name="psw"
+        id="psw"
+        placeholder="Contraseña"
+        class="form-control form-control-lg custom-input"
+        formControlName="password"
+      />
+      <!-- Validaciones para Contraseña -->
+      <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="text-danger">
+        <span *ngIf="password?.errors?.['required']">La contraseña es requerida.</span>
+        <span *ngIf="password?.errors?.['minlength']">La contraseña debe tener al menos 6 caracteres.</span>
+      </div>
+  
+      <!-- Campo de Confirmar Contraseña -->
+      <input
+        type="password"
+        name="confirmPsw"
+        id="confirmPsw"
+        placeholder="Confirmar contraseña"
+        class="form-control form-control-lg custom-input"
+        formControlName="confirmPassword"
+      />
+      <!-- Validación para Confirmar Contraseña -->
+      <div *ngIf="confirmPassword?.invalid && (confirmPassword?.dirty || confirmPassword?.touched)" class="text-danger">
+        <span *ngIf="confirmPassword?.errors?.['mismatch']">Las contraseñas no coinciden.</span>
+      </div>
+  
+      <!-- Botón de Registro -->
+      <button
+        class="btn btn-outline-light btn-lg px-5 custom-button"
+        type="submit"
+        [disabled]="registerForm.invalid"
+      >
+        Registrarse
+      </button>
+  
+      <!-- Enlace para iniciar sesión -->
+      <div class="linkk">
+        <p class="mb-0">¿Ya tienes una cuenta? <a [routerLink]="'/login'" class="linkk fw-bold">Iniciar sesión</a></p>
+      </div>
+    </form>
+  </div>

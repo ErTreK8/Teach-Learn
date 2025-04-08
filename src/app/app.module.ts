@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule} from '@angular/fire/compat/auth';
 import { environment} from '../environments/environment';
@@ -25,12 +25,14 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { ChatComponent } from './chat/chat.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
+import { getDatabase, ref, set } from 'firebase/database';
+import { v4 as uuidv4 } from 'uuid'; // Para generar un ID único para el usuario
+import { EmailVerificationService } from './email-verification.service'; // Servicio personalizado para enviar correos
 
 
 
 @NgModule({
   declarations: [
-    
     AppComponent,
     LoginComponent,
     PaginaHomeComponent,
@@ -51,11 +53,12 @@ import { HomeComponent } from './home/home.component';
   ],
   imports: [
     BrowserModule,
- AppRoutingModule,
- AngularFireModule.initializeApp(environment.fireBaseConfig),
- AngularFireAuthModule,
-AngularFireDatabaseModule,
- FormsModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.fireBaseConfig),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
+    FormsModule,
+    ReactiveFormsModule // Agrega esta línea
   ],
   providers: [],
   bootstrap: [AppComponent]
