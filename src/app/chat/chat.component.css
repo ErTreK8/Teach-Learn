@@ -5,14 +5,15 @@ body.main-body {
   flex-direction: column;
   align-items: center;
   margin: 0;
-  padding: 20px;
+  padding: 2%;
+  width: 100%;
 }
 
 h1 {
   font-size: 2rem;
   margin-bottom: 20px;
   color: #1F2937;
-  margin-bottom: 2em;
+  margin-bottom: 0em;
 }
 
 *{
@@ -20,9 +21,9 @@ h1 {
 }
 
 .containerChat {
+  margin: 2em;
   display: flex;
-  width: 90%;
-  max-width: 1200px;
+  width: 100%;
   background: white;
   border-radius: 12px;
   overflow: hidden;
@@ -30,7 +31,6 @@ h1 {
 }
 
 .sidebar {
-  width: 25%;
   background-color: #E5E7EB;
   padding: 20px;
   overflow-y: auto;
