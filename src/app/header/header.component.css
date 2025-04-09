@@ -26,12 +26,12 @@ ul a {
   flex-direction: flex-end;
 }
 
-header .icon:hover {
+header .iconHeader:hover {
   transform: scale(1.1);
   text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
 }
 
-.icon {
+.iconHeader {
   display: flex;
   margin-right: 1em;
 }
@@ -45,7 +45,7 @@ header .icon:hover {
   align-items: center;
 }
 
-.icon h3 {
+.iconHeader h3 {
   margin-left: 0.5em;
   margin-right: 0.5em;
   text-decoration: none;
@@ -58,13 +58,13 @@ header .icon:hover {
   margin-top: -1em;
 }
 
-.icon img {
+.iconHeader img {
   height: 7vh;
   width: auto;
   margin-left: 1vh;
 }
 
-.icon {
+.iconHeader {
   z-index: 1;
   text-decoration: none;
   font-weight: bold;
