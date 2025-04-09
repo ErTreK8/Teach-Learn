@@ -2,7 +2,15 @@
   margin: 0px;
   padding: 0px;
 }
-
+body {
+  padding-top: 2.5em;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 /* HOME */
 .box {
   border: 1px solid black;
@@ -27,6 +35,7 @@
 }
 
 .sidebar {
+  background-color: #ffffff00;
   flex: 2;
   display: flex;
   flex-direction: column;
@@ -43,9 +52,8 @@
 
 .content {
   flex: 6;
-  background-color: white;
+  background-color: #ffffff91; 
   border-radius: 1.5em;
-  border-top-left-radius: 0em;
   width: 75%;
   max-height: 80vh;
   margin-top: 0.5em;
@@ -54,9 +62,8 @@
 
 .sidebar2 {
   flex: 2;
-  background-color: #ffffff;
+  background-color: #ffffff91; 
   border-radius: 1.5em;
-  border-top-left-radius: 0em;
   max-height: 80vh;
   max-width: 30%;
   margin-top: 0.5em;
@@ -69,7 +76,7 @@ body {
 }
 
 .container-calendario {
-  background-color: #ffffff;
+    background-color: #ffffff91; 
   padding: 20px;
   border-radius: 3em;
   margin: 15px;
@@ -78,9 +85,8 @@ body {
 }
 
 .section {
-  background-color: white;
+  background-color: #ffffff91; 
   border-radius: 1.5em;
-  border-top-left-radius: 0em;
   border: 0;
 }
 
@@ -89,11 +95,16 @@ body {
   margin-bottom: 1em;
   min-height: 36.5vh;
 }
+.containerSelects{
+  overflow-y: auto;
+height: 80%;}
 
 .section2 {
   margin-top: 1em;
   margin-bottom: -1em;
   min-height: 36.5vh;
+  height: 15vh;
+
 }
 
 /* USUARIOS RECIENTES (Alumno) */
@@ -103,7 +114,7 @@ body {
   color: black;
   margin: -1em;
   border-radius: 1em;
-  background-color: rgb(197, 197, 197);
+    background-color: #ffffff; 
 }
 
 .general:hover {
@@ -141,7 +152,7 @@ body {
 
 /* CURSOS */
 .menu-cursos {
-  background-color: rgb(197, 197, 197);
+  background-color: #ffffff; 
   color: black;
   padding: 1em;
   margin: 1em;
@@ -153,6 +164,7 @@ body {
 
 .titulo {
   display: flex;
+  
 }
 
 .titulo h1 {
