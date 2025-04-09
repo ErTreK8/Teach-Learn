@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { initializeApp, getApps, getApp } from 'firebase/app'; // Importa initializeApp y funciones auxiliares
 import { getAuth, signInAnonymously } from 'firebase/auth';
-import { getDatabase, ref, set } from 'firebase/database'; // Importa getDatabase aquí
+import { getDatabase, ref, set } from 'firebase/database';
 import { v4 as uuidv4 } from 'uuid';
+import { environment } from '../../environments/environment'; // Importa las credenciales de Firebase
 import { EmailVerificationService } from '../email-verification.service';
 
 @Component({
@@ -27,6 +29,11 @@ export class RegisterComponent {
     }, {
       validators: this.matchPassword('password', 'confirmPassword')
     });
+
+    // Inicializa Firebase solo si no está ya inicializado
+    if (!getApps().length) {
+      initializeApp(environment.fireBaseConfig);
+    }
   }
 
   matchPassword(passwordKey: string, confirmPasswordKey: string) {

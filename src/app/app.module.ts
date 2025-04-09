@@ -24,6 +24,9 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { ChatComponent } from './chat/chat.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getAuth, provideAuth } from '@angular/fire/auth';
+import { getDatabase, provideDatabase } from '@angular/fire/database';
 
 @NgModule({
   declarations: [
@@ -54,7 +57,15 @@ import { HomeComponent } from './home/home.component';
     FormsModule, // Formularios tradicionales (ngModel)
     ReactiveFormsModule // Formularios reactivos
   ],
-  providers: [],
+  providers: [
+    provideFirebaseApp(() => initializeApp({"projectId":"teachandlearn-231cd","appId":"1:1047176758748:web:8ae9b7357b43aab7f03b19","databaseURL":"https://teachandlearn-231cd-default-rtdb.europe-west1.firebasedatabase.app","storageBucket":"teachandlearn-231cd.firebasestorage.app","apiKey":"AIzaSyDj390FlRB-cr4KAW0IR3UDl1Jp_RtMUsY","authDomain":"teachandlearn-231cd.firebaseapp.com","messagingSenderId":"1047176758748","measurementId":"G-WVCKJFP0PE"})),
+    provideAuth(() => getAuth()),
+    provideDatabase(() => getDatabase())
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+  constructor() {
+    console.log('AppModule inicializado');
+  }
+}
