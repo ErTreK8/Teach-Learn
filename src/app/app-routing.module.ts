@@ -7,6 +7,7 @@ import { PerfilPropioComponent } from './perfil-propio/perfil-propio.component';
 import { PaginaHomeComponent } from './pagina-home/pagina-home.component';
 import { HomeComponent } from './home/home.component';
 import { ChatComponent } from './chat/chat.component';
+import { VerifyEmailComponent } from './verify-email/verify-email.component'; // Importa el componente
 
 
 const routes: Routes = [
@@ -18,9 +19,10 @@ const routes: Routes = [
     component: PaginaHomeComponent,  // Componente que contiene el Navbar
     children: [
       { path: 'buscadorCursos', component: BuscadorCursosComponent } ,
-      { path: 'perfilPropio', component: PerfilPropioComponent }, // Página de perfil propio
-      { path: 'home', component: HomeComponent }, // Página de perfil propio
-      { path: 'chat', component: ChatComponent  } // Página de perfil propio
+      { path: 'perfilPropio', component: PerfilPropioComponent }, 
+      { path: 'home', component: HomeComponent }, 
+      { path: 'chat', component: ChatComponent  }, 
+      { path: 'verify-email', component: VerifyEmailComponent },
     ]
   }
   

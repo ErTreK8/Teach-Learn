@@ -11,7 +11,6 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^17.3.0",
-    "@angular/cdk": "^17.3.0",
     "@angular/common": "^17.3.0",
     "@angular/compiler": "^17.3.0",
     "@angular/core": "^17.3.0",
@@ -20,14 +19,12 @@
     "@angular/platform-browser": "^17.3.0",
     "@angular/platform-browser-dynamic": "^17.3.0",
     "@angular/router": "^17.3.0",
-    "@coreui/angular": "~5.1.11",
-    "@coreui/coreui": "^5.2.0",
-    "@coreui/icons": "^3.0.1",
-    "@coreui/icons-angular": "~5.1.11",
-    "@popperjs/core": "~2.11.8",
+    "@types/uuid": "^10.0.0",
+    "emailjs-com": "^3.2.0",
+    "express": "^5.1.0",
+    "nodemailer": "^6.10.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
-    "v-calendar": "^3.1.2",
     "zone.js": "~0.14.3"
   },
   "devDependencies": {

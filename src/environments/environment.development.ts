@@ -1,13 +1,13 @@
 export const environment = {
-    production: false,
+    production: true,
     fireBaseConfig: {
-    apiKey: "AIzaSyD8xAHEkyx8i00f0XTH6BQsORQIJDmNU78",
-    authDomain: "edclesmevespelis.firebaseapp.com",
-    databaseURL: "https://edclesmevespelis.firebaseio.com",
-    projectId: " edclesmevespelis ",
-    storageBucket: " edclesmevespelis.appspot.com",
-    messagingSenderId: "1047176758748",
-    appId: "1:1047176758748:web:ef1cd1ea8a111a3bf03b19"
+        apiKey: "AIzaSyDj390FlRB-cr4KAW0IR3UDl1Jp_RtMUsY",
+        authDomain: "teachandlearn-231cd.firebaseapp.com",
+        databaseURL: "https://teachandlearn-231cd-default-rtdb.europe-west1.firebasedatabase.app",
+        projectId: "teachandlearn-231cd ",
+        storageBucket: "teachandlearn-231cd.firebasestorage.app",
+        messagingSenderId: "1047176758748",
+        appId: "1:1047176758748:web:8ae9b7357b43aab7f03b19"
     }
 };
 // export const environment = {
