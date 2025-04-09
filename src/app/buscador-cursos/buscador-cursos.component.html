@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,10 +12,10 @@
 </head>
 <body>
     <div class="container-cursos col-lg-12 col-md-12 col-sm-12 col-12">
-        <div id="buscador">
-            <input type="text" id="search" placeholder="Buscar...">
-            <button id="searchButton"></button>
-        </div>
+      <div class="buscador">
+        <input type="text" id="search" placeholder="Buscar...">
+        <span class="lupa"><i class="fa fa-search" aria-hidden="true"></i></span>
+      </div>
     <div class="cursos">
       <div class="menu-cursos">
         <h4>Titulo Curso</h4>
@@ -60,10 +62,15 @@
         <h6>Descripcion Curso aishdiuahsidasidi</h6>
       </div>
     </div>
-        
+
     </div>
     <div id="calendario">
-      <app-calendar></app-calendar>
+      <c-calendar
+        class="border rounded"
+        locale="en-ES"
+        [value]="selectedDate"
+        (valueChange)="onDateChange($event)"
+      ></c-calendar>
     </div>
       
     

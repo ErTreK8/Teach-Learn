@@ -35,6 +35,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/@coreui/coreui/dist/css/coreui.min.css",
               "src/styles.css"
             ],
             "scripts": []

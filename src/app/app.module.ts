@@ -1,15 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-
 import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireAuthModule} from '@angular/fire/compat/auth';
-import { environment} from '../environments/environment';
-import { FormsModule } from '@angular/forms';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { FormsModule } from '@angular/forms';
+import { environment } from '../environments/environment';
 import { PaginaHomeComponent } from './pagina-home/pagina-home.component';
 import { RegisterComponent } from './register/register.component';
 import { BuscadorCursosComponent } from './buscador-cursos/buscador-cursos.component';
@@ -26,11 +24,8 @@ import { ChatComponent } from './chat/chat.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 
-
-
 @NgModule({
   declarations: [
-    
     AppComponent,
     LoginComponent,
     PaginaHomeComponent,
@@ -47,17 +42,17 @@ import { HomeComponent } from './home/home.component';
     CalendarComponent,
     ChatComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
- AppRoutingModule,
- AngularFireModule.initializeApp(environment.fireBaseConfig),
- AngularFireAuthModule,
-AngularFireDatabaseModule,
- FormsModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.fireBaseConfig),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
+    FormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
