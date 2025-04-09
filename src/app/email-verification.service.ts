@@ -15,7 +15,10 @@ export class EmailVerificationService {
       to_email: email, // Correo del destinatario
       verification_code: verificationCode // Código de verificación
     };
-
+  
+    console.log('Enviando correo a:', email);
+    console.log('Código de verificación:', verificationCode);
+  
     return emailjs.send('service_fd6brva', 'template_zsa5zdq', templateParams).then(
       () => {
         console.log('Correo enviado correctamente');

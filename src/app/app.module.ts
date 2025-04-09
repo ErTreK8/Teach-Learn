@@ -27,6 +27,7 @@ import { HomeComponent } from './home/home.component';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getDatabase, provideDatabase } from '@angular/fire/database';
+import { VerifyEmailComponent } from './verify-email/verify-email.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { getDatabase, provideDatabase } from '@angular/fire/database';
     LoginComponent,
     PaginaHomeComponent,
     RegisterComponent,
+    VerifyEmailComponent,
     BuscadorCursosComponent,
     CursoComponent,
     ClaseComponent,
@@ -46,7 +48,8 @@ import { getDatabase, provideDatabase } from '@angular/fire/database';
     CalendarComponent,
     ChatComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    VerifyEmailComponent
   ],
   imports: [
     BrowserModule,
