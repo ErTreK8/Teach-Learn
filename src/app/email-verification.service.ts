@@ -11,13 +11,15 @@ export class EmailVerificationService {
   }
 
   sendEmailVerificationCode(email: string, verificationCode: string): Promise<void> {
+    console.log('Dirección del destinatario:', email);
+    console.log('Código de verificación:', verificationCode);
+  
     const templateParams = {
-      to_email: email, // Correo del destinatario
-      verification_code: verificationCode // Código de verificación
+      to_email: email,
+      verification_code: verificationCode
     };
   
-    console.log('Enviando correo a:', email);
-    console.log('Código de verificación:', verificationCode);
+    console.log('Parámetros de correo:', templateParams);
   
     return emailjs.send('service_fd6brva', 'template_zsa5zdq', templateParams).then(
       () => {
