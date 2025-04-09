@@ -1,10 +1,15 @@
 export class Usuario {
-    idUsr!: number;
-    nomUsuari!: string;
-    password!: string;
-    nom!: string;
-    cognoms!: string;
+    idUsr!: string;
     email!: string;
-    descripcio!: string;
+    nomUsr!: string;
+    password!: string; // Asegúrate de cifrar esto en producción
+    esAdmin!: boolean;
     fotoPerfil!: string;
-}
+    descripcion!: string;
+    verified!: boolean;
+    verificationCode!: string;
+  
+    constructor(data?: Partial<Usuario>) {
+      Object.assign(this, data);
+    }
+  }
