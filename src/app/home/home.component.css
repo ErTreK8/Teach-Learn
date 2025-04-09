@@ -14,7 +14,7 @@
 
 .wrapper {
   display: flex;
-  min-width: 85vw;
+  width: 85vw;
 }
 
 .title {
@@ -30,13 +30,13 @@
   flex: 2;
   display: flex;
   flex-direction: column;
+  max-width: 30%;
   max-height: 80vh;
   margin-top: 0.5em;
-  margin-left: -20em;
+  /* margin-left: -10em; */
 }
 
-.sidebar-top,
-.sidebar-bottom {
+.sidebar-top, .sidebar-bottom {
   padding: 1em;
   border-bottom: 1px solid rgb(0, 0, 0);
 }
@@ -46,8 +46,8 @@
   background-color: white;
   border-radius: 1.5em;
   border-top-left-radius: 0em;
-  width: 90%;
-  height: 80vh;
+  width: 75%;
+  max-height: 80vh;
   margin-top: 0.5em;
   margin-left: 0.5;
 }
@@ -57,7 +57,8 @@
   background-color: #ffffff;
   border-radius: 1.5em;
   border-top-left-radius: 0em;
-  height: 83.5vh;
+  max-height: 80vh;
+  max-width: 30%;
   margin-top: 0.5em;
   margin-left: 1em;
   margin-right: 1.5em;
@@ -168,6 +169,12 @@ body {
 
 .text {
   padding-bottom: 0.5em;
+}
+
+@media only screen and (max-width: 1900px) {
+  .sidebar{
+    margin-left: -5em;
+  }
 }
 
 @media only screen and (max-width: 1600px) {
