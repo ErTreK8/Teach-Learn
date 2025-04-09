@@ -1,1 +1,64 @@
-<p>clase works!</p>
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teach and learn</title>
+    <link rel="stylesheet" href="./clase.component.css"/>
+    <script src="./js/script.js" defer></script>
+  </head>
+  <body>
+    <div class="container-perfil col-lg-12 col-md-12 col-sm-12 col-12">
+      <div class="menu-cursos">
+        <div class="header text text-titol"><h1>Títol Clase</h1></div>
+
+        <div class="profile text text-profe">
+          <div class="foto">
+            <img src="../../assets/pfp2.png" alt="Professor" />
+          </div>
+          <div class="text-profe1">
+            <h2>Nom Professor</h2>
+          </div>
+        </div>
+
+        <p class="text text-data">Data Inici - Data Final</p>
+
+        <div class="description text text-desc">
+          <p>Descripció Classe:</p>
+        </div>
+
+        <p class="text text-nAlmn">Num Alumnes: x/N</p>
+
+        <div class="students text text-lAlmn">
+          <div class="fotosAlmn">
+            <div class="alumno">
+              <img src="../../assets/pfp2.png" alt="Alumne 1" />
+              <p class="text-Almn">Alumne 1 |</p>
+            </div>
+            <div class="alumno">
+              <img src="../../assets/pfp2.png" alt="Alumne 2" />
+              <p class="text-Almn">Alumne 2 |</p>
+            </div>
+            <div class="alumno">
+              <img src="../../assets/pfp2.png" alt="Alumne 1" />
+              <p class="text-Almn">Alumne 3 |</p>
+            </div>
+            <div class="alumno">
+              <img src="../../assets/pfp2.png" alt="Alumne 2" />
+              <p class="text-Almn">Alumne 4 |</p>
+            </div>
+          </div>
+        </div>
+        <form action="#" method="POST">
+          <div class="buttons">
+            <button class="boton botonCancel" type="button">Cancel·lar</button>
+            <button class="boton botonSubmit" type="submit">Afegirme</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="container">
+        <app-calendar></app-calendar>
+    </div>
+  </body>
+</html>
