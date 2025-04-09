@@ -1,14 +1,12 @@
-
-
+<!-- src/app/buscador-cursos/buscador-cursos.component.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teach and learn</title>
+    <title>Teach and Learn</title>
     <link rel="stylesheet" href="buscador-cursos.component.css">
     <script src="./script.js" defer></script>
-
 </head>
 <body>
     <div class="container-cursos col-lg-12 col-md-12 col-sm-12 col-12">
@@ -16,58 +14,16 @@
         <input type="text" id="search" placeholder="Buscar...">
         <span class="lupa"><i class="fa fa-search" aria-hidden="true"></i></span>
       </div>
-    <div class="cursos">
-      <div class="menu-cursos">
-        <h4>Titulo Curso</h4>
-        <h6>Descripcion Curso aishdiuahsidasidi</h6>
-        
-      </div>
-      <div class="menu-cursos">
-        <h4>Titulo Curso</h4>
-        <h6>Descripcion Curso aishdiuahsidasidi</h6>
-        
-      </div>
-      <div class="menu-cursos">
-        <h4>Titulo Curso</h4>
-        <h6>Descripcion Curso aishdiuahsidasidi</h6>
-        
-      </div>
-      <div class="menu-cursos">
-        <h4>Titulo Curso</h4>
-        <h6>Descripcion Curso aishdiuahsidasidi</h6>
-        
-      </div>
-      <div class="menu-cursos">
-        <h4>Titulo Curso</h4>
-        <h6>Descripcion Curso aishdiuahsidasidi</h6>
-        
-      </div>
-      <div class="menu-cursos">
-        <h4>Titulo Curso</h4>
-        <h6>Descripcion Curso aishdiuahsidasidi</h6>
-        
-      </div>
-      <div class="menu-cursos">
-        <h4>Titulo Curso</h4>
-        <h6>Descripcion Curso aishdiuahsidasidi</h6>
-        
-      </div>
-      <div class="menu-cursos">
-        <h4>Titulo Curso</h4>
-        <h6>Descripcion Curso aishdiuahsidasidi</h6>
-        
-      </div>
-      <div class="menu-cursos">
-        <h4>Titulo Curso</h4>
-        <h6>Descripcion Curso aishdiuahsidasidi</h6>
+
+      <div class="cursos">
+        <!-- Usamos *ngFor para iterar sobre los cursos -->
+        <div class="menu-cursos" *ngFor="let curso of cursos">
+          <h4>{{ curso.nomCurso }}</h4>  <!-- Mostrar nombre del curso -->
+          <h6>{{ curso.descripcio }}</h6>  <!-- Mostrar descripción del curso -->
+        </div>
       </div>
     </div>
 
-    </div>
-    <div id="calendario">
-
-    </div>
-      
-    
+    <div id="calendario"></div>
 </body>
 </html>
