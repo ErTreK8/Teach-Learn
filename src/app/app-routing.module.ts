@@ -13,6 +13,8 @@ import { VerifyEmailComponent } from './verify-email/verify-email.component'; //
 const routes: Routes = [
   { path: 'login', component: LoginComponent },  // Página principal
   { path: 'register', component: RegisterComponent },
+  { path: 'verify-email', component: VerifyEmailComponent },
+
 
   { 
     path: '', 
@@ -22,7 +24,6 @@ const routes: Routes = [
       { path: 'perfilPropio', component: PerfilPropioComponent }, 
       { path: 'home', component: HomeComponent }, 
       { path: 'chat', component: ChatComponent  }, 
-      { path: 'verify-email', component: VerifyEmailComponent },
     ]
   }
   
