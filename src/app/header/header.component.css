@@ -177,13 +177,21 @@ input:checked + .slider:before {
 
 #myLinks a {
   display: flex;
-  align-items: end;
-  flex-direction: column;
-  margin-right: 2vh;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 10px 15px;
   margin-top: 1vh;
   margin-bottom: 1vh;
+  background-color: transparent;
+  border: none;
   font-size: 16px;
+  font-weight: bold;
   color: white;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.3s;
+
 }
 
 #myLinks {
@@ -192,7 +200,36 @@ input:checked + .slider:before {
   align-items: end;
   flex-direction: column;
 }
+/* Estilo para el botón de logout */
+#myLinks button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 10px 15px;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
 
+/* Hover effect para el botón de logout */
+#myLinks button:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* Fondo ligeramente más claro */
+  transform: scale(1.05); /* Efecto de agrandamiento */
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4); /* Sombra de texto */
+}
+#myLinks a:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* Fondo ligeramente más claro */
+  transform: scale(1.05); /* Efecto de agrandamiento */
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4); /* Sombra de texto */
+}
 /* PC */
 @media (min-width: 769px) {
   #barra {

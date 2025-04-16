@@ -1,9 +1,10 @@
 import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Router } from '@angular/router'; // Importa el Router
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css'] // Tus estilos se mantienen intactos
+  styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements AfterViewInit {
 
@@ -16,11 +17,13 @@ export class HeaderComponent implements AfterViewInit {
   @ViewChild('logo') logo!: ElementRef;
   @ViewChild('FotoUser') FotoUser!: ElementRef;
 
+  constructor(private router: Router) {} // Inyecta el Router
+
   ngAfterViewInit() {
     // Aquí ya tienes acceso a los elementos referenciados
   }
 
-  // Función para alternar el menú (sin modificar tus estilos)
+  // Función para alternar el menú
   hamburgesa() {
     const myLinksEl = this.myLinks.nativeElement;
     const hambuergerDisplayEl = this.hambuergerDisplay.nativeElement;
@@ -44,7 +47,7 @@ export class HeaderComponent implements AfterViewInit {
     const modoTextoEl = this.modoTexto.nativeElement;
     
     if (checked) {
-      modoTextoEl.textContent = "MODO PROFESOR"; // Cambiar a Modo Profesor
+      modoTextoEl.textContent = "MODO PROFESOR";
       this.barra.nativeElement.style.backgroundColor = "#5A597A";
       this.hambuergerDisplay.nativeElement.style.color = "#5A597A";
       this.nav.nativeElement.style.backgroundColor = "#5A597A";
@@ -52,7 +55,7 @@ export class HeaderComponent implements AfterViewInit {
       this.logo.nativeElement.src = "./assets/logoprofe.png";
       this.FotoUser.nativeElement.src = "./assets/account_profe.png";
     } else {
-      modoTextoEl.textContent = "MODO ALUMNO"; // Cambiar a Modo Alumno
+      modoTextoEl.textContent = "MODO ALUMNO";
       this.barra.nativeElement.style.backgroundColor = "#518094";
       modoTextoEl.style.color = "#518094";
       this.nav.nativeElement.style.backgroundColor = "#518094";
@@ -60,5 +63,11 @@ export class HeaderComponent implements AfterViewInit {
       this.logo.nativeElement.src = "./assets/logoMini.png";
       this.FotoUser.nativeElement.src = "./assets/account_circle.png";
     }
+  }
+
+  // Función para cerrar sesión
+  logout(): void {
+    localStorage.clear(); // Elimina todos los datos del localStorage
+    this.router.navigate(['/login']); // Redirige al usuario al login
   }
 }
