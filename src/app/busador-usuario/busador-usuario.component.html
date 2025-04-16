@@ -13,51 +13,20 @@
             <input type="text" id="search" placeholder="Buscar...">
             <span class="lupa"><i class="fa fa-search" aria-hidden="true"></i></span>
         </div>
-
-        <!-- Lista de usuarios -->
         <div class="cursos">
-            <div class="menu-cursos">
-                <div class="user-profile">
-                    <img src="../../assets/account_circle.png" alt="Perfil" class="profile-image">
-                    <h4>Jaume</h4>
-                    <h6>Fado</h6>
-                </div>
-                <p>Descripción: c#, me gusta angular, voldam</p>
+            <div *ngIf="errorMessage" class="error-message">
+              {{ errorMessage }}
             </div>
-            <div class="menu-cursos">
-                <div class="user-profile">
-                    <img src="../../assets/account_circle.png" alt="Perfil" class="profile-image">
-                    <h4>Jaume</h4>
-                    <h6>Fado</h6>
-                </div>
-                <p>Descripción: c#, me gusta angular, voldam</p>
-            </div>
-            <div class="menu-cursos">
+        
+            <div *ngFor="let usuario of usuarios" class="menu-cursos">
               <div class="user-profile">
-                  <img src="../../assets/account_circle.png" alt="Perfil" class="profile-image">
-                  <h4>Jaume</h4>
-                  <h6>Fado</h6>
+                <img [src]="usuario.fotoPerfil || './assets/account_circle.png'" alt="Perfil" class="profile-image">
+                <h4>{{ usuario.nombre }}</h4>
+                <h6>{{ usuario.email }}</h6>
               </div>
-              <p>Descripción: c#, me gusta angular, voldam</p>
-          </div>
-          <div class="menu-cursos">
-            <div class="user-profile">
-                <img src="../../assets/account_circle.png" alt="Perfil" class="profile-image">
-                <h4>Jaume</h4>
-                <h6>Fado</h6>
+              <p>{{ usuario.descripcion || 'Sin descripción' }}</p>
             </div>
-            <p>Descripción: c#, me gusta angular, voldam</p>
           </div>
-          <div class="menu-cursos">
-            <div class="user-profile">
-                <img src="../../assets/account_circle.png" alt="Perfil" class="profile-image">
-                <h4>Jaume</h4>
-                <h6>Fado</h6>
-            </div>
-            <p>Descripción: c#, me gusta angular, voldam</p>
-        </div>
-            
-        </div>
     </div>
 </body>
 </html>

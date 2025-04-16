@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { initializeApp, getApps, getApp } from 'firebase/app';
-import { getAuth, signInAnonymously } from 'firebase/auth';
 import { getDatabase, ref, set, get } from 'firebase/database';
 import { v4 as uuidv4 } from 'uuid';
 import { environment } from '../../environments/environment';
@@ -26,7 +25,10 @@ export class RegisterComponent {
     this.registerForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required]
+      confirmPassword: ['', Validators.required],
+      nombre: [''], // Campo opcional
+      apellido: [''], // Campo opcional
+      descripcion: [''] // Campo opcional
     }, {
       validators: this.matchPassword('password', 'confirmPassword')
     });
@@ -63,6 +65,9 @@ export class RegisterComponent {
 
     const email = this.registerForm.value.email;
     const password = this.registerForm.value.password;
+    const nombre = this.registerForm.value.nombre || null; // Campo opcional
+    const apellido = this.registerForm.value.apellido || null; // Campo opcional
+    const descripcion = this.registerForm.value.descripcion || null; // Campo opcional
 
     console.log('Intentando registrar usuario con correo:', email);
 
@@ -91,25 +96,18 @@ export class RegisterComponent {
         const userId = uuidv4();
         const verificationCode = Math.random().toString(36).substr(2, 8);
 
-        const auth = getAuth();
-
-        // Autenticación Anónima
-        console.log('Iniciando autenticación anónima...');
-        return signInAnonymously(auth).then(() => ({ userId, verificationCode }));
-      })
-      .then(({ userId, verificationCode }) => {
-        console.log('Usuario autenticado anónimamente.');
-
         // Guardar los datos del usuario en la base de datos
         const userData = {
           idUsr: userId,
           email,
           password, // Asegúrate de cifrar esto en producción
           esAdmin: false,
-          fotoPerfil: '',
-          descripcion: '',
+          fotoPerfil: '', // Por defecto, vacío
+          descripcion: descripcion,
           verified: false,
-          verificationCode
+          verificationCode,
+          nombre: nombre,
+          apellido: apellido
         };
 
         console.log('Guardando datos del usuario en la base de datos...');
