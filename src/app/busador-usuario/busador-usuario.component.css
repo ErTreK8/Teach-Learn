@@ -1,602 +1,103 @@
-*
-{
-    margin: 0;
-    padding: 0;
-    
-}
-
+/* Estilos generales */
 body {
-    display: flex;
-    background-color: #518094;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #518094; /* Cambia el color de fondo */
 }
 
 .container-cursos {
-    background-color: #a8a8a8; 
-    padding: 20px; 
-    padding-bottom: 2em;
-    margin: 5em; 
-    margin-right: 30em;
-    border-radius: 15px; 
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5); /* Desplazamiento X, Y, difuminado, color */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
 
+/* Estilos del buscador */
+.buscador {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.buscador input[type="text"] {
+  width: 100%;
+  padding: 10px 40px 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.buscador input[type="text"]:focus {
+  border-color: #007bff;
+}
+
+.buscador .lupa {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #007bff;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Estilos de la lista de usuarios */
+.cursos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .menu-cursos {
-    background-color: #ffffff; 
-    padding: 10px;
-    margin: 10px;           
-    border-radius: 15px; 
-    height: 7em; 
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5); /* Desplazamiento X, Y, difuminado, color */
-
-    
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  width: calc(33.33% - 40px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.container-calendario {
-    background-color: #ffffff; 
-    padding: 20px; 
-    border-radius: 15px; 
-    margin: 15px;
-    height: 14em;
-    text-align: center; 
+.menu-cursos:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.calendar {
-    background-color: #ffffff; 
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.menu-cursos div img {
-  border-radius: 50%
-}
-.menu-cursos div img{
-  margin-left: 1em;
-}
-
-.menu-cursos div{
-  padding-top: .6em;
-}
-.descripcion {
-    margin-top: -.6em;
+.profile-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
-.descripcion {
-  margin-left: -2em;
+.menu-cursos h4 {
+  margin: 0 0 10px;
+  font-size: 18px;
+  color: #333;
 }
 
-
-/* desaparece con pantalla pequeña */
-
-@media only screen and (max-width: 800px){   
-  .descripcion {
-    display: none;
-  }
-  .menu-cursos div{
-    width: 50%;
-  }
-
-  .menu-cursos div img {
-    margin-left: 2em;
-  }
-
-  
-  
- 
+.menu-cursos h6 {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
 }
 
-@media only screen and (max-width: 1200px){   
-    .container{ 
-        display: none; 
-
-    }
-    .container-cursos{
-      margin: 4em;
-    }
+/* Responsive design */
+@media (max-width: 992px) {
+  .menu-cursos {
+      width: calc(50% - 20px);
+  }
 }
 
-@media only screen and (max-width: 1400px){   
-  .container{ 
-    margin-left: -10em;
+@media (max-width: 768px) {
+  .menu-cursos {
+      width: 100%;
   }
-  
-}
-@media only screen and (max-width: 1300px){   
-  .container{ 
-    margin-left: -19em;
-  }
-  
-}
-
-@media only screen and (max-width: 1350px){   
-  .container{ 
-    margin-left: -10em;
-  }
-  
-}
-
-@media only screen and (max-width: 1250px){   
-  .container{ 
-    margin-left: -20em;
-  }
-  
-}
-
-
-
-
-
-
-
-.row::after {
-    content: "";
-    clear: both;
-    display: table;
-}
-
-[class*="col-"]{float: left;}
-
-/* Extra small devices (phones, 575px and down) */
-.col-1 {width: 8.33%;}
-.col-2 {width: 16.66%;}
-.col-3 {width: 25%;}
-.col-4 {width: 33.33%;}
-.col-5 {width: 41.66%;}
-.col-6 {width: 50%;}
-.col-7 {width: 58.33%;}
-.col-8 {width: 66.66%;}
-.col-9 {width: 75%;}
-.col-10 {width: 83.33%;}
-.col-11 {width: 91.66%;}
-.col-12 {width: 100%;}
-
-/* Small devices (portrait tablets and large phones, 576px and up) */
-@media only screen and (min-width: 576px){
-    .col-sm-1 {width: 8.33%;}
-    .col-sm-2 {width: 16.66%;}
-    .col-sm-3 {width: 25%;}
-    .col-sm-4 {width: 33.33%;}
-    .col-sm-5 {width: 41.66%;}
-    .col-sm-6 {width: 50%;}
-    .col-sm-7 {width: 58.33%;}
-    .col-sm-8 {width: 66.66%;}
-    .col-sm-9 {width: 75%;}
-    .col-sm-10 {width: 83.33%;}
-    .col-sm-11 {width: 91.66%;}
-    .col-sm-12 {width: 100%;}
-}
-
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-    .col-md-1 {width: 8.33%;}
-    .col-md-2 {width: 16.66%;}
-    .col-md-3 {width: 25%;}
-    .col-md-4 {width: 33.33%;}
-    .col-md-5 {width: 41.66%;}
-    .col-md-6 {width: 50%;}
-    .col-md-7 {width: 58.33%;}
-    .col-md-8 {width: 66.66%;}
-    .col-md-9 {width: 75%;}
-    .col-md-10 {width: 83.33%;}
-    .col-md-11 {width: 91.66%;}
-    .col-md-12 {width: 100%;}
-}
-
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-    .col-lg-1 {width: 8.33%;}
-    .col-lg-2 {width: 16.66%;}
-    .col-lg-3 {width: 25%;}
-    .col-lg-4 {width: 33.33%;}
-    .col-lg-5 {width: 41.66%;}
-    .col-lg-6 {width: 50%;}
-    .col-lg-7 {width: 58.33%;}
-    .col-lg-8 {width: 66.66%;}
-    .col-lg-9 {width: 75%;}
-    .col-lg-10 {width: 83.33%;}
-    .col-lg-11 {width: 91.66%;}
-    .col-lg-12 {width: 100%;}
-}
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px){
-  .col-xl-1 {width: 8.33%;}
-  .col-xl-2 {width: 16.66%;}
-  .col-xl-3 {width: 25%;}
-  .col-xl-4 {width: 33.33%;}
-  .col-xl-5 {width: 41.66%;}
-  .col-xl-6 {width: 50%;}
-  .col-xl-7 {width: 58.33%;}
-  .col-xl-8 {width: 66.66%;}
-  .col-xl-9 {width: 75%;}
-  .col-xl-10 {width: 83.33%;}
-  .col-xl-11 {width: 91.66%;}
-  .col-xl-12 {width: 100%;}
-}
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1400px){
-    .col-xxl-1 {width: 8.33%;}
-    .col-xxl-2 {width: 16.66%;}
-    .col-xxl-3 {width: 25%;}
-    .col-xxl-4 {width: 33.33%;}
-    .col-xxl-5 {width: 41.66%;}
-    .col-xxl-6 {width: 50%;}
-    .col-xxl-7 {width: 58.33%;}
-    .col-xxl-8 {width: 66.66%;}
-    .col-xxl-9 {width: 75%;}
-    .col-xxl-10 {width: 83.33%;}
-    .col-xxl-11 {width: 91.66%;}
-    .col-xxl-12 {width: 100%;}
-}
-
-
-/* CALENDARIO */
-
-
-
-* {
-    padding: 0;
-    margin: 0;
-    font-family: consolas;
-    box-sizing: border-box;
-  }
-  
-  body {
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    place-items: center;
-  }
-
-  .container
-  {
-    position: fixed;
-    margin-right: -62em;
-  }
-  
-  .calendar {
-    height: 26.5rem;
-    width: 20rem;
-    margin: 3em;
-    margin-bottom: 64em;
-    background-color: white;
-    border-radius: 25px;
-    padding: 35px 50px 0px 50px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5); /* Desplazamiento X, Y, difuminado, color */
-
-
-  }
-  
-  
-  
-  .calendar-header {
-    background: #8089FE;
-    display: flex;
-    justify-content: space-between;
-    border-radius: 7px;
-    align-items: center;
-    font-weight: 700;
-    color: #ffffff;
-    padding: 10px;
-    
-  }
-  
- 
-  .calendar-week-days {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    font-weight: 600;
-    cursor: pointer;
-    color: rgb(104, 104, 104);
-    margin-top: .5em;
-  }
-  
-  .calendar-week-days div:hover {
-    color: black;
-    transform: scale(1.2);
-    transition: all .2s ease-in-out;
-  }
-  
-  .calendar-week-days div {
-    display: grid;
-    place-items: center;
-    color: #6D67CF;
-    height: 50px;
-    gap: 2px;
-    text-align: center;
-  }
-  
-  .calendar-days {
-    display: grid;
-    min-height: 160px; /* Ajusta esto según el máximo número de filas que pueda tener */
-
-    grid-template-columns: repeat(7, 1fr);
-    gap: 2px;
-    color: #0A0921;
-    margin-top: -2em;
-
-  }
-  
-  .calendar-days div {
-    width: 20px;
-    height: 25px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 5px;
-    position: relative;
-    cursor: pointer;
-    animation: to-top 1s forwards;
-  }
-  
-  .month-picker {
-    padding: 5px 10px;
-    border-radius: 10px;
-    cursor: pointer;
-  }
-  
-  .year-picker {
-    display: flex;
-    align-items: center;
-  }
-  
-  .year-change {
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    margin: 0px 10px;
-    cursor: pointer;
-  }
-  
-  .year-change:hover {
-    background-color: #9796f0;
-    transition: all .2s ease-in-out;
-    transform: scale(1.12);
-  }
-  
-  .calendar-footer {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  }
-  
-  #year:hover {
-    cursor: pointer;
-    transform: scale(1.2);
-    transition: all 0.2 ease-in-out;
-  }
-  
-  .calendar-days div span {
-    position: absolute;
-  }
-  
-  .calendar-days div:hover {
-    transition: width 0.2s ease-in-out, height 0.2s ease-in-out;
-    background-color: #fbc7d4;
-    border-radius: 20%;
-    color: #f8fbff;
-  }
-  
-  .calendar-days div.current-date {
-    color: #f8fbff;
-
-    background-color: #9796f0;
-    border-radius: 20%;
-  }
-  
-  .month-list {
-    position: relative;
-    left: 0;
-    top: -70px;
-    height: 7em;
-    background-color: #ebebeb;
-    color: #151426;
-    display: grid;
-    grid-template-columns: repeat(3, auto);
-    border-radius: 20px;
-  }
-  
-  .month-list>div {
-    display: grid;
-    place-content: center;
-    transition: all 0.2s ease-in-out;
-  }
-  
-  .month-list>div>div {
-    border-radius: 15px;
-    cursor: pointer;
-  }
-  
-  .month-list>div>div:hover {
-    background-color: #9796f0;
-    color: #f8fbff;
-    transform: scale(0.9);
-    transition: all 0.2s ease-in-out;
-  }
-  
-  .month-list.show {
-    visibility: visible;
-    pointer-events: visible;
-    transition: 0.6s ease-in-out;
-    animation: to-left .71s forwards;
-  }
-  
-  .month-list.hideonce {
-    visibility: hidden;
-  }
-  
-  .month-list.hide {
-    animation: to-right 1s forwards;
-    visibility: none;
-    pointer-events: none;
-  }
-  
-  .date-time-formate {
-    width: 100%;
-    font-family: Dubai Light, Century Gothic;
-    position: relative;
-    display: flex;
-    margin-top: 0.3em;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .date-formate {
-    font-size: medium;
-  }
-  
-  .day-text-formate {
-    font-family: Microsoft JhengHei UI;
-    font-size: 1.4rem;
-    padding-right: 5%;
-    border-right: 3px solid #9796f0;
-  }
-  
-  .date-time-value {
-    display: block;
-    position: relative;
-    text-align: center;
-    padding-left: 5%;
-  }
-  
-  .time-formate {
-    font-size: 1.5rem;
-  }
-  
-  .time-formate.hideTime {
-    animation: hidetime 1.5s forwards;
-  }
-  
-  .day-text-formate.hidetime {
-    animation: hidetime 1.5s forwards;
-  }
-  
-  .date-formate.hideTime {
-    animation: hidetime 1.5s forwards;
-  }
-  
-  .day-text-formate.showtime {
-    animation: showtime 1s forwards;
-  }
-  
-  .time-formate.showtime {
-    animation: showtime 1s forwards;
-  }
-  
-  .date-formate.showtime {
-    animation: showtime 1s forwards;
-  }
-  
-  @keyframes to-top {
-    0% {
-      transform: translateY(0);
-      opacity: 0;
-    }
-  
-    100% {
-      transform: translateY(100%);
-      opacity: 1;
-    }
-  }
-  
-  @keyframes to-left {
-    0% {
-      transform: translatex(230%);
-      opacity: 1;
-    }
-  
-    100% {
-      transform: translatex(0);
-      opacity: 1;
-    }
-  }
-  
-  @keyframes to-right {
-    10% {
-      transform: translatex(0);
-      opacity: 1;
-    }
-  
-    100% {
-      transform: translatex(-150%);
-      opacity: 1;
-    }
-  }
-  
-  @keyframes showtime {
-    0% {
-      transform: translatex(250%);
-      opacity: 1;
-    }
-  
-    100% {
-      transform: translatex(0%);
-      opacity: 1;
-    }
-  }
-  
-  @keyframes hidetime {
-    0% {
-      transform: translatex(0%);
-      opacity: 1;
-    }
-  
-    100% {
-      transform: translatex(-370%);
-      opacity: 1;
-    }
-  }
-
-
-  /* BUSCADOR */
-
-  #buscador {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
-    margin-left: .7em;
-    margin-top: .7em;
-
-}
-
-#search {
-    flex: 1;
-    padding: 10px 15px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 25px;
-    outline: none;
-    transition: all 0.3s ease;
-    width: 100%;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5); /* Desplazamiento X, Y, difuminado, color */
-
-
-}
-
-#search:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
-}
-#searchButton {
-    padding: 10px 20px;
-    font-size: 16px;
-    height: 5vh;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-left: -3.3em;
-    background-color: white;
-    /* Imagen de fondo */
-    background-image: url('https://img.icons8.com/ios-filled/50/000000/search--v1.png');
-    background-repeat: no-repeat;
-    background-size: 20px;
-    background-position: center;
-}
-
-#searchButton:hover {
-    background-color: #0056b3;
 }

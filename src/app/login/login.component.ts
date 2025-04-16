@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ServeiAutenticarService } from '../servei-autenticar.service';
 
 @Component({
@@ -6,23 +6,20 @@ import { ServeiAutenticarService } from '../servei-autenticar.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
-
-  constructor(public serveiAutenticar: ServeiAutenticarService) { }
+export class LoginComponent {
+  constructor(public serveiAutenticar: ServeiAutenticarService) {}
 
   ngOnInit(): void {
-    this.serveiAutenticar.loginOK=false;
+    this.serveiAutenticar.loginOK = false;
     localStorage.removeItem("email");
   }
 
-  googleLogin() {
-    this.serveiAutenticar.googleLogin()
+  // Método para manejar el login
+  async handleLogin(): Promise<void> {
+    try {
+      await this.serveiAutenticar.login();
+    } catch (error: any) {
+      console.error('Error durante el login:', error.message || error);
+    }
   }
-  // logout() {
-  //   this.serveiAutenticar.logout()
-  // }
-
-  // login() {
-  //   this.serveiAutenticar.login();
-  // }
 }
