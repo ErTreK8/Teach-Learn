@@ -1,5 +1,5 @@
 <body>
-  <section  *ngIf="!serveiAutenticar.loginOK">
+  <section *ngIf="!serveiAutenticar.loginOK">
     <div class="container">
       <img src="../../assets/logoGris.png" alt="Teach&Learn" class="logo" />
       <input
@@ -18,37 +18,35 @@
         [(ngModel)]="serveiAutenticar.psw"
         class="form-control form-control-lg custom-input"
       />
-      <!-- (click)="login()" -->
-  
+
       <button
         class="btn btn-outline-light btn-lg px-5 custom-button"
         type="submit"
+        (click)="handleLogin()"
       >
         Login
       </button>
       <div class="linkk">
-          <p class="mb-0 ">Don't have an account? <a [routerLink]="'/register'" class=" linkk fw-bold">Sign Up</a></p>
-        </div>
-  
+        <p class="mb-0">Don't have an account? <a [routerLink]="'/register'" class="linkk fw-bold">Sign Up</a></p>
+      </div>
     </div>
   </section>
-  
-  <!-- logout -->
+
+  <!-- Logout -->
   <section class="vh-100 gradient-custom" *ngIf="serveiAutenticar.loginOK">
     <div *ngIf="serveiAutenticar.loginOK" class="row">
-     <div class="col-sm-9 col-md-7 col-lg-4 mx-auto text-center" style="margin-top: 25px;">
-     <div class="form-label">{{ serveiAutenticar.usuari.displayName }}</div>
-     </div>
-     <div class="col-sm-9 col-md-7 col-lg-4 mx-auto text-center" style="margin-top: 25px;">
-     <div class="form-label">{{ serveiAutenticar.usuari.email }}</div>
-     </div>
-     <div class="col-sm-9 col-md-7 col-lg-2 mx-auto">
-     <button class="btn btn-lg btn-primary btn-block" type="submit"
-    >Tancar sessió</button>
-     </div>
+      <div class="col-sm-9 col-md-7 col-lg-4 mx-auto text-center" style="margin-top: 25px;">
+        <div class="form-label">{{ serveiAutenticar.usuari?.email }}</div>
+      </div>
+      <div class="col-sm-9 col-md-7 col-lg-2 mx-auto">
+        <button
+          class="btn btn-lg btn-primary btn-block"
+          type="submit"
+          (click)="serveiAutenticar.logout()"
+        >
+          Tancar sessió
+        </button>
+      </div>
     </div>
-    </section>
-    <!-- (click)="serveiAutenticar.logout();" -->
+  </section>
 </body>
-
-

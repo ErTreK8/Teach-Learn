@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { BuscadorCursosComponent } from './buscador-cursos/buscador-cursos.component';
+import { BusadorUsuarioComponent } from './busador-usuario/busador-usuario.component';
 import { PerfilPropioComponent } from './perfil-propio/perfil-propio.component';
 import { PaginaHomeComponent } from './pagina-home/pagina-home.component';
 import { HomeComponent } from './home/home.component';
@@ -21,6 +22,7 @@ const routes: Routes = [
     component: PaginaHomeComponent,  // Componente que contiene el Navbar
     children: [
       { path: 'buscadorCursos', component: BuscadorCursosComponent } ,
+      { path: 'buscadorUsuarios', component: BusadorUsuarioComponent } ,
       { path: 'perfilPropio', component: PerfilPropioComponent }, 
       { path: 'home', component: HomeComponent }, 
       { path: 'chat', component: ChatComponent  }, 
