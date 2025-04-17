@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ServeiAutenticarService } from '../servei-autenticar.service';
+import { Router } from '@angular/router'; // Importa el Router
+
 
 @Component({
   selector: 'app-login',
@@ -7,7 +9,7 @@ import { ServeiAutenticarService } from '../servei-autenticar.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  constructor(public serveiAutenticar: ServeiAutenticarService) {}
+  constructor(public serveiAutenticar: ServeiAutenticarService, private router: Router) {}
 
   ngOnInit(): void {
     this.serveiAutenticar.loginOK = false;
@@ -18,6 +20,7 @@ export class LoginComponent {
   async handleLogin(): Promise<void> {
     try {
       await this.serveiAutenticar.login();
+      this.router.navigate(['/login']);
     } catch (error: any) {
       console.error('Error durante el login:', error.message || error);
     }

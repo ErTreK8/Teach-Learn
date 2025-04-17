@@ -26,7 +26,7 @@ export class RegisterComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required],
-      nombre: [''], // Campo opcional
+      nombre: ['', Validators.required], // Campo obligatorio
       apellido: [''], // Campo opcional
       descripcion: [''] // Campo opcional
     }, {
@@ -56,6 +56,7 @@ export class RegisterComponent {
   get email() { return this.registerForm.get('email'); }
   get password() { return this.registerForm.get('password'); }
   get confirmPassword() { return this.registerForm.get('confirmPassword'); }
+  get nombre() { return this.registerForm.get('nombre'); } // Agrega getter para el nombre
 
   register(): void {
     if (this.registerForm.invalid) {
@@ -65,7 +66,7 @@ export class RegisterComponent {
 
     const email = this.registerForm.value.email;
     const password = this.registerForm.value.password;
-    const nombre = this.registerForm.value.nombre || null; // Campo opcional
+    const nombre = this.registerForm.value.nombre; // Campo obligatorio
     const apellido = this.registerForm.value.apellido || null; // Campo opcional
     const descripcion = this.registerForm.value.descripcion || null; // Campo opcional
 
