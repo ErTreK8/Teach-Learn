@@ -1,9 +1,12 @@
 export class Clase {
-    idClase!: number;
-    idProfesor!: number;
-    idCurso!: number;
-    fechaInicio!: Date;
-    fechaFin!: Date;
-    maxAlumnos!: number;
-    descripcion!: string;
-}
+    idClass!: string;
+    idCurso!: string;
+    dataInici!: string;
+    dataFi!: string;
+    descripcio!: string;
+    maxAlumnes!: number;
+  
+    constructor(data?: Partial<Clase>) {
+      Object.assign(this, data);
+    }
+  }

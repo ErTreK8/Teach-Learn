@@ -1,1 +1,23 @@
-<p>curso works!</p>
+<div class="container-curso">
+    <!-- Título y Descripción del Curso -->
+    <div class="curso-detalles">
+      <h1 class="curso-titulo">{{ curso.nomCurso }}</h1>
+      <p class="curso-descripcion">{{ curso.descripcion }}</p>
+    </div>
+  
+    <!-- Lista de Clases -->
+    <div class="clases-container">
+      <h2 class="clases-titulo">Clases Disponibles</h2>
+      <ul class="lista-clases">
+        <li *ngFor="let clase of clases" class="item-clase">
+          <p class="descripcion-clase">{{ clase.descripcio }}</p>
+          <p class="detalles-clase">
+            <span>Máximo alumnos: {{ clase.maxAlumnes }}</span> |
+            <span>Inicio: {{ clase.dataInici }}</span> |
+            <span>Fin: {{ clase.dataFi }}</span>
+          </p>
+        </li>
+      </ul>
+      <p *ngIf="clases.length === 0" class="sin-clases">No hay clases disponibles para este curso.</p>
+    </div>
+  </div>

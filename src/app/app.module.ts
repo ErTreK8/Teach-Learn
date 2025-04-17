@@ -28,6 +28,7 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getDatabase, provideDatabase } from '@angular/fire/database';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
+import { CrearClaseComponent } from './crear-clase/crear-clase.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { VerifyEmailComponent } from './verify-email/verify-email.component';
     ChatComponent,
     HeaderComponent,
     HomeComponent,
-    VerifyEmailComponent
+    VerifyEmailComponent,
+    CrearClaseComponent
   ],
   imports: [
     BrowserModule,

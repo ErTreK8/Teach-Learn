@@ -61,6 +61,8 @@ export class ServeiAutenticarService {
       localStorage.setItem('fotoPerfil', user.fotoPerfil || '');
       localStorage.setItem('idUsr', user.idUsr);
       localStorage.setItem('verified', user.verified.toString());
+      localStorage.setItem('modoProfesor', "false");
+
 
       // Redirigir a /home después del login exitoso
       this.usuari = user;

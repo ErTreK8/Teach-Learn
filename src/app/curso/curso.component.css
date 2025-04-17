@@ -1,0 +1,117 @@
+/* Estilos Generales */
+body {
+  font-family: sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  margin: 20px;
+}
+
+.container-curso {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 90%;
+  max-width: 600px;
+  text-align: center;
+}
+
+/* Detalles del Curso */
+.curso-detalles {
+  margin-bottom: 30px;
+}
+
+.curso-titulo {
+  color: #333;
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.curso-descripcion {
+  color: #555;
+  font-size: 1em;
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
+
+/* Lista de Clases */
+.clases-titulo {
+  color: #333;
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+.lista-clases {
+  list-style: none;
+  padding: 0;
+}
+
+.item-clase {
+  background-color: #e9ecef;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  padding: 15px;
+  border-left: 3px solid #518094;
+  text-align: left;
+}
+
+.nombre-clase {
+  color: #333;
+  font-size: 1.1em;
+  margin-top: 0;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.descripcion-clase {
+  color: #555;
+  font-size: 0.95em;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+.detalles-clase {
+  color: #777;
+  font-size: 0.85em;
+}
+
+.sin-clases {
+  color: #777;
+  font-size: 1em;
+  margin-top: 20px;
+}
+
+/* Estilos Responsive */
+@media (max-width: 576px) {
+  .container-curso {
+    width: 95%;
+    padding: 20px;
+  }
+
+  .curso-titulo {
+    font-size: 1.8em;
+  }
+
+  .curso-descripcion {
+    font-size: 0.9em;
+  }
+
+  .clases-titulo {
+    font-size: 1.3em;
+  }
+
+  .nombre-clase {
+    font-size: 1em;
+  }
+
+  .descripcion-clase {
+    font-size: 0.9em;
+  }
+
+  .detalles-clase {
+    font-size: 0.8em;
+  }
+}
