@@ -20,7 +20,7 @@ export class LoginComponent {
   async handleLogin(): Promise<void> {
     try {
       await this.serveiAutenticar.login();
-      this.router.navigate(['/login']);
+      this.router.navigate(['/home']);
     } catch (error: any) {
       console.error('Error durante el login:', error.message || error);
     }
