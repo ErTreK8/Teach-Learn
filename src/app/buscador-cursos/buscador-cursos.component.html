@@ -33,7 +33,7 @@
       {{ errorMessage }}
     </div>
 
-    <div *ngFor="let curso of filteredCursos" class="menu-cursos">
+    <div *ngFor="let curso of filteredCursos" class="menu-cursos" (click)="verDetalles(curso)">
       <h4>{{ curso.nomCurso }}</h4>
       <h6>{{ curso.descripcion }}</h6>
 

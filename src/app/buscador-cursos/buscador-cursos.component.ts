@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router'; // Para navegar entre rutas
 import { getDatabase, ref, get, push, set, remove } from 'firebase/database';
 import { initializeApp, getApps, getApp } from 'firebase/app';
 import { environment } from '../../environments/environment';
@@ -17,7 +18,7 @@ export class BuscadorCursosComponent implements OnInit {
   showAddForm: boolean = false; // Controla si se muestra el formulario de añadir curso
   newCurso: { nomCurso: string; descripcion: string } = { nomCurso: '', descripcion: '' }; // Modelo para el nuevo curso
 
-  constructor() {}
+  constructor(private router: Router) {} // Inyectar Router para navegación
 
   ngOnInit(): void {
     this.cargarCursosDesdeFirebase();
@@ -127,5 +128,10 @@ export class BuscadorCursosComponent implements OnInit {
       console.error('Error al eliminar el curso:', error.message || error);
       alert('Error al eliminar el curso. Por favor, intenta de nuevo.');
     }
+  }
+
+  // Método para navegar a la página de detalle del curso
+  verDetalles(curso: Curso): void {
+    this.router.navigate(['/curso', curso.idCurso]);
   }
 }

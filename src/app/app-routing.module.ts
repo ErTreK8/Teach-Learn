@@ -31,7 +31,7 @@ const routes: Routes = [
       { path: 'perfilPropio', component: PerfilPropioComponent },
       { path: 'home', component: HomeComponent },
       { path: 'chat', component: ChatComponent },
-      { path: 'curso', component: CursoComponent },
+      { path: 'curso/:idCurso', component: CursoComponent },
       { path: 'clase', component: ClaseComponent },
       { path: 'crearClase', component: CrearClaseComponent },
       { path: '', redirectTo: 'home', pathMatch: 'full' } // Redirige a /home por defecto

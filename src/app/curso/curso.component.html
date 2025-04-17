@@ -1,39 +1,23 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lista de Clases</title>
-</head>
-<body>
-    <div class="containerListaClases">
-        <div class="containerCursoCurso">
-            <h1>Nuestras Clases</h1>
-        <h5>descipcion de classe</h5>
-        </div>
-        <ul class="listaClases">
-            <li class="itemClase">
-                <h3 class="nombreClase">(Nom Classe)</h3>
-                <p class="descripcionClase">Descripción específica de esta clase.</p>
-                <p class="maxAlumnosClase">Máximo alumnos: 20</p>
-                <p class="dataInicioClase">Inicio: 2025-09-01</p>
-                <p class="dataFinalClase">Fin: 2025-12-15</p>
-            </li>
-            <li class="itemClase">
-                <h3 class="nombreClase">(Nom Classe)</h3>
-                <p class="descripcionClase">Descripción específica de esta otra clase.</p>
-                <p class="maxAlumnosClase">Máximo alumnos: 25</p>
-                <p class="dataInicioClase">Inicio: 2025-10-01</p>
-                <p class="dataFinalClase">Fin: 2026-01-30</p>
-            </li>
-            <li class="itemClase">
-                <h3 class="nombreClase">(Nom Classe)</h3>
-                <p class="descripcionClase">Detalles sobre el contenido de esta clase.</p>
-                <p class="maxAlumnosClase">Máximo alumnos: 30</p>
-                <p class="dataInicioClase">Inicio: 2025-09-15</p>
-                <p class="dataFinalClase">Fin: 2025-11-30</p>
-            </li>
-            </ul>
+<div class="container-curso">
+    <!-- Título y Descripción del Curso -->
+    <div class="curso-detalles">
+      <h1 class="curso-titulo">{{ curso.nomCurso }}</h1>
+      <p class="curso-descripcion">{{ curso.descripcion }}</p>
     </div>
-</body>
-</html>
+  
+    <!-- Lista de Clases -->
+    <div class="clases-container">
+      <h2 class="clases-titulo">Clases Disponibles</h2>
+      <ul class="lista-clases">
+        <li *ngFor="let clase of clases" class="item-clase">
+          <p class="descripcion-clase">{{ clase.descripcio }}</p>
+          <p class="detalles-clase">
+            <span>Máximo alumnos: {{ clase.maxAlumnes }}</span> |
+            <span>Inicio: {{ clase.dataInici }}</span> |
+            <span>Fin: {{ clase.dataFi }}</span>
+          </p>
+        </li>
+      </ul>
+      <p *ngIf="clases.length === 0" class="sin-clases">No hay clases disponibles para este curso.</p>
+    </div>
+  </div>

@@ -1,6 +1,6 @@
 export class Clase {
-    idClass!: number;
-    idCurso!: number;
+    idClass!: string;
+    idCurso!: string;
     dataInici!: string;
     dataFi!: string;
     descripcio!: string;
