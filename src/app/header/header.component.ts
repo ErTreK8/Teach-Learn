@@ -16,24 +16,33 @@ export class HeaderComponent implements AfterViewInit {
   @ViewChild('nav') nav!: ElementRef;
   @ViewChild('logo') logo!: ElementRef;
   @ViewChild('FotoUser') FotoUser!: ElementRef;
+  @ViewChild('check') check!: ElementRef; // Referencia al checkbox
 
   constructor(private router: Router) {} // Inyecta el Router
 
   ngAfterViewInit() {
-    // Aquí ya tienes acceso a los elementos referenciados
+    // Leer el estado del modo desde localStorage al cargar el componente
+    const modoProfesor = localStorage.getItem('modoProfesor');
+    const isProfesor = modoProfesor === 'true';
+
+    // Actualizar la interfaz gráfica y el estado del checkbox
+    this.updateModeUI(isProfesor);
+    if (this.check) {
+      this.check.nativeElement.checked = isProfesor; // Sincronizar el checkbox
+    }
   }
 
   // Función para alternar el menú
   hamburgesa() {
     const myLinksEl = this.myLinks.nativeElement;
     const hambuergerDisplayEl = this.hambuergerDisplay.nativeElement;
-    
+
     if (myLinksEl.style.display === "flex") {
       myLinksEl.style.display = "none";
     } else {
       myLinksEl.style.display = "flex";
     }
-    
+
     if (myLinksEl.style.display === "flex") {
       hambuergerDisplayEl.textContent = "▲";
     } else {
@@ -44,9 +53,15 @@ export class HeaderComponent implements AfterViewInit {
   // Función para cambiar el modo (Alumno/Profesor)
   toggleMode(event: Event) {
     const checked = (event.target as HTMLInputElement).checked;
+    localStorage.setItem('modoProfesor', checked.toString()); // Guardar el estado en localStorage
+    this.updateModeUI(checked); // Actualizar la UI según el modo
+  }
+
+  // Función para actualizar la interfaz gráfica según el modo
+  private updateModeUI(isProfesor: boolean): void {
     const modoTextoEl = this.modoTexto.nativeElement;
-    
-    if (checked) {
+
+    if (isProfesor) {
       modoTextoEl.textContent = "MODO PROFESOR";
       this.barra.nativeElement.style.backgroundColor = "#5A597A";
       this.hambuergerDisplay.nativeElement.style.color = "#5A597A";

@@ -1,7 +1,7 @@
 <header>
   <div id="mylogo">
     <!-- Usamos template reference "logo" para acceder al elemento -->
-    <a href="home" ><img class="logo" #logo id="logo" src="../../assets/logoMini.png" alt="teacher&learn logo" /></a>
+    <a href="home"><img class="logo" #logo id="logo" src="../../assets/logoMini.png" alt="teacher&learn logo" /></a>
   </div>
   <div id="myheader">
     <div id="menu">
@@ -13,8 +13,8 @@
       </div>
       <div id="CanviaModo">
         <label class="switch">
-          <!-- Manejamos el cambio del checkbox con Angular -->
-          <input id="check" type="checkbox" (change)="toggleMode($event)" />
+          <!-- Añadimos la referencia #check al checkbox -->
+          <input id="check" type="checkbox" (change)="toggleMode($event)" #check />
           <span class="slider round"></span>
         </label>
       </div>

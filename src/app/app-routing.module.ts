@@ -7,6 +7,10 @@ import { PaginaHomeComponent } from './pagina-home/pagina-home.component';
 import { BuscadorCursosComponent } from './buscador-cursos/buscador-cursos.component';
 import { BusadorUsuarioComponent } from './busador-usuario/busador-usuario.component';
 import { PerfilPropioComponent } from './perfil-propio/perfil-propio.component';
+import { CrearClaseComponent } from './crear-clase/crear-clase.component';
+
+import { CursoComponent } from './curso/curso.component';
+import { ClaseComponent } from './clase/clase.component';
 import { HomeComponent } from './home/home.component';
 import { ChatComponent } from './chat/chat.component';
 import { AuthGuard } from './auth-guard.service'; // Importa el guard
@@ -27,8 +31,11 @@ const routes: Routes = [
       { path: 'perfilPropio', component: PerfilPropioComponent },
       { path: 'home', component: HomeComponent },
       { path: 'chat', component: ChatComponent },
+      { path: 'curso', component: CursoComponent },
+      { path: 'clase', component: ClaseComponent },
+      { path: 'crearClase', component: CrearClaseComponent },
       { path: '', redirectTo: 'home', pathMatch: 'full' } // Redirige a /home por defecto
-    ]
+    ] 
   },
 
   // Redirigir la raíz ('/') al login si no está autenticado

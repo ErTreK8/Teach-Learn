@@ -1,0 +1,88 @@
+/* clases-lista.css */
+body {
+    font-family: sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    margin: 20px;
+  }
+  
+  .containerListaClases {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 90%;
+    max-width: 600px;
+  }
+  
+  .containerCursoCurso{
+    text-align: center;
+  }
+  
+  .containerListaClases h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  
+  .listaClases {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .itemClase {
+    background-color: #e9ecef;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-left: 3px solid #518094;
+  }
+  
+  .nombreClase {
+    color: #333;
+    font-size: 1.1em;
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .descripcionClase {
+    color: #555;
+    font-size: 0.95em;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+  
+  .maxAlumnosClase,
+  .dataInicioClase,
+  .dataFinalClase {
+    color: #777;
+    font-size: 0.85em;
+    margin-bottom: 3px;
+  }
+  
+  /* Estilos para pantallas más pequeñas */
+  @media (max-width: 576px) {
+    .containerListaClases {
+        width: 95%;
+        padding: 20px;
+    }
+  
+    .nombreClase {
+        font-size: 1em;
+    }
+  
+    .descripcionClase {
+        font-size: 0.9em;
+    }
+  
+    .maxAlumnosClase,
+    .dataInicioClase,
+    .dataFinalClase {
+        font-size: 0.8em;
+    }
+  }

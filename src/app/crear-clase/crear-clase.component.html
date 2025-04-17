@@ -1,0 +1,59 @@
+<div id="crearClase" class="panel">
+  <h1>CREACIÓN CLASE</h1>
+  <div id="form">
+    <div class="divForm" id="tClaseDiv">
+      <label for="tClase" id="tClaseLabel">Titulo Clase</label>
+      <input
+        type="text"
+        id="tClase"
+        name="tClase"
+        placeholder="Input"
+        class="input"
+      /><br />
+    </div>
+    <div class="divForm" id="dtClaseDiv">
+      <div class="data" id="dataInici">
+        <label for="diClase" id="diClaseLabel">Fecha Inicio</label>
+        <input
+          type="date"
+          id="diClase"
+          name="diClase"
+          placeholder="dd/mm/aaaa"
+          class="input"
+        />
+      </div>
+      <div class="data" id="dataFinal">
+        <label for="dfClase" id="dfClaseLabel">Fecha Final</label>
+        <input
+          type="date"
+          id="dfClase"
+          name="dfClase"
+          placeholder="dd/mm/aaaa"
+          class="input"
+        /><br />
+      </div>
+    </div>
+    <div id="deClaseMain">
+      <div class="divForm" id="deClaseDiv">
+        <label for="deClase" id="deClaseLabel">Descripción</label>
+        <textarea name="deClase" id="deClase" maxlength="255"></textarea><br />
+      </div>
+    </div>
+    <!--<input type="text" id="deClase" name="deClase" value="dd/mm/aaaa">-->
+    <div id="enviarCancelar">
+      <input
+        type="button"
+        value="Cancelar"
+        id="Cancelar"
+        class="enviarCancelar"
+      />
+      <input
+        type="submit"
+        value="Crear Clase"
+        id="Enviar"
+        class="enviarCancelar"
+      />
+    </div>
+  </div>
+</div>
+<div id="calendario"></div>
