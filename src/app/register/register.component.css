@@ -1,66 +1,109 @@
+/* Estilos globales */
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center;     /* Centra verticalmente */
+  min-height: 100vh;       /* Asegura que ocupe toda la altura de la pantalla */
+  margin: 0;               /* Elimina márgenes por defecto */
+  background-color: #518094;
+  font-family: 'Arial', sans-serif;
 }
-
 
 .container {
-    background-color: #f8f8f8;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative; /* Necesario para el pseudo-elemento */
-    padding: 1em 4em 4em 4em;
-    width: 100%;
-    max-width: 500px;  /* Ancho máximo para pantallas grandes */
-    margin: 0em;
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;      /* Necesario si vas a usar pseudo-elementos */
+  padding: 2em 4em;        /* Padding más generoso */
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;          /* Centra horizontalmente */
+  height: 100%;
+}
 
-  }
-  .linkk{	
-    margin-top: 1em;
-    text-decoration: none;
-    color: #5188be;
-  }
+/* Inputs personalizados */
 .custom-input {
-    font-size: 1.5em;
-    border: none;
-    background-color: #eceeefbe; /* Fondo gris */
-    border-bottom: 1px solid #000; /* Borde inferior de 1px negro */
-    border-radius: 0;
-    margin-top: 0px;
-    padding: 8px;
-    width: 100%;  /* Ocupa el ancho completo del contenedor */
-    box-sizing: border-box;
-    margin-bottom: 1em;
+  font-size: 1.2em;
+  border: none;
+  background-color: #eceeefbe;
+  border-bottom: 2px solid #000;
+  margin-top: 20px;
+  margin-bottom: 1.5em;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
 
-  }
+.custom-input:focus {
+  border-color: #6d67cf;   /* Cambia el color del borde al enfocar */
+  outline: none;
+}
+
+/* Botón personalizado */
 .custom-button {
-    margin-top: 15px;                   /* Espaciado superior para separar el botón de los inputs */
-    /* Opcional: Puedes personalizar aún más el botón, por ejemplo: */
-    background-color: #253047;             /* Fondo oscuro */
-    border: none;  
-    color: white;
-    border-radius: 10px;                     /* Sin borde */
-    padding: 10px 20px;                 /* Espaciado interno */
-  }
-  
-form {
-    display: flex;
-    flex-direction: column;
+  margin-top: 15px;
+  background-color: #253047;
+  border: none;
+  color: white;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
+.custom-button:hover {
+  background-color: #1e2d3c;
+  transform: scale(1.05);
+}
 
+/* Enlace personalizado */
+.linkk {
+  margin-top: 1em;
+  text-align: center;
+}
 
+.linkk a {
+  text-decoration: none;
+  color: #5188be;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.linkk a:hover {
+  color: #1e2d3c;
+}
+
+/* Imagen del logo */
 img {
-    width: 200px;
-    margin-bottom: 20px;
-    margin-top: 20px;
-    align-self: center;
-    border-radius: 50%; /* Hace que el logo sea circular */
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75); /* Sombra alrededor del logo */
+  width: 150px;
+  margin: 20px 0;
+  border-radius: 50%;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  align-self: center;
 }
 
+/* Media queries para dispositivos pequeños */
+@media screen and (max-width: 480px) {
+  .container {
+    padding: 1.5em;
+  }
+
+  .custom-input {
+    font-size: 1em;
+    padding: 8px;
+  }
+
+  .custom-button {
+    font-size: 1em;
+    padding: 8px 16px;
+  }
+
+  img {
+    width: 120px;
+  }
+}

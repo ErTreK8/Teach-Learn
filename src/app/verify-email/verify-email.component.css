@@ -1,0 +1,103 @@
+/* Estilos globales */
+body {
+    display: flex;
+    flex-direction: column; /* Cambia a columna para centrar verticalmente */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center;     /* Centra verticalmente */
+    height: 100vh;       /* Ocupa toda la altura de la pantalla */
+    margin: 0;
+    background-color: #518094;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Contenedor principal */
+  .container {
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.75);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em 4em;
+    width: 100%;
+    max-width: 500px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  
+  /* Título */
+  .container h2 {
+    margin: 0 0 0.5em;
+    font-size: 1.8em;
+    color: #253047;
+  }
+  
+  /* Texto descriptivo */
+  .container p {
+    margin: 0 0 1.5em;
+    font-size: 1em;
+    color: #333;
+  }
+  
+  /* Input de código de verificación */
+  .container input[type="text"] {
+    font-size: 1.2em;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 1.5em;
+    border: none;
+    border-bottom: 2px solid #000;
+    background-color: #eceeefbe;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+  }
+  
+  .container input[type="text"]:focus {
+    outline: none;
+    border-color: #6d67cf;
+  }
+  
+  /* Botón de verificar */
+  .container button {
+    font-size: 1.2em;
+    padding: 10px 20px;
+    background-color: #253047;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-bottom: 1em;
+  }
+  
+  .container button:hover {
+    background-color: #1e2d3c;
+    transform: scale(1.05);
+  }
+  
+  /* Mensaje de error */
+  .error-message {
+    margin-top: 0.5em;
+    color: #c0392b;
+    font-size: 0.95em;
+  }
+  
+  /* Adaptaciones para móviles */
+  @media screen and (max-width: 480px) {
+    .container {
+      padding: 1.5em;
+    }
+    .container h2 {
+      font-size: 1.5em;
+    }
+    .container input[type="text"] {
+      font-size: 1em;
+      padding: 8px;
+      margin-bottom: 1em;
+    }
+    .container button {
+      font-size: 1em;
+      padding: 8px 16px;
+    }
+  }
+  

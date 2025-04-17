@@ -1,10 +1,13 @@
-<div class="container">
-    <h2>Verificar Correo Electrónico</h2>
-    <p>Ingresa el código de verificación enviado a tu correo:</p>
-    <input type="text" [(ngModel)]="verificationCode" placeholder="Código de Verificación" />
-    <button (click)="verifyCode()">Verificar</button>
-  
-    <div *ngIf="errorMessage" class="error-message">
-      {{ errorMessage }}
-    </div>
+
+<div class="container-fluid d-flex flex-column justify-content-center align-items-center vh-100">
+  <div class="container">
+      <h2>Verificar Correo Electrónico</h2>
+      <p>Ingresa el código de verificación enviado a tu correo:</p>
+      <input type="text" [(ngModel)]="verificationCode" placeholder="Código de Verificación" />
+      <button (click)="verifyCode()">Verificar</button>
+    
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
   </div>
+</div>
