@@ -1,73 +1,46 @@
+<div class="container-cursos col-lg-12 col-md-12 col-sm-12 col-12">
+  <!-- Formulario para añadir cursos (solo visible para administradores) -->
+  <div *ngIf="isAdministrator() && showAddForm" class="add-course-form">
+    <h3>Añadir Curso</h3>
+    <form (ngSubmit)="addCurso()">
+      <input type="text" placeholder="Nombre del Curso" [(ngModel)]="newCurso.nomCurso" name="nomCurso" required />
+      <textarea placeholder="Descripción del Curso" [(ngModel)]="newCurso.descripcion" name="descripcion" required></textarea>
+      <button type="submit">Guardar</button>
+      <button type="button" (click)="toggleAddForm()">Cancelar</button>
+    </form>
+  </div>
 
+  <!-- Botón para mostrar el formulario de añadir curso -->
+  <div *ngIf="isAdministrator()" class="add-course-button">
+    <button (click)="toggleAddForm()">Añadir Curso</button>
+  </div>
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teach and learn</title>
-    <link rel="stylesheet" href="buscador-cursos.component.css">
-    <script src="./script.js" defer></script>
+  <!-- Buscador -->
+  <div class="buscador">
+    <input
+      type="text"
+      id="search"
+      placeholder="Buscar..."
+      [(ngModel)]="searchTerm"
+      (input)="onSearchChange($event)"
+    />
+    <span class="lupa"><i class="fa fa-search" aria-hidden="true"></i></span>
+  </div>
 
-</head>
-<body>
-    <div class="container-cursos col-lg-12 col-md-12 col-sm-12 col-12">
-      <div class="buscador">
-        <input type="text" id="search" placeholder="Buscar...">
-        <span class="lupa"><i class="fa fa-search" aria-hidden="true"></i></span>
-      </div>
-    <div class="cursos">
-      <div class="menu-cursos">
-        <h4>Titulo Curso</h4>
-        <h6>Descripcion Curso aishdiuahsidasidi</h6>
-        
-      </div>
-      <div class="menu-cursos">
-        <h4>Titulo Curso</h4>
-        <h6>Descripcion Curso aishdiuahsidasidi</h6>
-        
-      </div>
-      <div class="menu-cursos">
-        <h4>Titulo Curso</h4>
-        <h6>Descripcion Curso aishdiuahsidasidi</h6>
-        
-      </div>
-      <div class="menu-cursos">
-        <h4>Titulo Curso</h4>
-        <h6>Descripcion Curso aishdiuahsidasidi</h6>
-        
-      </div>
-      <div class="menu-cursos">
-        <h4>Titulo Curso</h4>
-        <h6>Descripcion Curso aishdiuahsidasidi</h6>
-        
-      </div>
-      <div class="menu-cursos">
-        <h4>Titulo Curso</h4>
-        <h6>Descripcion Curso aishdiuahsidasidi</h6>
-        
-      </div>
-      <div class="menu-cursos">
-        <h4>Titulo Curso</h4>
-        <h6>Descripcion Curso aishdiuahsidasidi</h6>
-        
-      </div>
-      <div class="menu-cursos">
-        <h4>Titulo Curso</h4>
-        <h6>Descripcion Curso aishdiuahsidasidi</h6>
-        
-      </div>
-      <div class="menu-cursos">
-        <h4>Titulo Curso</h4>
-        <h6>Descripcion Curso aishdiuahsidasidi</h6>
-      </div>
+  <!-- Lista de cursos -->
+  <div class="cursos">
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
     </div>
 
-    </div>
-    <div id="calendario">
+    <div *ngFor="let curso of filteredCursos" class="menu-cursos">
+      <h4>{{ curso.nomCurso }}</h4>
+      <h6>{{ curso.descripcion }}</h6>
 
+      <!-- Botones de administración si es admin -->
+      <div *ngIf="isAdministrator()">
+        <button (click)="eliminarCurso(curso.idCurso)">Eliminar</button>
+      </div>
     </div>
-      
-    
-</body>
-</html>
+  </div>
+</div>

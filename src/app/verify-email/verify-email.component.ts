@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { getDatabase, ref, get, set } from 'firebase/database'; // Importa 'set'
+import { Router } from '@angular/router'; // Importa el Router
+
 
 @Component({
   selector: 'app-verify-email',
@@ -12,7 +14,7 @@ export class VerifyEmailComponent implements OnInit {
   verificationCode: string = '';
   errorMessage: string | null = null;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
     this.userId = this.route.snapshot.queryParamMap.get('userId');
@@ -37,6 +39,8 @@ export class VerifyEmailComponent implements OnInit {
             alert('Correo verificado correctamente.');
             // Actualiza el estado del usuario en la base de datos
             return set(userRef, { ...userData, verified: true }); // Devuelve la promesa de 'set'
+            this.router.navigate(['/login']);
+
           } else {
             this.errorMessage = 'Código de verificación incorrecto.';
             console.error('Error: Código de verificación incorrecto.');

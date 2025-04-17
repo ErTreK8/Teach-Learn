@@ -52,11 +52,15 @@
       type="text"
       name="nombre"
       id="nombre"
-      placeholder="Nombre (opcional)"
+      placeholder="Nombre (obligatorio)"
       class="form-control form-control-lg custom-input"
       formControlName="nombre"
     />
-
+    <!-- Validaciones para Nombre -->
+    <div *ngIf="nombre?.invalid && (nombre?.dirty || nombre?.touched)" class="text-danger">
+      <span *ngIf="nombre?.errors?.['required']">El nombre es requerido.</span>
+    </div>
+    
     <!-- Campo de Apellido -->
     <input
       type="text"

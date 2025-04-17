@@ -10,8 +10,10 @@ import { Usuario } from '../modelsdedades/Usuari'; // Modelo de Usuario
   styleUrls: ['./busador-usuario.component.css']
 })
 export class BusadorUsuarioComponent implements OnInit {
-  usuarios: Usuario[] = []; // Array para almacenar los usuarios obtenidos de Firebase
+  usuarios: Usuario[] = []; // Array para almacenar todos los usuarios obtenidos de Firebase
+  filteredUsuarios: Usuario[] = []; // Array para almacenar los usuarios filtrados
   errorMessage: string | null = null;
+  searchTerm: string = ''; // Variable para almacenar el término de búsqueda
 
   constructor() {}
 
@@ -44,9 +46,33 @@ export class BusadorUsuarioComponent implements OnInit {
 
       // Guardar los usuarios en el array local
       this.usuarios = usersArray;
+      this.filteredUsuarios = usersArray; // Inicialmente, mostrar todos los usuarios
     } catch (error: any) {
       console.error('Error al cargar usuarios:', error.message || error);
       this.errorMessage = error.message || 'Error al cargar usuarios.';
     }
+  }
+
+  // Método para filtrar usuarios
+  filterUsers(): void {
+    const term = this.searchTerm.toLowerCase().trim(); // Convertir a minúsculas y eliminar espacios
+    if (!term) {
+      // Si el término de búsqueda está vacío, mostrar todos los usuarios
+      this.filteredUsuarios = [...this.usuarios];
+    } else {
+      // Filtrar usuarios por nombre o correo electrónico
+      this.filteredUsuarios = this.usuarios.filter(
+        (usuario) =>
+          usuario.nombre?.toLowerCase().includes(term) || // Buscar en el nombre
+          usuario.email?.toLowerCase().includes(term) // Buscar en el correo electrónico
+      );
+    }
+  }
+
+  // Método para manejar el cambio en el campo de búsqueda
+  onSearchChange(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    this.searchTerm = inputElement.value; // Actualizar el término de búsqueda
+    this.filterUsers(); // Filtrar usuarios
   }
 }
