@@ -23,6 +23,8 @@
                 <p>{{ clase.nombreProfesor }} {{ clase.apellidoProfesor }}</p>
               </div>
       
+              
+      
               <!-- Título y Descripción de la Clase -->
               <h3 class="titulo-clase">{{ clase.titulo }}</h3>
               <p class="descripcion-clase">{{ clase.descripcio }}</p>
@@ -33,12 +35,23 @@
                 <span>Inicio: {{ clase.dataInici }}</span> |
                 <span>Fin: {{ clase.dataFi }}</span>
               </p>
+
+              <!-- Alumnos Unidos a la Clase -->
+                <div class="alumnos-unidos">
+                    <div class="contador-alumnos">{{ clase.alumnosUnidos.length }}/{{ clase.maxAlumnes }}</div>
+                    <div class="alumnos-lista">
+                    <div *ngFor="let alumno of clase.alumnosUnidos" class="alumno-item">
+                        <img [src]="alumno.fotoPerfil || '../../assets/account_circle.png'" alt="Foto del Alumno" class="alumno-foto">
+                        <p class="alumno-nombre">{{ alumno.nombre }}</p>
+                    </div>
+                    </div>
+                </div>
       
               <!-- Botones según el tipo de usuario -->
               <div class="botones-clase">
-                <!-- Botón para Eliminar Clase (solo para el creador) -->
+                <!-- Botón para Eliminar Clase (solo para profesores y creador) -->
                 <button
-                  *ngIf="esCreador(clase)"
+                  *ngIf="isModoProfesor() && esCreador(clase)"
                   (click)="eliminarClase(clase.idClass)">
                   Eliminar Clase
                 </button>
@@ -50,9 +63,9 @@
                   Salir de Clase
                 </button>
       
-                <!-- Botón para Unirse a Clase (si no estás unido) -->
+                <!-- Botón para Unirse a Clase (si no estás unido y la clase no está llena) -->
                 <button
-                  *ngIf="!esCreador(clase) && !yaEstaApuntado(clase.idClass)"
+                  *ngIf="!esCreador(clase) && !yaEstaApuntado(clase.idClass) && clase.alumnosUnidos.length < clase.maxAlumnes"
                   (click)="unirseAClase(clase.idClass)">
                   Unirse a Clase
                 </button>

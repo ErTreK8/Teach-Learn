@@ -260,5 +260,50 @@ button:hover {
 .botones-clase button:hover {
   background-color: #4a4964;
 }
+/* Contenedor principal de los alumnos unidos */
+.alumnos-unidos {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Alineamos el contador a la izquierda */
+  margin-top: 10px;
+}
+
+/* Contador de alumnos */
+.contador-alumnos {
+  font-size: 0.9em;
+  color: #777;
+  margin-bottom: 10px; /* Espacio entre el contador y las fotos */
+}
+
+/* Lista de alumnos */
+.alumnos-lista {
+  display: flex; /* Usamos flexbox para alinear horizontalmente los alumnos */
+  gap: 15px; /* Espaciado entre los alumnos */
+  align-items: center; /* Alineamos verticalmente los elementos */
+}
+
+/* Contenedor de cada alumno */
+.alumno-item {
+  display: flex; /* Flexbox para apilar verticalmente la foto y el nombre */
+  flex-direction: column; /* Apilamos la foto y el nombre */
+  align-items: center; /* Centramos los elementos horizontalmente */
+}
+
+/* Estilo para la foto de perfil */
+.alumno-foto {
+  width: 40px; /* Tamaño de la foto */
+  height: 40px;
+  border-radius: 50%; /* Hacemos la foto circular */
+  object-fit: cover; /* Aseguramos que la imagen se ajuste correctamente */
+}
+
+/* Estilo para el nombre del alumno */
+.alumno-nombre {
+  font-size: 0.8em; /* Tamaño de fuente pequeño */
+  color: #555; /* Color gris suave para el texto */
+  text-align: center; /* Centramos el texto horizontalmente */
+  margin-top: 5px; /* Espacio entre la foto y el nombre */
+  white-space: nowrap; /* Evitamos que el texto se divida en varias líneas */
+}
 
 }

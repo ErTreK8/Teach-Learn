@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { getDatabase, ref, get, set, push, remove } from 'firebase/database';
 import { initializeApp, getApps, getApp } from 'firebase/app'; // Para inicializar Firebase
 import { environment } from '../../environments/environment'; // Configuración de Firebase
-import { Clase } from '../modelsdedades/Clase'; // Modelo de Clase
 import { Router } from '@angular/router';
 
 @Component({
@@ -38,8 +37,9 @@ export class CursoComponent implements OnInit {
   }
 
   yaEstaApuntado(idClass: string): boolean {
-    const alumnosApuntados = JSON.parse(localStorage.getItem('alumnosApuntados') || '[]');
-    return alumnosApuntados.some((alumno: any) => alumno.idClase === idClass && alumno.idUsuario === this.userId);
+    if (!this.clases || this.clases.length === 0) return false;
+    const clase = this.clases.find(c => c.idClass === idClass);
+    return clase?.alumnosUnidos.some((alumno: any) => alumno.idUsuario === this.userId);
   }
 
   async cargarCursoYClases(): Promise<void> {
@@ -72,16 +72,17 @@ export class CursoComponent implements OnInit {
           .map((key) => ({ idClass: key, ...classesData[key] }))
           .filter((clase) => clase.idCurso === this.cursoId); // Filtrar por idCurso
 
-        // Cargar los datos del profesor para cada clase
+        // Cargar los datos del profesor y alumnos para cada clase
         this.clases = await Promise.all(
           clasesRaw.map(async (clase) => {
             const profesor = await this.obtenerDatosProfesor(clase.idProfesor);
+            const alumnosUnidos = await this.obtenerAlumnosUnidos(clase.idClass);
             return {
               ...clase,
               nombreProfesor: profesor?.nombre || 'Profesor Desconocido',
               apellidoProfesor: profesor?.apellido || 'Profesor Desconocido',
-
-              fotoPerfilProfesor: profesor?.fotoPerfil || '../../assets/account_circle.png'
+              fotoPerfilProfesor: profesor?.fotoPerfil || '../../assets/account_circle.png',
+              alumnosUnidos: alumnosUnidos
             };
           })
         );
@@ -105,6 +106,41 @@ export class CursoComponent implements OnInit {
     } catch (error: any) {
       console.error('Error al obtener los datos del profesor:', error.message || error);
       return null;
+    }
+  }
+
+  async obtenerAlumnosUnidos(idClass: string): Promise<any[]> {
+    try {
+      const db = getDatabase();
+      const alumnosRef = ref(db, `ClaseAlumno`);
+      const alumnosSnapshot = await get(alumnosRef);
+
+      if (alumnosSnapshot.exists()) {
+        const alumnosData = alumnosSnapshot.val();
+        const alumnosFiltrados = Object.values(alumnosData).filter(
+          (alumno: any) => alumno.idClase === idClass && !alumno.acabada
+        );
+
+        // Obtener los datos de cada alumno
+        const alumnosConDatos = await Promise.all(
+          alumnosFiltrados.map(async (alumno: any) => {
+            const datosAlumno = await this.obtenerDatosProfesor(alumno.idUsuario);
+            return {
+              idUsuario: alumno.idUsuario,
+              nombre: datosAlumno?.nombre || 'Alumno Desconocido',
+              apellido: datosAlumno?.apellido || '',
+              fotoPerfil: datosAlumno?.fotoPerfil || '../../assets/account_circle.png'
+            };
+          })
+        );
+
+        return alumnosConDatos;
+      } else {
+        return [];
+      }
+    } catch (error: any) {
+      console.error('Error al obtener los alumnos unidos:', error.message || error);
+      return [];
     }
   }
 
