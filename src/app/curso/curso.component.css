@@ -4,9 +4,10 @@ body {
   background-color: #f4f4f4;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start; /* Alineamos al inicio verticalmente */
   min-height: 100vh;
   margin: 0;
+  padding: 20px; /* Espaciado general */
 }
 
 .container-curso {
@@ -14,9 +15,10 @@ body {
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   padding: 30px;
-  width: 90%;
-  max-width: 600px;
+  width: 75%; /* Ocupa 3/4 de la pantalla */
+  max-width: 1200px; /* Límite máximo para pantallas grandes */
   text-align: center;
+  margin: 0 auto; /* Centrar el contenedor horizontalmente */
 }
 
 /* Contenedor de Clases Fijas */
@@ -54,19 +56,18 @@ body {
   border-radius: 50%;
   object-fit: cover;
 }
+
 /* Detalles del Curso */
 .curso-detalles {
   margin-bottom: 30px;
 }
 
 .curso-titulo {
-  color: #333;
   font-size: 2em;
   margin-bottom: 10px;
 }
 
 .curso-descripcion {
-  color: #555;
   font-size: 1em;
   line-height: 1.4;
   margin-bottom: 20px;
@@ -74,9 +75,10 @@ body {
 
 /* Lista de Clases */
 .clases-titulo {
-  color: #333;
   font-size: 1.5em;
   margin-bottom: 20px;
+  border: 2px solid black;
+  padding: 10px;
 }
 
 .lista-clases {
@@ -120,9 +122,9 @@ body {
 }
 
 /* Estilos Responsive */
-@media (max-width: 576px) {
+@media (max-width: 768px) {
   .container-curso {
-    width: 95%;
+    width: 95%; /* En pantallas pequeñas, ocupa casi todo el ancho */
     padding: 20px;
   }
 
