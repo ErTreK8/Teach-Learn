@@ -1,59 +1,48 @@
-<div id="crearClase" class="panel">
-  <h1>CREACIÓN CLASE</h1>
-  <div id="form">
-    <div class="divForm" id="tClaseDiv">
-      <label for="tClase" id="tClaseLabel">Titulo Clase</label>
-      <input
-        type="text"
-        id="tClase"
-        name="tClase"
-        placeholder="Input"
-        class="input"
-      /><br />
+<body>
+  <div class="container-formulario">
+  <h2 class="titulo-formulario">Crear Clase</h2>
+  <form (ngSubmit)="crearClase()" class="formulario">
+    <!-- Campo: Título -->
+    <div class="campo-formulario">
+      <label for="titulo">Título de la Clase:</label>
+      <input type="text" id="titulo" [(ngModel)]="nuevaClase.titulo" name="titulo" required />
     </div>
-    <div class="divForm" id="dtClaseDiv">
-      <div class="data" id="dataInici">
-        <label for="diClase" id="diClaseLabel">Fecha Inicio</label>
-        <input
-          type="date"
-          id="diClase"
-          name="diClase"
-          placeholder="dd/mm/aaaa"
-          class="input"
-        />
-      </div>
-      <div class="data" id="dataFinal">
-        <label for="dfClase" id="dfClaseLabel">Fecha Final</label>
-        <input
-          type="date"
-          id="dfClase"
-          name="dfClase"
-          placeholder="dd/mm/aaaa"
-          class="input"
-        /><br />
+
+    <!-- Campo: Descripción -->
+    <div class="campo-formulario">
+      <label for="descripcion">Descripción:</label>
+      <textarea id="descripcion" [(ngModel)]="nuevaClase.descripcio" name="descripcion" required></textarea>
+    </div>
+
+    <!-- Campo: Fecha y Hora de Inicio -->
+    <div class="campo-formulario">
+      <label>Fecha y Hora de Inicio:</label>
+      <div class="fecha-hora">
+        <input type="date" [(ngModel)]="nuevaClase.fechaInicio" name="fechaInicio" required />
+        <input type="time" [(ngModel)]="nuevaClase.horaInicio" name="horaInicio" required />
       </div>
     </div>
-    <div id="deClaseMain">
-      <div class="divForm" id="deClaseDiv">
-        <label for="deClase" id="deClaseLabel">Descripción</label>
-        <textarea name="deClase" id="deClase" maxlength="255"></textarea><br />
+
+    <!-- Campo: Fecha y Hora de Fin -->
+    <div class="campo-formulario">
+      <label>Fecha y Hora de Fin:</label>
+      <div class="fecha-hora">
+        <input type="date" [(ngModel)]="nuevaClase.fechaFin" name="fechaFin" required />
+        <input type="time" [(ngModel)]="nuevaClase.horaFin" name="horaFin" required />
       </div>
     </div>
-    <!--<input type="text" id="deClase" name="deClase" value="dd/mm/aaaa">-->
-    <div id="enviarCancelar">
-      <input
-        type="button"
-        value="Cancelar"
-        id="Cancelar"
-        class="enviarCancelar"
-      />
-      <input
-        type="submit"
-        value="Crear Clase"
-        id="Enviar"
-        class="enviarCancelar"
-      />
+
+    <!-- Campo: Máximo de Alumnos -->
+    <div class="campo-formulario">
+      <label for="maxAlumnos">Máximo de Alumnos:</label>
+      <input type="number" id="maxAlumnos" [(ngModel)]="nuevaClase.maxAlumnes" name="maxAlumnos" min="1" required />
     </div>
-  </div>
+
+    <!-- Botón de Envío -->
+    <div class="botones-formulario">
+      <button type="submit" class="boton-guardar">Guardar</button>
+      <button type="button" class="boton-cancelar" (click)="cancelar()">Cancelar</button>
+    </div>
+  </form>
 </div>
-<div id="calendario"></div>
+</body>

@@ -38,9 +38,8 @@ export class VerifyEmailComponent implements OnInit {
           if (userData.verificationCode === this.verificationCode) {
             alert('Correo verificado correctamente.');
             // Actualiza el estado del usuario en la base de datos
-            return set(userRef, { ...userData, verified: true }); // Devuelve la promesa de 'set'
             this.router.navigate(['/login']);
-
+            return set(userRef, { ...userData, verified: true }); // Devuelve la promesa de 'set'
           } else {
             this.errorMessage = 'Código de verificación incorrecto.';
             console.error('Error: Código de verificación incorrecto.');
