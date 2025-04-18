@@ -33,7 +33,7 @@ const routes: Routes = [
       { path: 'chat', component: ChatComponent },
       { path: 'curso/:idCurso', component: CursoComponent },
       { path: 'clase', component: ClaseComponent },
-      { path: 'crearClase', component: CrearClaseComponent },
+      { path: 'crearClase/:idCurso', component: CrearClaseComponent },
       { path: '', redirectTo: 'home', pathMatch: 'full' } // Redirige a /home por defecto
     ] 
   },
