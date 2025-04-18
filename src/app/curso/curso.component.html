@@ -1,79 +1,103 @@
 <body>
+  <div class="container-curso">
+    <!-- Título y Descripción del Curso -->
+    <div class="curso-detalles">
+      <h1 class="curso-titulo">{{ curso.nomCurso }}</h1>
+      <p class="curso-descripcion">{{ curso.descripcion }}</p>
+    </div>
 
-    <div class="container-curso">
-        <!-- Título y Descripción del Curso -->
-        <div class="curso-detalles">
-          <h1 class="curso-titulo">{{ curso.nomCurso }}</h1>
-          <p class="curso-descripcion">{{ curso.descripcion }}</p>
-        </div>
-      
-        <!-- Botón para Crear Clase (solo para profesores) -->
-        <div *ngIf="isModoProfesor()">
-          <button (click)="irACrearClase()">Crear Clase</button>
-        </div>
-      
-        <!-- Lista de Clases -->
-        <div class="clases-container">
-          <h2 class="clases-titulo">Clases Disponibles</h2>
-          <ul class="lista-clases">
-            <li *ngFor="let clase of clases" class="item-clase">
-              <!-- Foto y Nombre del Profesor -->
-              <div class="profesor-info">
-                <img [src]="clase.fotoPerfilProfesor || '../../assets/account_circle.png'" alt="Foto del Profesor" class="profesor-foto">
-                <p>{{ clase.nombreProfesor }} {{ clase.apellidoProfesor }}</p>
+    <!-- Botón para Crear Clase (solo para profesores) -->
+    <div *ngIf="isModoProfesor()">
+      <button (click)="irACrearClase()">Crear Clase</button>
+    </div>
+
+    <!-- Lista de Clases -->
+    <div class="clases-container">
+      <h2 class="clases-titulo">Clases Disponibles</h2>
+      <div class="clases-scrollable">
+        <ul class="lista-clases">
+          <li *ngFor="let clase of clases" class="item-clase">
+            <!-- Foto y Nombre del Profesor -->
+            <div class="profesor-info">
+              <img
+                [src]="
+                  clase.fotoPerfilProfesor || '../../assets/account_circle.png'
+                "
+                alt="Foto del Profesor"
+                class="profesor-foto"
+              />
+              <p>{{ clase.nombreProfesor }} {{ clase.apellidoProfesor }}</p>
+            </div>
+
+            <!-- Título y Descripción de la Clase -->
+            <h3 class="titulo-clase">{{ clase.titulo }}</h3>
+            <p class="descripcion-clase">{{ clase.descripcio }}</p>
+
+            <!-- Detalles de la Clase -->
+            <p class="detalles-clase">
+              <span>Máximo alumnos: {{ clase.maxAlumnes }}</span> |
+              <span>Inicio: {{ clase.dataInici }}</span> |
+              <span>Fin: {{ clase.dataFi }}</span>
+            </p>
+
+            <!-- Alumnos Unidos a la Clase -->
+            <div class="alumnos-unidos">
+              <div class="contador-alumnos">
+                {{ clase.alumnosUnidos.length }}/{{ clase.maxAlumnes }}
               </div>
-      
-              
-      
-              <!-- Título y Descripción de la Clase -->
-              <h3 class="titulo-clase">{{ clase.titulo }}</h3>
-              <p class="descripcion-clase">{{ clase.descripcio }}</p>
-      
-              <!-- Detalles de la Clase -->
-              <p class="detalles-clase">
-                <span>Máximo alumnos: {{ clase.maxAlumnes }}</span> |
-                <span>Inicio: {{ clase.dataInici }}</span> |
-                <span>Fin: {{ clase.dataFi }}</span>
-              </p>
-
-              <!-- Alumnos Unidos a la Clase -->
-                <div class="alumnos-unidos">
-                    <div class="contador-alumnos">{{ clase.alumnosUnidos.length }}/{{ clase.maxAlumnes }}</div>
-                    <div class="alumnos-lista">
-                    <div *ngFor="let alumno of clase.alumnosUnidos" class="alumno-item">
-                        <img [src]="alumno.fotoPerfil || '../../assets/account_circle.png'" alt="Foto del Alumno" class="alumno-foto">
-                        <p class="alumno-nombre">{{ alumno.nombre }}</p>
-                    </div>
-                    </div>
+              <div class="alumnos-lista">
+                <div
+                  *ngFor="let alumno of clase.alumnosUnidos"
+                  class="alumno-item"
+                >
+                  <img
+                    [src]="
+                      alumno.fotoPerfil || '../../assets/account_circle.png'
+                    "
+                    alt="Foto del Alumno"
+                    class="alumno-foto"
+                  />
+                  <p class="alumno-nombre">{{ alumno.nombre }}</p>
                 </div>
-      
-              <!-- Botones según el tipo de usuario -->
-              <div class="botones-clase">
-                <!-- Botón para Eliminar Clase (solo para profesores y creador) -->
-                <button
-                  *ngIf="isModoProfesor() && esCreador(clase)"
-                  (click)="eliminarClase(clase.idClass)">
-                  Eliminar Clase
-                </button>
-      
-                <!-- Botón para Salir de Clase (si ya estás unido) -->
-                <button
-                  *ngIf="yaEstaApuntado(clase.idClass)"
-                  (click)="salirDeClase(clase.idClass)">
-                  Salir de Clase
-                </button>
-      
-                <!-- Botón para Unirse a Clase (si no estás unido y la clase no está llena) -->
-                <button
-                  *ngIf="!esCreador(clase) && !yaEstaApuntado(clase.idClass) && clase.alumnosUnidos.length < clase.maxAlumnes"
-                  (click)="unirseAClase(clase.idClass)">
-                  Unirse a Clase
-                </button>
               </div>
-            </li>
-          </ul>
-          <p *ngIf="clases.length === 0" class="sin-clases">No hay clases disponibles para este curso.</p>
-        </div>
-      </div>
+            </div>
 
+            <!-- Botones según el tipo de usuario -->
+            <div class="botones-clase">
+              <!-- Botón para Eliminar Clase (solo para profesores y creador) -->
+              <button
+                *ngIf="isModoProfesor() && esCreador(clase)"
+                (click)="eliminarClase(clase.idClass)"
+              >
+                Eliminar Clase
+              </button>
+
+              <!-- Botón para Salir de Clase (si ya estás unido) -->
+              <button
+                *ngIf="yaEstaApuntado(clase.idClass)"
+                (click)="salirDeClase(clase.idClass)"
+              >
+                Salir de Clase
+              </button>
+
+              <!-- Botón para Unirse a Clase (si no estás unido y la clase no está llena) -->
+              <button
+                *ngIf="
+                  !esCreador(clase) &&
+                  !yaEstaApuntado(clase.idClass) &&
+                  clase.alumnosUnidos.length < clase.maxAlumnes
+                "
+                (click)="unirseAClase(clase.idClass)"
+              >
+                Unirse a Clase
+              </button>
+            </div>
+          </li>
+        </ul>
+        <p *ngIf="clases.length === 0" class="sin-clases">
+          No hay clases disponibles para este curso.
+        </p>
+      </div>
+    </div>
+  </div>
 </body>
