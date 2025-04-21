@@ -1,0 +1,32 @@
+<body>
+  <div class="container-resenya">
+    <h1>Deja tu Reseña</h1>
+    <form (ngSubmit)="enviarResenya()">
+      <div class="form-group">
+        <label for="nota">Nota (1-10):</label>
+        <input
+          type="number"
+          id="nota"
+          [(ngModel)]="nota"
+          name="nota"
+          min="1"
+          max="10"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="comentario">Comentario:</label>
+        <textarea
+          id="comentario"
+          [(ngModel)]="comentario"
+          name="comentario"
+          rows="4"
+          required
+        ></textarea>
+      </div>
+
+      <button type="submit">Enviar Reseña</button>
+    </form>
+  </div>
+</body>

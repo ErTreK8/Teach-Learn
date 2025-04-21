@@ -26,6 +26,7 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getDatabase, provideDatabase } from '@angular/fire/database';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { CrearClaseComponent } from './crear-clase/crear-clase.component';
+import { ResenyaComponent } from './resenya/resenya.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { CrearClaseComponent } from './crear-clase/crear-clase.component';
     HeaderComponent,
     HomeComponent,
     VerifyEmailComponent,
-    CrearClaseComponent
+    CrearClaseComponent,
+    ResenyaComponent
   ],
   imports: [
     BrowserModule,
