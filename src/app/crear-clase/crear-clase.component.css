@@ -1,7 +1,6 @@
 /* Estilos Generales */
 body {
     font-family: sans-serif;
-    background-color: #518094;
     display: flex;
     justify-content: center; /* Centra horizontalmente */
     align-items: center; /* Centra verticalmente */

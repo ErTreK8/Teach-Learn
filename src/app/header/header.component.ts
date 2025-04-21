@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router'; // Importa el Router
+import { PaginaHomeComponent } from '../pagina-home/pagina-home.component';
 
 @Component({
   selector: 'app-header',
@@ -69,6 +70,8 @@ export class HeaderComponent implements AfterViewInit {
       modoTextoEl.style.color = "#5A597A";
       this.logo.nativeElement.src = "./assets/logoprofe.png";
       this.FotoUser.nativeElement.src = "./assets/account_profe.png";
+      document.body.style.backgroundColor = "#5A597A"; // Puedes ajustar este color a tu gusto
+
     } else {
       modoTextoEl.textContent = "MODO ALUMNO";
       this.barra.nativeElement.style.backgroundColor = "#518094";
@@ -77,6 +80,9 @@ export class HeaderComponent implements AfterViewInit {
       this.hambuergerDisplay.nativeElement.style.color = "#518094";
       this.logo.nativeElement.src = "./assets/logoMini.png";
       this.FotoUser.nativeElement.src = "./assets/account_circle.png";
+      document.body.style.backgroundColor = "#518094"; // O el color por defecto de tu app
+      PaginaHomeComponent.containerHome.style.backgroundColor = "#518094"; // Cambia el color de fondo del contenedor
+
     }
   }
 

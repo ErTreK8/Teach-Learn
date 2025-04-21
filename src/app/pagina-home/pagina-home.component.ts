@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrl: './pagina-home.component.css'
 })
 export class PaginaHomeComponent {
+  static containerHome: any;
 
   
 }
