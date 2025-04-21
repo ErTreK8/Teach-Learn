@@ -15,11 +15,8 @@ import { BuscadorCursosComponent } from './buscador-cursos/buscador-cursos.compo
 import { CursoComponent } from './curso/curso.component';
 import { ClaseComponent } from './clase/clase.component';
 import { PerfilPropioComponent } from './perfil-propio/perfil-propio.component';
-import { PerfilAjenoComponent } from './perfil-ajeno/perfil-ajeno.component';
-import { ModificarPerfilComponent } from './modificar-perfil/modificar-perfil.component';
 import { BusadorUsuarioComponent } from './busador-usuario/busador-usuario.component';
 import { CrearResenyaComponent } from './crear-resenya/crear-resenya.component';
-import { PaginaChatsComponent } from './pagina-chats/pagina-chats.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { ChatComponent } from './chat/chat.component';
 import { HeaderComponent } from './header/header.component';
@@ -41,11 +38,8 @@ import { CrearClaseComponent } from './crear-clase/crear-clase.component';
     CursoComponent,
     ClaseComponent,
     PerfilPropioComponent,
-    PerfilAjenoComponent,
-    ModificarPerfilComponent,
     BusadorUsuarioComponent,
     CrearResenyaComponent,
-    PaginaChatsComponent,
     CalendarComponent,
     ChatComponent,
     HeaderComponent,
