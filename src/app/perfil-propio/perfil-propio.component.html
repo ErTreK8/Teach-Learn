@@ -1,72 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="perfil-propio.component.css">
-    <title>Perfil</title>
-</head>
 <body>
     <div class="containerMain">
-        <section class="perfil" #perfilSection>
-            <div class="containerHead">
-                <div class="presentacion">
-                    <img class="imagenPerfil" src="./img/user.jpg" alt="">
-                     <div class="containerDatos">
-                        <div class="datos">
-                            <p>Nombre</p>
-                            <p>Apellido</p>
-                         </div>
-                         <div class="valoracio">
-                            <p>5</p>
-                        </div>
-                     </div>
-                </div>
-                
-                <!-- Button -->
-                 <button class="boton" #modificarBtn>Modificar Pefil</button>
+      <section *ngIf="!modoEdicion">
+        <div class="containerHead">
+          <div class="presentacion">
+            <img [src]="fotoPerfil || '../../assets/account_circle.png'" alt="Foto de perfil">
+            <div>
+              <p>{{ nombre }} {{ apellido }}</p>
             </div>
-            <div class="containerBodyDescripcion">
-                <h2>Descripción</h2>
-                <div class="descripcionPerfil">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, natus.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, natus.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, natus.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, natus.
-                    </p>
-                </div>
-            
-            </div>
-            <div class="containerReseñas">
-                <h2>Reseñas</h2>
-                <div class="selectorReseñas">
-                  
-                </div>
-            </div>   
-        </section>
-
-        <section class="perfilModificable" #perfilModificableSection>
-            <div class="containerHeaderModificar">
-                <div class="fotoPerfilModificable">
-                    <h1><Main>MODIFICAR</Main></h1>
-                    <img class="imagenPerfilModificable" src="./img/user.jpg" alt="">
-                    <button class="botonFotoModificar boton">Foto de perfil</button>
-                </div>
-                <div class="optionsModificable">
-                    <button class="boton" #guardarBtn>Guardar Pefil</button>
-                    <button class="boton" #cancelarBtn>Cancelar</button>
-                </div>
-            </div>
-            <div class="containerDescriptionModificable">
-                <h2>Descripción</h2>
-                <div>
-                    <textarea class="descripcionPerfilModificable" rows="8" ></textarea>
-                </div>
-            </div>
-        </section>
+            <!-- Botón Modificar solo si es el perfil propio -->
+            <button *ngIf="PerfilPropio" (click)="activarModoEdicion()">Modificar</button>
+          </div>
+        </div>
+  
+        <div class="descripcionPerfil">
+          <h2>Descripción</h2>
+          <p>{{ descripcion || 'Sin descripción.' }}</p>
+        </div>
+  
+        <div class="resenas">
+          <h2>Reseñas</h2>
+          <p *ngIf="!HayResenas">No hay reseñas.</p>
+          <ul>
+            <li *ngFor="let resena of resenas">
+              <img [src]="resena.autorFoto || '../../assets/account_circle.png'" alt="Autor">
+              <div>
+                <strong>{{ resena.autorNombre }}:</strong> {{ resena.comentario }}
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+  
+      <section *ngIf="modoEdicion">
+        <h1>MODIFICAR</h1>
+        <input [(ngModel)]="nombre" placeholder="Nombre">
+        <input [(ngModel)]="apellido" placeholder="Apellido">
+        <textarea [(ngModel)]="nuevaDescripcion" placeholder="Descripción"></textarea>
+        <button (click)="guardarCambios()">Guardar</button>
+        <button (click)="cancelarEdicion()">Cancelar</button>
+      </section>
     </div>
-</body>    
-</html>
-
-
-
+  </body>

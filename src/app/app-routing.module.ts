@@ -29,7 +29,7 @@ const routes: Routes = [
       { path: 'buscadorCursos', component: BuscadorCursosComponent },
       { path: 'resenya/:idClase', component: ResenyaComponent },
       { path: 'buscadorUsuarios', component: BusadorUsuarioComponent },
-      { path: 'perfilPropio', component: PerfilPropioComponent },
+      { path: 'perfil/:idUsuario', component: PerfilPropioComponent },
       { path: 'home', component: HomeComponent },
       { path: 'chat', component: ChatComponent },
       { path: 'curso/:idCurso', component: CursoComponent },
