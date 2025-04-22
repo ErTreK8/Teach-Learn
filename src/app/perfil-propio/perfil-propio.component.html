@@ -1,43 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil Propio</title>
+</head>
 <body>
-    <div class="containerMain">
-      <section *ngIf="!modoEdicion">
-        <div class="containerHead">
-          <div class="presentacion">
-            <img [src]="fotoPerfil || '../../assets/account_circle.png'" alt="Foto de perfil">
-            <div>
-              <p>{{ nombre }} {{ apellido }}</p>
-            </div>
-            <!-- Botón Modificar solo si es el perfil propio -->
-            <button *ngIf="PerfilPropio" (click)="activarModoEdicion()">Modificar</button>
+  <div class="containerMain">
+    <section *ngIf="!modoEdicion">
+      <div class="containerHead">
+        <div class="presentacion">
+          <img [src]="fotoPerfil || '../../assets/account_circle.png'" alt="Foto de perfil">
+          <div>
+            <p>{{ nombre }} {{ apellido }}</p>
           </div>
+          <!-- Botón Modificar solo si es el perfil propio -->
+          <button *ngIf="PerfilPropio" (click)="activarModoEdicion()">Modificar</button>
         </div>
-  
-        <div class="descripcionPerfil">
-          <h2>Descripción</h2>
-          <p>{{ descripcion || 'Sin descripción.' }}</p>
-        </div>
-  
-        <div class="resenas">
-          <h2>Reseñas</h2>
-          <p *ngIf="!HayResenas">No hay reseñas.</p>
-          <ul>
-            <li *ngFor="let resena of resenas">
-              <img [src]="resena.autorFoto || '../../assets/account_circle.png'" alt="Autor">
-              <div>
-                <strong>{{ resena.autorNombre }}:</strong> {{ resena.comentario }}
+      </div>
+
+      <div class="descripcionPerfil">
+        <h2>Descripción</h2>
+        <p>{{ descripcion || 'Sin descripción.' }}</p>
+      </div>
+      <p *ngIf="resenas.length > 0">
+        <strong>Nota Media:</strong> {{ notaMedia }}
+      </p>
+
+      <div class="resenas">
+        <h2>Reseñas</h2>
+        <p *ngIf="!HayResenas">No hay reseñas.</p>
+        <ul>
+          <li *ngFor="let resena of resenas">
+            <div class="resena-item">
+              <div class="resena-info">
+                <img [src]="resena.autorFoto || '../../assets/account_circle.png'" alt="Autor">
+                <div class="resena-details">
+                  <strong>{{ resena.autorNombre }}:</strong>
+                  <p>{{ resena.comentario }}</p>
+                </div>
+                <span class="nota">{{ resena.nota }}/10</span>
               </div>
-            </li>
-          </ul>
-        </div>
-      </section>
-  
-      <section *ngIf="modoEdicion">
-        <h1>MODIFICAR</h1>
-        <input [(ngModel)]="nombre" placeholder="Nombre">
-        <input [(ngModel)]="apellido" placeholder="Apellido">
-        <textarea [(ngModel)]="nuevaDescripcion" placeholder="Descripción"></textarea>
-        <button (click)="guardarCambios()">Guardar</button>
-        <button (click)="cancelarEdicion()">Cancelar</button>
-      </section>
-    </div>
-  </body>
+            </div>
+          </li>
+        </ul>
+        
+      </div>
+    </section>
+
+    <section *ngIf="modoEdicion">
+      <h1>MODIFICAR</h1>
+      <input [(ngModel)]="nombre" placeholder="Nombre">
+      <input [(ngModel)]="apellido" placeholder="Apellido">
+      <textarea [(ngModel)]="nuevaDescripcion" placeholder="Descripción"></textarea>
+      <button (click)="guardarCambios()">Guardar</button>
+      <button (click)="cancelarEdicion()">Cancelar</button>
+    </section>
+  </div>
+</body>
+</html>

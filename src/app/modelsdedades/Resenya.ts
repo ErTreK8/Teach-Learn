@@ -1,14 +1,10 @@
-export class Resena {
-    idResena!: string; // ID único de la reseña
+export class Resenya {
+    idResenya!: string; // ID único de la reseña
+    Resenya!: string; // Comentario de la reseña
+    Nota!: number; // Calificación (por ejemplo, entre 1 y 10)
     idUsuario!: string; // ID del usuario que escribió la reseña
-    autorNombre!: string; // Nombre del autor de la reseña
-    autorApellido!: string; // Apellido del autor de la reseña
-    autorFoto!: string; // URL de la foto de perfil del autor
-    comentario!: string; // Comentario o texto de la reseña
-    nota!: number; // Nota o calificación (por ejemplo, entre 1 y 10)
-    fechaCreacion!: Date; // Fecha en que se creó la reseña
   
-    constructor(data?: Partial<Resena>) {
+    constructor(data?: Partial<Resenya>) {
       Object.assign(this, data);
     }
   }
