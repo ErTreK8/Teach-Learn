@@ -4,6 +4,7 @@ import { initializeApp, getApps, getApp } from 'firebase/app'; // Importa initia
 import { environment } from './../environments/environment'; // Importa las credenciales de Firebase
 import { Usuario } from './modelsdedades/Usuari'; // Importa la clase Usuario
 import { Router } from '@angular/router'; // Importa el Router
+import * as bcrypt from 'bcryptjs'; // Cambia esto
 
 @Injectable({
   providedIn: 'root'
@@ -47,7 +48,10 @@ export class ServeiAutenticarService {
         throw new Error('El correo electrónico no está registrado.');
       }
 
-      if (user.password !== this.psw) {
+      // Verificar la contraseña usando bcrypt.compare()
+      const isPasswordValid = await bcrypt.compare(this.psw, user.password);
+
+      if (!isPasswordValid) {
         throw new Error('Contraseña incorrecta.');
       }
 
@@ -62,7 +66,6 @@ export class ServeiAutenticarService {
       localStorage.setItem('idUsr', user.idUsr);
       localStorage.setItem('verified', user.verified.toString());
       localStorage.setItem('modoProfesor', "false");
-
 
       // Redirigir a /home después del login exitoso
       this.usuari = user;
