@@ -27,6 +27,7 @@ import { getDatabase, provideDatabase } from '@angular/fire/database';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { CrearClaseComponent } from './crear-clase/crear-clase.component';
 import { ResenyaComponent } from './resenya/resenya.component';
+import { OrderByFechaPipe } from './order-by-fecha.pipe';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { ResenyaComponent } from './resenya/resenya.component';
     HomeComponent,
     VerifyEmailComponent,
     CrearClaseComponent,
-    ResenyaComponent
+    ResenyaComponent,
+    OrderByFechaPipe
   ],
   imports: [
     BrowserModule,

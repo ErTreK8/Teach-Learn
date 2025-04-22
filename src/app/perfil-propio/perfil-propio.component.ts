@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { getDatabase, ref, set, get } from 'firebase/database';
+import { getDatabase, ref, set, get,update } from 'firebase/database';
 import { initializeApp, getApps } from 'firebase/app';
 import { environment } from '../../environments/environment';
 import { Clase } from '../modelsdedades/Clase'; // Modelo de Clase
 import { ResenyaClase } from '../modelsdedades/ResenyaClase'; // Modelo de Reseña de Clase
 import { Resenya } from '../modelsdedades/Resenya'; // Modelo de Reseña
 import { Usuario } from '../modelsdedades/Usuari'; // Modelo de Usuario
+import { Router } from '@angular/router'; // Para navegar entre rutas
+
 
 @Component({
   selector: 'app-perfil-propio',
@@ -17,19 +19,16 @@ export class PerfilPropioComponent implements OnInit {
   idUsuario: string | null = null;
   nombre: string = '';
   apellido: string = '';
-  fotoPerfil: string = '../../assets/account_circle.png';
+  fotoPerfil: string = ''; // Inicialmente vacía
   descripcion: string = '';
   resenas: any[] = [];
   modoEdicion: boolean = false;
   nuevaDescripcion: string = '';
-
+  notaMedia: number=0;
   HayResenas: boolean = false;
   PerfilPropio: boolean = false;
 
-  // Nota media de las reseñas
-  notaMedia: number = 0;
-
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute,private router: Router) {}
 
   ngOnInit(): void {
     this.idUsuario = this.route.snapshot.paramMap.get('idUsuario');
@@ -40,6 +39,12 @@ export class PerfilPropioComponent implements OnInit {
     this.cargarDatosPerfil();
   }
 
+  iniciarChat(): void {
+    const idUsuarioActual = localStorage.getItem('idUsr');
+    if (idUsuarioActual !== this.idUsuario) {
+      this.router.navigate(['/chat'], { queryParams: { idContacto: this.idUsuario } });
+    }
+  }
   async cargarDatosPerfil(): Promise<void> {
     try {
       if (!getApps().length) initializeApp(environment.fireBaseConfig);
@@ -53,7 +58,7 @@ export class PerfilPropioComponent implements OnInit {
         const userData = userSnap.val() as Usuario; // Usamos el modelo Usuario
         this.nombre = userData.nombre || 'Sin nombre';
         this.apellido = userData.apellido || 'Sin apellido';
-        this.fotoPerfil = userData.fotoPerfil || '../../assets/account_circle.png';
+        this.fotoPerfil = userData.fotoPerfil || ''; // Cargar foto de perfil
         this.descripcion = userData.descripcion || 'Sin descripción.';
       }
 
@@ -90,16 +95,16 @@ export class PerfilPropioComponent implements OnInit {
               const autorSnap = await get(ref(db, `Usuario/${idAutor}`));
               const autorData = autorSnap.exists()
                 ? autorSnap.val() as Usuario // Usamos el modelo Usuario
-                : { nombre: 'Anónimo', apellido: '', fotoPerfil: '../../assets/account_circle.png' };
+                : { nombre: 'Anónimo', apellido: '', fotoPerfil: '' };
 
               // Obtener datos de la reseña
               const resenaSnap = await get(ref(db, `Resenyas/${idResenya}`));
               if (resenaSnap.exists()) {
-                const resenaData = resenaSnap.val() as Resenya; // Usamos el modelo Resenya
+                const resenaData = resenaSnap.val() as Resenya; // Usamos el modelo Reseña
 
                 resenasCompletas.push({
                   autorNombre: `${autorData.nombre} ${autorData.apellido}`,
-                  autorFoto: autorData.fotoPerfil || '../../assets/account_circle.png',
+                  autorFoto: autorData.fotoPerfil || '',
                   comentario: resenaData.Resenya,
                   nota: resenaData.Nota
                 });
@@ -132,8 +137,8 @@ export class PerfilPropioComponent implements OnInit {
       const db = getDatabase();
       const userRef = ref(db, `Usuario/${this.idUsuario}`);
 
-      // Guardar cambios en Firebase
-      await set(userRef, {
+      // Actualizar solo los campos modificados
+      await update(userRef, {
         nombre: this.nombre,
         apellido: this.apellido,
         fotoPerfil: this.fotoPerfil,
@@ -152,5 +157,16 @@ export class PerfilPropioComponent implements OnInit {
   cancelarEdicion(): void {
     this.modoEdicion = false;
     this.nuevaDescripcion = this.descripcion;
+  }
+
+  onFileChange(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.fotoPerfil = reader.result as string; // Actualizar foto de perfil
+      };
+      reader.readAsDataURL(file); // Leer archivo como Base64
+    }
   }
 }
