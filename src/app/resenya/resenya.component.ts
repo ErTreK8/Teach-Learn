@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { getDatabase, ref, push, set, get } from 'firebase/database';
 import { initializeApp, getApps, getApp } from 'firebase/app';
 import { environment } from '../../environments/environment';
+import BadWordsFilter from 'bad-words'; // Importar el módulo correctamente
 
 @Component({
   selector: 'app-resenya',
@@ -15,7 +16,10 @@ export class ResenyaComponent implements OnInit {
   comentario: string = ''; // Comentario de la reseña
   userId: string | null = null; // ID del usuario
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.idClase = this.route.snapshot.paramMap.get('idClase'); // Obtener el ID de la clase desde la URL
@@ -30,6 +34,13 @@ export class ResenyaComponent implements OnInit {
 
       if (this.nota < 1 || this.nota > 10) {
         alert('La nota debe estar entre 1 y 10.');
+        return;
+      }
+
+      // Validar el comentario usando bad-words
+      const esInapropiado = this.validarComentarioConBadWords(this.comentario);
+      if (esInapropiado) {
+        alert('El comentario contiene lenguaje inapropiado. Por favor, revisa tu texto.');
         return;
       }
 
@@ -84,5 +95,74 @@ export class ResenyaComponent implements OnInit {
       console.error('Error al enviar la reseña:', error.message || error);
       alert('Error al enviar la reseña. Por favor, intenta de nuevo.');
     }
+  }
+
+  validarComentarioConBadWords(comentario: string): boolean {
+    // Crear una instancia del filtro
+    const filter = new BadWordsFilter();
+
+    // Agregar palabras inapropiadas en español
+    const palabrasInapropiadasEnEspanol = [
+      'basura', 'idiota', 'incompetente', 'estúpido', 'imbécil', 'mierda',
+      'gilipollas', 'cabrón', 'puta', 'hijo de puta', 'maricón', 'zorra',
+      'pendejo', 'chingar', 'coño', 'verga', 'culo', 'tonto', 'tarado',
+      'chupapollas', 'desgraciado', 'pinche', 'huevón', 'mamón', 'chingada',
+      'gonorrea', 'baboso', 'insignificante', 'subnormal', 'cretino', 'animal',
+      'bruto', 'calientapollas', 'chulo', 'descerebrado', 'engreído', 'estúpido',
+      'farsante', 'gandul', 'granuja', 'grosero', 'haragán', 'hipócrita',
+      'inmaduro', 'irresponsable', 'ladrón', 'mentiroso', 'mezquino', 'patán',
+      'perdedor', 'pesado', 'pesetero', 'podrido', 'prostituta', 'ramera',
+      'rata', 'sucio', 'traidor', 'vago', 'vándalo', 'vicioso', 'vulgar',
+      'apestoso', 'bastardo', 'borracho', 'caca', 'cagada', 'cobarde',
+      'corrupto', 'cretino', 'desgracia', 'despreciable', 'escoria', 'fracasado',
+      'furcia', 'gamberro', 'gorrón', 'guarro', 'hijueputa', 'horrible',
+      'indecente', 'insufrible', 'ladilla', 'lameculos', 'lunático', 'malnacido',
+      'malparido', 'maldito', 'manipulador', 'miserable', 'naco', 'narcisista',
+      'nazi', 'nefasto', 'niñato', 'odioso', 'payaso', 'pederasta', 'pelele',
+      'perverso', 'polla', 'primate', 'puerca', 'puerco', 'rastrero', 'repugnante',
+      'ridículo', 'sapo', 'sinvergüenza', 'soplón', 'tacaño', 'tramposo',
+      'trolo', 'trolero', 'urraca', 'vándala', 'venenoso', 'vil', 'zafio',
+      'zopenco', 'aborto', 'albino', 'apestado', 'arrastrado', 'arruinado',
+      'asqueroso', 'atrasado', 'avaro', 'bajuno', 'baratero', 'bestia', 'bobo',
+      'boludo', 'bribón', 'brutal', 'burro', 'cadáver', 'calabaza', 'calvo',
+      'camello', 'caradura', 'casposo', 'cerdo', 'chiflado', 'chivato', 'chocho',
+      'chuleta', 'comemierda', 'corruptela', 'crápula', 'cutre', 'desalmado',
+      'desastre', 'desnutrido', 'diablo', 'difunto', 'drogadicto', 'embustero',
+      'endemoniado', 'engañoso', 'envidioso', 'esclavo', 'espantajo', 'fanfarrón',
+      'farsa', 'feo', 'fetén', 'fétido', 'fraude', 'fulano', 'gangrena', 'gargola',
+      'gatillazo', 'golfa', 'gordo', 'guayaba', 'hambre', 'heces', 'hereje',
+      'hermafrodita', 'hiperactivo', 'horca', 'huérfano', 'ilegal', 'imbecilidad',
+      'impotente', 'incapaz', 'infecto', 'inferior', 'infinito', 'infierno',
+      'intruso', 'jactancioso', 'judas', 'lagarto', 'lampiño', 'latoso', 'lelo',
+      'lezama', 'libertino', 'liendre', 'lisiado', 'llorica', 'loro', 'lumpen',
+      'machista', 'macarra', 'mafioso', 'majadero', 'malandrín', 'malcriado',
+      'malévolo', 'manco', 'mangante', 'maquiavélico', 'mariconazo', 'matón',
+      'medroso', 'mequetrefe', 'merdellón', 'metiche', 'milenario', 'miseria',
+      'momia', 'monigote', 'monstruo', 'moribundo', 'muermo', 'muerto', 'necio',
+      'negativo', 'nihilista', 'noob', 'ojete', 'ordeñador', 'ortiga', 'palurdo',
+      'panocha', 'parásito', 'pasivo', 'patético', 'pecador', 'pelafustán',
+      'pelanas', 'pelotudo', 'pérfido', 'persona non grata', 'pesetero', 'petardo',
+      'picapleitos', 'pichabrava', 'pingüino', 'piojoso', 'pirata', 'plasta',
+      'polete', 'polizón', 'porquería', 'portador', 'poseído', 'prepotente',
+      'primario', 'profanador', 'provocador', 'pueril', 'pulga', 'punzón',
+      'quejica', 'quemado', 'rabioso', 'raja', 'rapaz', 'ratonera', 'rebelde',
+      'rencoroso', 'retrasado', 'revoltoso', 'ruin', 'sabandija', 'sacrílego',
+      'salido', 'satánico', 'semental', 'sicario', 'sifilítico', 'siniestro',
+      'soez', 'sodomita', 'soso', 'tabernario', 'tacañería', 'tarambana',
+      'tenebroso', 'terrorífico', 'testarudo', 'timador', 'tipejo', 'traficante',
+      'trapisonda', 'trepa', 'tristeza', 'truhán', 'tullido', 'turbio', 'ultraje',
+      'usurero', 'vacío', 'vampiro', 'vejestorio', 'ventrílocuo', 'vergonzoso',
+      'vicario', 'víbora', 'viciosamente', 'violador', 'virgen', 'voluble',
+      'yegua', 'zahareño', 'zalamero', 'zancudo', 'zanja', 'zarandaja', 'zombi'
+    ];
+
+    palabrasInapropiadasEnEspanol.forEach((palabra) => filter.addWords(palabra));
+
+    // Verificar si el comentario es inapropiado
+    const esInapropiado = filter.isProfane(comentario);
+
+    console.log('¿Es inapropiado?', esInapropiado);
+
+    return esInapropiado;
   }
 }

@@ -28,6 +28,8 @@ import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { CrearClaseComponent } from './crear-clase/crear-clase.component';
 import { ResenyaComponent } from './resenya/resenya.component';
 import { OrderByFechaPipe } from './order-by-fecha.pipe';
+import { HttpClientModule } from '@angular/common/http'; // Importar HttpClientModule
+
 
 @NgModule({
   declarations: [
@@ -54,6 +56,7 @@ import { OrderByFechaPipe } from './order-by-fecha.pipe';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     AngularFireModule.initializeApp(environment.fireBaseConfig), // Inicializa Firebase aquí
     AngularFireAuthModule, // Autenticación de Firebase
     AngularFireDatabaseModule, // Base de datos de Firebase
