@@ -20,6 +20,8 @@ body {
   text-align: center;
   min-height: 820px;
   margin: 0 auto; /* Centrar el contenedor horizontalmente */
+  margin-top: 2.5em;
+
 }
 
 /* Contenedor de Clases Fijas */
