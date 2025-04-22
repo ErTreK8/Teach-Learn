@@ -6,6 +6,7 @@ body {
     align-items: center; /* Centra verticalmente */
     min-height: 100vh;
     margin: 0; /* Elimina el margen predeterminado del body */
+    background-color: rgb(90, 89, 122);
   }
   
   .container-formulario {
