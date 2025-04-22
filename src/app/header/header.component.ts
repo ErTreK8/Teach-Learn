@@ -20,7 +20,11 @@ export class HeaderComponent implements AfterViewInit {
   @ViewChild('check') check!: ElementRef; // Referencia al checkbox
 
   constructor(private router: Router) {} // Inyecta el Router
+  idUsuario: string | null = null;
 
+  ngOnInit(): void {
+    this.idUsuario = localStorage.getItem('idUsr'); // o de un servicio
+  }
   ngAfterViewInit() {
     // Leer el estado del modo desde localStorage al cargar el componente
     const modoProfesor = localStorage.getItem('modoProfesor');

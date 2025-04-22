@@ -18,13 +18,14 @@ body {
   width: 75%; /* Ocupa 3/4 de la pantalla */
   max-width: 1200px; /* Límite máximo para pantallas grandes */
   text-align: center;
+  min-height: 820px;
   margin: 0 auto; /* Centrar el contenedor horizontalmente */
 }
 
 /* Contenedor de Clases Fijas */
 .clases-container {
   overflow-y: auto; /* Habilita el scroll vertical */
-  max-height: 500px; /* Altura máxima del contenedor */
+  max-height: 600px; /* Altura máxima del contenedor */
 }
 
 /* Estilos para el Profesor */

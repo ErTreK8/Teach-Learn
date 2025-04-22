@@ -8,7 +8,7 @@ import { BuscadorCursosComponent } from './buscador-cursos/buscador-cursos.compo
 import { BusadorUsuarioComponent } from './busador-usuario/busador-usuario.component';
 import { PerfilPropioComponent } from './perfil-propio/perfil-propio.component';
 import { CrearClaseComponent } from './crear-clase/crear-clase.component';
-
+import { ResenyaComponent } from './resenya/resenya.component';
 import { CursoComponent } from './curso/curso.component';
 import { ClaseComponent } from './clase/clase.component';
 import { HomeComponent } from './home/home.component';
@@ -27,8 +27,9 @@ const routes: Routes = [
     canActivate: [AuthGuard], // Protege estas rutas con el AuthGuard
     children: [
       { path: 'buscadorCursos', component: BuscadorCursosComponent },
+      { path: 'resenya/:idClase', component: ResenyaComponent },
       { path: 'buscadorUsuarios', component: BusadorUsuarioComponent },
-      { path: 'perfilPropio', component: PerfilPropioComponent },
+      { path: 'perfil/:idUsuario', component: PerfilPropioComponent },
       { path: 'home', component: HomeComponent },
       { path: 'chat', component: ChatComponent },
       { path: 'curso/:idCurso', component: CursoComponent },

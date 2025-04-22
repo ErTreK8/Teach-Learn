@@ -21,7 +21,8 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "types": ["node"] // Añadir esta línea para incluir los tipos de Node.js
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

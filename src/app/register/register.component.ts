@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { environment } from '../../environments/environment';
 import { EmailVerificationService } from '../email-verification.service';
 import { Usuario } from '../modelsdedades/Usuari'; // Importa la clase Usuario
+import * as bcrypt from 'bcryptjs'; // Cambia esto
 
 @Component({
   selector: 'app-register',
@@ -58,7 +59,7 @@ export class RegisterComponent {
   get confirmPassword() { return this.registerForm.get('confirmPassword'); }
   get nombre() { return this.registerForm.get('nombre'); } // Agrega getter para el nombre
 
-  register(): void {
+  async register(): Promise<void> {
     if (this.registerForm.invalid) {
       console.log('Formulario inválido');
       return;
@@ -77,62 +78,63 @@ export class RegisterComponent {
 
     // Obtener todos los usuarios
     console.log('Obteniendo todos los usuarios de la base de datos...');
-    get(usersRef)
-      .then((snapshot) => {
-        if (snapshot.exists()) {
-          const usersData = snapshot.val();
-          const usersArray: Usuario[] = Object.keys(usersData).map((key) => new Usuario({ idUsr: key, ...usersData[key] }));
+    try {
+      const snapshot = await get(usersRef);
 
-          // Verificar si el correo ya existe
-          const existingUser = usersArray.find((user) => user.email === email);
-          if (existingUser) {
-            console.error('El correo ya está registrado en la base de datos.');
-            this.errorMessage = 'Ya existe una cuenta con este correo electrónico.';
-            throw new Error('Correo duplicado');
-          }
-        }
+      if (snapshot.exists()) {
+        const usersData = snapshot.val();
+        const usersArray: Usuario[] = Object.keys(usersData).map((key) => new Usuario({ idUsr: key, ...usersData[key] }));
 
-        console.log('El correo no existe en la base de datos. Procediendo con el registro...');
-
-        const userId = uuidv4();
-        const verificationCode = Math.random().toString(36).substr(2, 8);
-
-        // Guardar los datos del usuario en la base de datos
-        const userData = {
-          idUsr: userId,
-          email,
-          password, // Asegúrate de cifrar esto en producción
-          esAdmin: false,
-          fotoPerfil: '', // Por defecto, vacío
-          descripcion: descripcion,
-          verified: false,
-          verificationCode,
-          nombre: nombre,
-          apellido: apellido
-        };
-
-        console.log('Guardando datos del usuario en la base de datos...');
-        return set(ref(db, `Usuario/${userId}`), userData).then(() => ({ userId, verificationCode, email }));
-      })
-      .then(({ userId, verificationCode, email }) => {
-        console.log('Datos del usuario guardados en el Realtime Database.');
-
-        // Enviar el código de verificación al correo electrónico
-        console.log('Enviando código de verificación por correo electrónico...');
-        return this.emailVerificationService.sendEmailVerificationCode(email, verificationCode).then(() => userId);
-      })
-      .then((userId) => {
-        console.log('Código de verificación enviado correctamente.');
-        alert('Se ha enviado un código de verificación a tu correo electrónico.');
-        this.router.navigate(['/verify-email'], { queryParams: { userId } });
-      })
-      .catch((error) => {
-        console.error('Error durante el registro:', error);
-        if (error.message.includes('Correo duplicado')) {
+        // Verificar si el correo ya existe
+        const existingUser = usersArray.find((user) => user.email === email);
+        if (existingUser) {
+          console.error('El correo ya está registrado en la base de datos.');
           this.errorMessage = 'Ya existe una cuenta con este correo electrónico.';
-        } else {
-          this.errorMessage = 'Error al registrar el usuario.';
+          throw new Error('Correo duplicado');
         }
-      });
+      }
+
+      console.log('El correo no existe en la base de datos. Procediendo con el registro...');
+
+      // Cifrar la contraseña usando bcrypt
+      const hashedPassword = await bcrypt.hash(password, 10); // 10 es el costo del hash
+
+      const userId = uuidv4();
+      const verificationCode = Math.random().toString(36).substr(2, 8);
+
+      // Guardar los datos del usuario en la base de datos
+      const userData = {
+        idUsr: userId,
+        email,
+        password: hashedPassword, // Guardar la contraseña cifrada
+        esAdmin: false,
+        fotoPerfil: '', // Por defecto, vacío
+        descripcion: descripcion,
+        verified: false,
+        verificationCode,
+        nombre: nombre,
+        apellido: apellido
+      };
+
+      console.log('Guardando datos del usuario en la base de datos...');
+      await set(ref(db, `Usuario/${userId}`), userData);
+
+      console.log('Datos del usuario guardados en el Realtime Database.');
+
+      // Enviar el código de verificación al correo electrónico
+      console.log('Enviando código de verificación por correo electrónico...');
+      await this.emailVerificationService.sendEmailVerificationCode(email, verificationCode);
+
+      console.log('Código de verificación enviado correctamente.');
+      alert('Se ha enviado un código de verificación a tu correo electrónico.');
+      this.router.navigate(['/verify-email'], { queryParams: { userId } });
+    } catch (error: any) {
+      console.error('Error durante el registro:', error.message || error);
+      if (error.message.includes('Correo duplicado')) {
+        this.errorMessage = 'Ya existe una cuenta con este correo electrónico.';
+      } else {
+        this.errorMessage = 'Error al registrar el usuario.';
+      }
+    }
   }
 }
