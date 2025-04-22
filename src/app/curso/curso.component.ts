@@ -73,7 +73,7 @@ export class CursoComponent implements OnInit {
           .filter((clase) => clase.idCurso === this.cursoId); // Filtrar por idCurso
 
         // Cargar los datos del profesor y alumnos para cada clase
-        this.clases = await Promise.all(
+        const clasesConDatos = await Promise.all(
           clasesRaw.map(async (clase) => {
             const profesor = await this.obtenerDatosProfesor(clase.idProfesor);
             const alumnosUnidos = await this.obtenerAlumnosUnidos(clase.idClass);
@@ -86,6 +86,13 @@ export class CursoComponent implements OnInit {
             };
           })
         );
+
+        // Filtrar las clases cuya fecha de inicio sea anterior o igual a la fecha actual
+        const fechaActual = new Date();
+        this.clases = clasesConDatos.filter((clase) => {
+          const fechaInicio = new Date(clase.dataInici);
+          return fechaInicio >= fechaActual; // Solo mostrar clases que ya han comenzado
+        });
       }
     } catch (error: any) {
       console.error('Error al cargar el curso y las clases:', error.message || error);

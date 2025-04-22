@@ -3,6 +3,7 @@ import { getDatabase, ref, get } from 'firebase/database';
 import { initializeApp, getApps, getApp } from 'firebase/app'; // Para inicializar Firebase
 import { environment } from '../../environments/environment'; // Configuración de Firebase
 import { Usuario } from '../modelsdedades/Usuari'; // Modelo de Usuario
+import { Router } from '@angular/router'; // Para navegar entre rutas
 
 @Component({
   selector: 'app-busador-usuario',
@@ -15,7 +16,7 @@ export class BusadorUsuarioComponent implements OnInit {
   errorMessage: string | null = null;
   searchTerm: string = ''; // Variable para almacenar el término de búsqueda
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.cargarUsuariosDesdeFirebase();
@@ -74,5 +75,10 @@ export class BusadorUsuarioComponent implements OnInit {
     const inputElement = event.target as HTMLInputElement;
     this.searchTerm = inputElement.value; // Actualizar el término de búsqueda
     this.filterUsers(); // Filtrar usuarios
+  }
+
+  // Método para navegar al perfil del usuario
+  verPerfil(idUsuario: string): void {
+    this.router.navigate(['/perfil', idUsuario]); // Navegar al perfil del usuario
   }
 }
