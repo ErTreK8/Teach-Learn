@@ -24,20 +24,26 @@ export class PerfilPropioComponent implements OnInit {
   resenas: any[] = [];
   modoEdicion: boolean = false;
   nuevaDescripcion: string = '';
-  notaMedia: number=0;
+  notaMedia: number = 0;
   HayResenas: boolean = false;
   PerfilPropio: boolean = false;
+  modoProfesor: boolean = false; // Nueva propiedad para el modo profesor
 
-  constructor(private route: ActivatedRoute,private router: Router) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
     this.idUsuario = this.route.snapshot.paramMap.get('idUsuario');
     const userIdActual = localStorage.getItem('idUsr');
 
+    // Detectar si el modo profesor está activado
+    const modoProfesor = localStorage.getItem('modoProfesor');
+    this.modoProfesor = modoProfesor === 'true'; // Convertir a booleano
+
     this.PerfilPropio = userIdActual === this.idUsuario;
 
     this.cargarDatosPerfil();
   }
+
 
   iniciarChat(): void {
     const idUsuarioActual = localStorage.getItem('idUsr');
