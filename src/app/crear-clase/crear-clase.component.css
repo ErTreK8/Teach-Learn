@@ -1,13 +1,16 @@
 /* Estilos Generales */
 body {
-    font-family: sans-serif;
-    display: flex;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
-    min-height: 100vh;
-    margin: 0; /* Elimina el margen predeterminado del body */
-    background-color: rgb(90, 89, 122);
-  }
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* antes: center */
+  min-height: 100vh;
+  margin: 0;
+  padding: 2em 1em; /* nuevo: deja espacio sin forzar altura */
+  background-color: rgb(90, 89, 122);
+  overflow-y: auto; /* permite scroll si hay zoom o mucho contenido */
+}
+
   
   .container-formulario {
     background-color: #fff;

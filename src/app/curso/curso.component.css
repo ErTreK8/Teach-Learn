@@ -1,63 +1,26 @@
 /* Estilos Generales */
-body {
-  font-family: sans-serif;
-  background-color: #518094;
+.body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* Alineamos al inicio verticalmente */
+  align-items: column;
   min-height: 100vh;
   margin: 0;
-  padding: 20px; /* Espaciado general */
+  padding: 20px;
+  color: #333;
 }
 
 .container-curso {
   background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  padding: 30px;
-  width: 75%; /* Ocupa 3/4 de la pantalla */
-  max-width: 1200px; /* Límite máximo para pantallas grandes */
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  padding: 40px 30px;
+  width: 75%;
+  max-width: 1200px;
   text-align: center;
   min-height: 820px;
-  margin: 0 auto; /* Centrar el contenedor horizontalmente */
   margin-top: 2.5em;
-
-}
-
-/* Contenedor de Clases Fijas */
-.clases-container {
-  overflow-y: auto; /* Habilita el scroll vertical */
-  max-height: 600px; /* Altura máxima del contenedor */
-}
-
-/* Estilos para el Profesor */
-.profesor-info {
-  text-align: center;
-}
-
-.profesor-foto {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-/* Estilos para los Alumnos Apuntados */
-.alumnos-apuntados {
-  margin-top: 20px;
-}
-
-.alumnos-lista {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-}
-
-.alumnos-lista img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  object-fit: cover;
+  transition: all 0.3s ease-in-out;
 }
 
 /* Detalles del Curso */
@@ -66,92 +29,206 @@ body {
 }
 
 .curso-titulo {
-  font-size: 2em;
+  font-size: 2.5em;
+  font-weight: bold;
+  color: #2c3e50;
   margin-bottom: 10px;
 }
 
 .curso-descripcion {
+  font-size: 1.1em;
+  color: #555;
+  line-height: 1.5;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Botones */
+button {
+  background-color: #518094;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
   font-size: 1em;
-  line-height: 1.4;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  margin: 5px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+button:hover {
+  background-color: #3b6476;
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Clases */
+.clases-container {
+  overflow-y: auto;
+  max-height: 600px;
+  padding-top: 10px;
+}
+
+.clases-titulo {
+  font-size: 1.8em;
   margin-bottom: 20px;
+  padding: 12px;
+  border: 2px solid #2c3e50;
+  display: inline-block;
+  border-radius: 10px;
+  background-color: #f8f9fa;
 }
 
 /* Lista de Clases */
-.clases-titulo {
-  font-size: 1.5em;
-  margin-bottom: 20px;
-  border: 2px solid black;
-  padding: 10px;
-}
-
 .lista-clases {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .item-clase {
-  background-color: #e9ecef;
-  border-radius: 6px;
-  margin-bottom: 15px;
-  padding: 15px;
-  border-left: 3px solid #518094;
+  background-color: #f0f4f8;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 20px;
+  border-left: 5px solid #518094;
   text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.nombre-clase {
-  color: #333;
-  font-size: 1.1em;
-  margin-top: 0;
-  margin-bottom: 5px;
+.item-clase:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+/* Profesor */
+.profesor-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.profesor-foto {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px;
+  border: 3px solid #518094;
+}
+
+/* Clase - Detalles */
+.titulo-clase {
+  font-size: 1.4em;
+  margin: 10px 0 5px;
   font-weight: bold;
+  color: #2c3e50;
 }
 
 .descripcion-clase {
-  color: #555;
-  font-size: 0.95em;
-  line-height: 1.4;
-  margin-bottom: 8px;
+  color: #666;
+  font-size: 1em;
+  margin-bottom: 10px;
 }
 
 .detalles-clase {
-  color: #777;
-  font-size: 0.85em;
+  color: #888;
+  font-size: 0.9em;
+  margin-bottom: 15px;
 }
 
+/* Alumnos */
+.alumnos-unidos {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 15px 0;
+}
+
+.contador-alumnos {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  font-weight: bold;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.9em;
+  margin-right: 15px;
+}
+
+.alumnos-lista {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.alumno-item {
+  text-align: center;
+  font-size: 0.85em;
+  color: #444;
+}
+
+.alumno-foto {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #518094;
+}
+
+.alumno-nombre {
+  margin-top: 5px;
+}
+
+/* Botones */
+.botones-clase {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+  justify-content: flex-start;
+}
+
+/* Sin clases disponibles */
 .sin-clases {
   color: #777;
   font-size: 1em;
   margin-top: 20px;
+  font-style: italic;
 }
 
-/* Estilos Responsive */
+/* Responsive */
 @media (max-width: 768px) {
   .container-curso {
-    width: 95%; /* En pantallas pequeñas, ocupa casi todo el ancho */
+    width: 95%;
     padding: 20px;
   }
 
   .curso-titulo {
-    font-size: 1.8em;
+    font-size: 2em;
   }
 
   .curso-descripcion {
-    font-size: 0.9em;
-  }
-
-  .clases-titulo {
-    font-size: 1.3em;
-  }
-
-  .nombre-clase {
     font-size: 1em;
   }
 
+  .clases-titulo {
+    font-size: 1.4em;
+  }
+
+  .titulo-clase {
+    font-size: 1.1em;
+  }
+
   .descripcion-clase {
-    font-size: 0.9em;
+    font-size: 0.95em;
   }
 
   .detalles-clase {
-    font-size: 0.8em;
+    font-size: 0.85em;
   }
 }
