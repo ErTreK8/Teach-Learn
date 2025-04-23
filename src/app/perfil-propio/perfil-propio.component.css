@@ -8,6 +8,40 @@ body {
   align-items: center;
   min-height: 100vh; /* Asegura que el body ocupe al menos toda la altura de la ventana */
 }
+/* Estilos para el contenedor de la foto de perfil */
+.foto-perfil {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* Estilos para la etiqueta que contiene la imagen */
+.foto-label {
+  width: 150px; /* Tamaño máximo de la imagen */
+  height: 150px; /* Tamaño máximo de la imagen */
+  border-radius: 50%; /* Hace la imagen circular */
+  overflow: hidden; /* Asegura que la imagen no sobresalga del círculo */
+  cursor: pointer; /* Cambia el cursor al pasar sobre la imagen */
+  margin-bottom: 10px;
+  border: 2px solid #ddd; /* Borde sutil alrededor de la imagen */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
+}
+
+/* Estilos para la imagen dentro del label */
+.foto-label img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Asegura que la imagen cubra todo el espacio sin deformarse */
+}
+
+/* Estilo para el texto "Cambiar Foto de Perfil" */
+.foto-perfil label {
+  font-size: 14px;
+  color: #007bff; /* Color azul para destacar el texto */
+  cursor: pointer; /* Indica que es clickeable */
+  text-align: center;
+}
 
 /* Estilo para el modo profesor (si lo aplicas en alguna parte) */
 body.modo-profesor {

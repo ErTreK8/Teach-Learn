@@ -29,6 +29,8 @@ export class PerfilPropioComponent implements OnInit {
   PerfilPropio: boolean = false;
   modoProfesor: boolean = false; // Nueva propiedad para el modo profesor
 
+  fotoPerfilOriginal: string = ''; // Copia temporal de la foto de perfil
+
   constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
@@ -163,6 +165,9 @@ export class PerfilPropioComponent implements OnInit {
   activarModoEdicion(): void {
     this.modoEdicion = true;
     this.nuevaDescripcion = this.descripcion;
+
+    // Guardar una copia de la foto de perfil actual
+    this.fotoPerfilOriginal = this.fotoPerfil;
   }
 
   async guardarCambios(): Promise<void> {
@@ -190,6 +195,9 @@ export class PerfilPropioComponent implements OnInit {
   cancelarEdicion(): void {
     this.modoEdicion = false;
     this.nuevaDescripcion = this.descripcion;
+
+    // Restaurar la foto de perfil a su valor original
+    this.fotoPerfil = this.fotoPerfilOriginal;
   }
 
   onFileChange(event: any): void {
