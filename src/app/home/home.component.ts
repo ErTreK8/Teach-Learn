@@ -12,8 +12,10 @@ import { environment } from '../../environments/environment';
 export class HomeComponent implements OnInit {
 
   constructor(private router: Router) {}
+  idUsuario: string | null = null;
 
   ngOnInit(): void {
+    this.idUsuario = localStorage.getItem('idUsr'); // o de un servicio
     this.printLocalStorageData();
     const idUsr = localStorage.getItem('idUsr');
     if (idUsr) {
@@ -72,6 +74,19 @@ export class HomeComponent implements OnInit {
       }
     } catch (error: any) {
       console.error('Error al comprobar las clases:', error.message || error);
+    }
+  }
+  setRandomTitle(): void {
+    const titles = [
+      "Bienvenido a Teacher&Learn",
+      "Navega entre cursos y usuarios",
+    ];
+
+    const randomTitle = titles[Math.floor(Math.random() * titles.length)];
+    const titleElement = document.getElementById("randomTitle");
+
+    if (titleElement) {
+      titleElement.textContent = randomTitle;
     }
   }
 }
