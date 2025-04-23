@@ -1,5 +1,4 @@
-body {
-  background-color: #518094;
+.body {
   display: flex;
   justify-content: center;
   align-items: flex-start;
