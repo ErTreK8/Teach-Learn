@@ -137,21 +137,26 @@ export class ChatComponent implements OnInit {
   }
 
   async enviarMensaje(): Promise<void> {
+    // Validar que el mensaje no esté vacío ni contenga solo espacios en blanco
+    if (!this.nuevoMensaje.trim()) {
+      alert('El mensaje no puede estar vacío.');
+      return;
+    }
+  
     try {
       const db = getDatabase();
       const chatsRef = ref(db, `Chats`);
-
+  
       // Guardar el mensaje en Firebase
       const mensajeRef = push(chatsRef);
       await set(mensajeRef, {
         idEnvia: this.idUsuario,
         idRecibe: this.contactoSeleccionado.id,
-        Mensaje: this.nuevoMensaje,
+        Mensaje: this.nuevoMensaje.trim(), // Eliminar espacios innecesarios al inicio y final
         fecha: new Date().toISOString()
       });
-
-      alert('Mensaje enviado.');
-      this.nuevoMensaje = '';
+  
+      this.nuevoMensaje = ''; // Limpiar el campo de texto después de enviar
       this.cargarMensajes(this.contactoSeleccionado.id); // Recargar mensajes
     } catch (error: any) {
       console.error('Error al enviar mensaje:', error.message);
