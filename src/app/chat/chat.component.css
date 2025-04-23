@@ -153,3 +153,17 @@ ng-template {
   align-items: center;
   height: 100%;
 }
+
+@media (max-width: 769px) {
+
+.containerChat {
+  margin-left: 3em;
+  display: flex;
+  width: 65%;
+  height: 80vh;
+  background-color: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+}
