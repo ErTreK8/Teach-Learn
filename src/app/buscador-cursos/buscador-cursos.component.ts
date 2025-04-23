@@ -4,6 +4,8 @@ import { getDatabase, ref, get, push, set, remove } from 'firebase/database';
 import { initializeApp, getApps, getApp } from 'firebase/app';
 import { environment } from '../../environments/environment';
 import { Curso } from '../modelsdedades/Curso';
+import { Clase } from '../modelsdedades/Clase';
+
 
 @Component({
   selector: 'app-buscador-cursos',
@@ -118,12 +120,56 @@ export class BuscadorCursosComponent implements OnInit {
     if (!confirm('¿Estás seguro de que quieres eliminar este curso?')) {
       return;
     }
-
+  
     try {
       const db = getDatabase();
+  
+      // Paso 1: Obtener todas las clases asociadas al curso
+      const clasesRef = ref(db, 'Classes');
+      const clasesSnapshot = await get(clasesRef);
+  
+      if (clasesSnapshot.exists()) {
+        const clasesData = clasesSnapshot.val();
+        const clasesAsociadas = Object.values(clasesData).filter(
+          (clase: any): clase is Clase => clase.idCurso === idCurso
+        );
+  
+        // Paso 2: Filtrar las clases que no han comenzado
+        const ahora = new Date().getTime(); // Tiempo actual en milisegundos
+        const clasesNoComenzadas = clasesAsociadas.filter(
+          (clase) => new Date(clase.dataInici).getTime() > ahora
+        );
+  
+        // Paso 3: Eliminar las clases no comenzadas y sus relaciones
+        for (const clase of clasesNoComenzadas) {
+          const idClase = clase.idClass;
+  
+          // Eliminar la relación de usuarios inscritos en ClaseAlumno
+          const claseAlumnoRef = ref(db, 'ClaseAlumno');
+          const claseAlumnoSnapshot = await get(claseAlumnoRef);
+  
+          if (claseAlumnoSnapshot.exists()) {
+            const claseAlumnoData = claseAlumnoSnapshot.val();
+            for (const key in claseAlumnoData) {
+              if (claseAlumnoData[key].idClase === idClase) {
+                await remove(ref(db, `ClaseAlumno/${key}`));
+              }
+            }
+          }
+  
+          // Eliminar la clase
+          await remove(ref(db, `Classes/${idClase}`));
+        }
+      }
+  
+      // Paso 4: Eliminar el curso
       await remove(ref(db, `Cursos/${idCurso}`));
+  
+      // Actualizar la lista local de cursos
       this.cursos = this.cursos.filter((curso) => curso.idCurso !== idCurso);
       this.filteredCursos = this.filteredCursos.filter((curso) => curso.idCurso !== idCurso);
+  
+      alert('Curso eliminado correctamente.');
     } catch (error: any) {
       console.error('Error al eliminar el curso:', error.message || error);
       alert('Error al eliminar el curso. Por favor, intenta de nuevo.');
