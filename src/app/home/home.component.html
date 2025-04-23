@@ -8,7 +8,7 @@
         <a href="buscadorUsuarios" class="nav-button">Usuarios</a>
         <a [routerLink]="['/perfil', idUsuario]" class="nav-button">Perfil</a>
         <a href="chat" class="nav-button">Chat</a>
-        <button id="logoutBtn" style="color: grey;" class="nav-button">Cerrar Sesión</button>
+        <button id="logoutBtn" style="color: rgb(13, 13, 13);" class="nav-button">Cerrar Sesión</button>
       </nav>
       <style>
         .nav-bar {
@@ -18,6 +18,7 @@
           gap: 1em;
           padding: 1em;
         }
+      
         .nav-button {
           color: white;
           border: none;
@@ -25,8 +26,15 @@
           border-radius: 0.5em;
           cursor: pointer;
           text-decoration: none;
+          background-color: transparent; /* Fondo transparente por defecto */
+          transition: all 0.3s ease; /* Transición suave para el hover */
         }
+      
         .nav-button:hover {
+          background-color: #ffffff; /* Fondo morado al pasar el mouse */
+          color: rgb(11, 10, 10); /* Asegura que el texto sea blanco */
+          transform: scale(1.4); /* Efecto de zoom */
+          box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Sombra al pasar el mouse */
         }
       </style>
 
