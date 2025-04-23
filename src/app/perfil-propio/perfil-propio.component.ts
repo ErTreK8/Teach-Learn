@@ -25,6 +25,8 @@ export class PerfilPropioComponent implements OnInit {
   modoEdicion: boolean = false;
   nuevaDescripcion: string = '';
   notaMedia: number = 0;
+  teachCoins: number = 0;
+
   HayResenas: boolean = false;
   PerfilPropio: boolean = false;
   modoProfesor: boolean = false; // Nueva propiedad para el modo profesor
@@ -55,59 +57,60 @@ export class PerfilPropioComponent implements OnInit {
     try {
       if (!getApps().length) initializeApp(environment.fireBaseConfig);
       const db = getDatabase();
-
+  
       // Cargar datos básicos del usuario
       const userRef = ref(db, `Usuario/${this.idUsuario}`);
       const userSnap = await get(userRef);
-
+  
       if (userSnap.exists()) {
         const userData = userSnap.val() as Usuario; // Usamos el modelo Usuario
         this.nombre = userData.nombre || 'Sin nombre';
         this.apellido = userData.apellido || 'Sin apellido';
         this.fotoPerfil = userData.fotoPerfil || ''; // Cargar foto de perfil
         this.descripcion = userData.descripcion || 'Sin descripción.';
+        this.teachCoins = userData.teachCoins || 0; // Cargar TeachCoins
       }
-
+  
       // Obtener clases impartidas por el profesor
       const clasesRef = ref(db, 'Classes');
       const clasesSnap = await get(clasesRef);
-
+  
       if (clasesSnap.exists()) {
         const clasesData = clasesSnap.val();
         const clasesImpartidas = Object.values(clasesData).filter(
           (clase: any): clase is Clase => clase.idProfesor === this.idUsuario
         );
-
+  
         const resenasCompletas: any[] = [];
-
+  
         for (const clase of clasesImpartidas) {
           const idClase = clase.idClass;
-
+  
           // Buscar reseñas asociadas a esta clase
           const resenasClaseRef = ref(db, 'ResenyasClase');
           const resenasClaseSnap = await get(resenasClaseRef);
-
+  
           if (resenasClaseSnap.exists()) {
             const resenasClaseData = resenasClaseSnap.val();
             const resenasDeEstaClase = Object.values(resenasClaseData).filter(
               (rc: any): rc is ResenyaClase => rc.idClase === idClase
             );
-
+  
             for (const resenaClase of resenasDeEstaClase) {
               const idAutor = resenaClase.idUsuario;
               const idResenya = resenaClase.idResenya;
-
+  
               // Obtener datos del autor
               const autorSnap = await get(ref(db, `Usuario/${idAutor}`));
               const autorData = autorSnap.exists()
                 ? autorSnap.val() as Usuario // Usamos el modelo Usuario
                 : { nombre: 'Anónimo', apellido: '', fotoPerfil: '' };
-
+  
               // Obtener datos de la reseña
               const resenaSnap = await get(ref(db, `Resenyas/${idResenya}`));
               if (resenaSnap.exists()) {
                 const resenaData = resenaSnap.val() as Resenya; // Usamos el modelo Reseña
-
+  
                 resenasCompletas.push({
                   autorNombre: `${autorData.nombre} ${autorData.apellido}`,
                   autorFoto: autorData.fotoPerfil || '',
@@ -118,10 +121,10 @@ export class PerfilPropioComponent implements OnInit {
             }
           }
         }
-
+  
         this.resenas = resenasCompletas;
         this.HayResenas = this.resenas.length > 0;
-
+  
         // Calcular la nota media
         if (this.resenas.length > 0) {
           const sumaNotas = this.resenas.reduce((total, resena) => total + resena.nota, 0);

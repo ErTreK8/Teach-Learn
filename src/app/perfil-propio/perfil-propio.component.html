@@ -1,67 +1,70 @@
-
-  <div class="containerMain">
-    <section *ngIf="!modoEdicion">
-      <div class="containerHead">
-        <div class="presentacion">
-          <img [src]="fotoPerfil || '../../assets/account_circle.png'" alt="Foto de perfil">
-          <div>
-            <p>{{ nombre }} {{ apellido }}</p>
-          </div>
-          <!-- Botón Modificar solo si es el perfil propio -->
-          <button *ngIf="PerfilPropio" (click)="activarModoEdicion()">Modificar</button>
-          <div *ngIf="!PerfilPropio">
-            <button (click)="iniciarChat()">Chat</button>
-          </div>
+<div class="containerMain">
+  <section *ngIf="!modoEdicion">
+    <div class="containerHead">
+      <div class="presentacion">
+        <img [src]="fotoPerfil || '../../assets/account_circle.png'" alt="Foto de perfil">
+        <div>
+          <p>{{ nombre }} {{ apellido }}</p>
+        </div>
+        <!-- Botón Modificar solo si es el perfil propio -->
+        <button *ngIf="PerfilPropio" (click)="activarModoEdicion()">Modificar</button>
+        <div *ngIf="!PerfilPropio">
+          <button (click)="iniciarChat()">Chat</button>
         </div>
       </div>
+    </div>
 
-      <div class="descripcionPerfil">
-        <h2>Descripción</h2>
-        <p>{{ descripcion || 'Sin descripción.' }}</p>
-      </div>
-      <p *ngIf="resenas.length > 0">
-        <strong>Nota Media:</strong> {{ notaMedia }}
-      </p>
+    <div class="teachcoins-section" *ngIf="modoProfesor">
+      <h3>TeachCoins</h3>
+      <p class="teachcoins-amount">{{ teachCoins }}</p>
+    </div>
 
-      <div class="resenas">
-        <h2>Reseñas</h2>
-        <p *ngIf="!HayResenas">No hay reseñas.</p>
-        <ul>
-          <li *ngFor="let resena of resenas">
-            <div class="resena-item">
-              <div class="resena-info">
-                <img [src]="resena.autorFoto || '../../assets/account_circle.png'" alt="Autor">
-                <div class="resena-details">
-                  <strong>{{ resena.autorNombre }}:</strong>
-                  <p>{{ resena.comentario }}</p>
-                </div>
-                <span class="nota">{{ resena.nota }}/10</span>
+    <div class="descripcionPerfil">
+      <h2>Descripción</h2>
+      <p>{{ descripcion || 'Sin descripción.' }}</p>
+    </div>
+    <p *ngIf="resenas.length > 0">
+      <strong>Nota Media:</strong> {{ notaMedia }}
+    </p>
+
+    <div class="resenas">
+      <h2>Reseñas</h2>
+      <p *ngIf="!HayResenas">No hay reseñas.</p>
+      <ul>
+        <li *ngFor="let resena of resenas">
+          <div class="resena-item">
+            <div class="resena-info">
+              <img [src]="resena.autorFoto || '../../assets/account_circle.png'" alt="Autor">
+              <div class="resena-details">
+                <strong>{{ resena.autorNombre }}:</strong>
+                <p>{{ resena.comentario }}</p>
               </div>
+              <span class="nota">{{ resena.nota }}/10</span>
             </div>
-          </li>
-        </ul>
-        
-      </div>
-    </section>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
 
-    <section *ngIf="modoEdicion" class="editar-section">
-      <h1>MODIFICAR</h1>
-    
-      <label>Nombre</label>
-      <input [(ngModel)]="nombre" placeholder="Nombre" />
-    
-      <label>Apellido</label>
-      <input [(ngModel)]="apellido" placeholder="Apellido" />
-    
-      <label>Descripción</label>
-      <textarea [(ngModel)]="nuevaDescripcion" placeholder="Descripción"></textarea>
-    
-      <label for="fileInput">Cambiar Foto de Perfil:</label>
-      <input type="file" id="fileInput" (change)="onFileChange($event)" accept="image/*" />
-    
-      <div class="botones">
-        <button (click)="guardarCambios()">Guardar</button>
-        <button (click)="cancelarEdicion()">Cancelar</button>
-      </div>
-    </section>
-  </div>
+  <section *ngIf="modoEdicion" class="editar-section">
+    <h1>MODIFICAR</h1>
+
+    <label>Nombre</label>
+    <input [(ngModel)]="nombre" placeholder="Nombre" />
+
+    <label>Apellido</label>
+    <input [(ngModel)]="apellido" placeholder="Apellido" />
+
+    <label>Descripción</label>
+    <textarea [(ngModel)]="nuevaDescripcion" placeholder="Descripción"></textarea>
+
+    <label for="fileInput">Cambiar Foto de Perfil:</label>
+    <input type="file" id="fileInput" (change)="onFileChange($event)" accept="image/*" />
+
+    <div class="botones">
+      <button (click)="guardarCambios()">Guardar</button>
+      <button (click)="cancelarEdicion()">Cancelar</button>
+    </div>
+  </section>
+</div>

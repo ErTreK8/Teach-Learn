@@ -224,25 +224,26 @@ export class CursoComponent implements OnInit {
   async eliminarClase(idClass: string): Promise<void> {
     try {
       const db = getDatabase();
-
-      // Marcar como acabada a todos los alumnos apuntados a esta clase
+  
+      // Eliminar todas las relaciones de alumnos apuntados a esta clase
       const alumnosRef = ref(db, `ClaseAlumno`);
       const alumnosSnapshot = await get(alumnosRef);
-
+  
       if (alumnosSnapshot.exists()) {
         const alumnosData = alumnosSnapshot.val();
         Object.keys(alumnosData).forEach(async (key) => {
           const alumno = alumnosData[key];
           if (alumno.idClase === idClass) {
-            await set(ref(db, `ClaseAlumno/${key}/acabada`), true);
+            // Eliminar la relación alumno-clase
+            await remove(ref(db, `ClaseAlumno/${key}`));
           }
         });
       }
-
+  
       // Eliminar la clase
       const claseRef = ref(db, `Classes/${idClass}`);
       await remove(claseRef);
-
+  
       alert('Clase eliminada exitosamente.');
       this.cargarCursoYClases(); // Recargar las clases
     } catch (error: any) {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { getDatabase, ref, push, set, get } from 'firebase/database';
+import { getDatabase, ref, push, set, get, update } from 'firebase/database';
 import { initializeApp, getApps, getApp } from 'firebase/app';
 import { environment } from '../../environments/environment';
 import BadWordsFilter from 'bad-words'; // Importar el módulo correctamente
@@ -31,40 +31,58 @@ export class ResenyaComponent implements OnInit {
       if (!this.idClase || !this.userId) {
         throw new Error('ID de clase o usuario no encontrado.');
       }
-
+  
       if (this.nota < 1 || this.nota > 10) {
         alert('La nota debe estar entre 1 y 10.');
         return;
       }
-
+  
       // Validar el comentario usando bad-words
       const esInapropiado = this.validarComentarioConBadWords(this.comentario);
       if (esInapropiado) {
         alert('El comentario contiene lenguaje inapropiado. Por favor, revisa tu texto.');
         return;
       }
-
+  
       if (!getApps().length) {
         initializeApp(environment.fireBaseConfig);
       }
-
+  
       const db = getDatabase();
-
+  
+      // Obtener los detalles de la clase para calcular la duración
+      const claseRef = ref(db, `Classes/${this.idClase}`);
+      const claseSnapshot = await get(claseRef);
+  
+      if (!claseSnapshot.exists()) {
+        throw new Error('La clase no existe.');
+      }
+  
+      const claseData = claseSnapshot.val();
+      const fechaInicio = new Date(claseData.dataInici);
+      const fechaFin = new Date(claseData.dataFi);
+  
+      // Calcular la duración de la clase en horas
+      const duracionEnHoras = (fechaFin.getTime() - fechaInicio.getTime()) / (1000 * 60 * 60);
+  
+      // Calcular los TeachCoins (enteros, máximo 50)
+      const teachCoinsOtorgados = Math.min(50, Math.floor(this.nota * duracionEnHoras));
+  
       // Guardar la reseña en Firebase
       const resenyaRef = ref(db, `Resenyas`);
       const nuevaResenyaKey = push(resenyaRef).key;
-
+  
       if (!nuevaResenyaKey) {
         throw new Error('Error al generar la clave de la reseña.');
       }
-
+  
       // Guardar la reseña en el nodo Resenyas
       await set(ref(db, `Resenyas/${nuevaResenyaKey}`), {
         Nota: this.nota,
         Resenya: this.comentario,
         idUsuario: this.userId // Añadimos el ID del usuario
       });
-
+  
       // Asociar la reseña con la clase en ResenyasClase
       await set(ref(db, `ResenyasClase/${nuevaResenyaKey}`), {
         IdResenyaClase: nuevaResenyaKey,
@@ -72,23 +90,28 @@ export class ResenyaComponent implements OnInit {
         idResenya: nuevaResenyaKey,
         idUsuario: this.userId // Añadimos el ID del usuario aquí también
       });
-
+  
       // Actualizar el estado de "acabada" en ClaseAlumno
       const claseAlumnoRef = ref(db, `ClaseAlumno`);
       const claseAlumnoSnapshot = await get(claseAlumnoRef);
-
+  
       if (claseAlumnoSnapshot.exists()) {
         const clasesData: Record<string, any> = claseAlumnoSnapshot.val();
         const key = Object.keys(clasesData).find(
           (key) => clasesData[key].idClase === this.idClase && clasesData[key].idUsuario === this.userId
         );
-
+  
         if (key) {
           // Actualizar el estado "acabada" a true
           await set(ref(db, `ClaseAlumno/${key}/acabada`), true);
         }
       }
-
+  
+      // Sumar TeachCoins al profesor
+      const idProfesor = claseData.idProfesor;
+  
+      await this.agregarTeachCoinsAlProfesor(idProfesor, teachCoinsOtorgados); // Llama a la función para añadir TeachCoins
+  
       alert('Reseña enviada exitosamente.');
       this.router.navigate(['/home']); // Redirigir al home
     } catch (error: any) {
@@ -96,12 +119,33 @@ export class ResenyaComponent implements OnInit {
       alert('Error al enviar la reseña. Por favor, intenta de nuevo.');
     }
   }
+  async agregarTeachCoinsAlProfesor(idProfesor: string, teachCoinsOtorgados: number): Promise<void> {
+    try {
+      const db = getDatabase();
+      const profesorRef = ref(db, `Usuario/${idProfesor}`);
+      const profesorSnapshot = await get(profesorRef);
+  
+      if (profesorSnapshot.exists()) {
+        const profesorData = profesorSnapshot.val();
+        const nuevosTeachCoins = (profesorData.teachCoins || 0) + teachCoinsOtorgados;
+  
+        // Actualizar los TeachCoins del profesor
+        await update(profesorRef, { teachCoins: nuevosTeachCoins });
+        console.log(`Se han añadido ${teachCoinsOtorgados} TeachCoins al profesor con ID: ${idProfesor}`);
+      } else {
+        throw new Error('El profesor no existe en la base de datos.');
+      }
+    } catch (error: any) {
+      console.error('Error al añadir TeachCoins al profesor:', error.message || error);
+      throw error; // Propagar el error si es necesario
+    }
+  }
 
   validarComentarioConBadWords(comentario: string): boolean {
     // Crear una instancia del filtro
     const filter = new BadWordsFilter();
 
-    // Agregar palabras inapropiadas en español
+    // Agregar palabras inapropiadas en español ya que el bad Words sirve solo para el ingles
     const palabrasInapropiadasEnEspanol = [
       'basura', 'idiota', 'incompetente', 'estúpido', 'imbécil', 'mierda',
       'gilipollas', 'cabrón', 'puta', 'hijo de puta', 'maricón', 'zorra',

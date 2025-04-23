@@ -31,23 +31,25 @@ export class BusadorUsuarioComponent implements OnInit {
         initializeApp(environment.fireBaseConfig);
         console.log('Firebase inicializado correctamente.');
       }
-
+  
       const db = getDatabase(); // Obtener la instancia de la base de datos
       const usersRef = ref(db, 'Usuario'); // Referencia al nodo "Usuario"
-
+  
       // Obtener todos los usuarios de la base de datos
       const snapshot = await get(usersRef);
-
+  
       if (!snapshot.exists()) {
         throw new Error('No hay usuarios registrados en la base de datos.');
       }
-
+  
       const usersData = snapshot.val(); // Datos sin procesar
-      const usersArray: Usuario[] = Object.keys(usersData).map((key) => new Usuario({ idUsr: key, ...usersData[key] }));
-
-      // Guardar los usuarios en el array local
+      const usersArray: Usuario[] = Object.keys(usersData)
+        .map((key) => new Usuario({ idUsr: key, ...usersData[key] }))
+        .filter((usuario) => usuario.verified === true); // Filtrar solo usuarios activos
+  
+      // Guardar los usuarios activos en el array local
       this.usuarios = usersArray;
-      this.filteredUsuarios = usersArray; // Inicialmente, mostrar todos los usuarios
+      this.filteredUsuarios = usersArray; // Inicialmente, mostrar todos los usuarios activos
     } catch (error: any) {
       console.error('Error al cargar usuarios:', error.message || error);
       this.errorMessage = error.message || 'Error al cargar usuarios.';

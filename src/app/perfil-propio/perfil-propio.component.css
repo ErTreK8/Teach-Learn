@@ -13,6 +13,26 @@ body {
 body.modo-profesor {
   background-color: rgb(81, 14, 148); /* Fondo morado */
 }
+.teachcoins-section {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.teachcoins-section h3 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.teachcoins-amount {
+  font-size: 24px;
+  font-weight: bold;
+  color: #5A597A; /* Color morado */
+}
 
 /* Estilos para el contenedor principal */
 .containerMain {

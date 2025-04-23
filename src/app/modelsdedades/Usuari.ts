@@ -9,6 +9,8 @@ export class Usuario {
   verificationCode!: string;
   nombre!: string | null; // Nuevo campo: Nombre
   apellido!: string | null; // Nuevo campo: Apellido
+  teachCoins!: number; // Nuevo campo: TeachCoins
+
 
   constructor(data?: Partial<Usuario>) {
     Object.assign(this, data);

@@ -113,7 +113,8 @@ export class RegisterComponent {
         verified: false,
         verificationCode,
         nombre: nombre,
-        apellido: apellido
+        apellido: apellido,
+        teachCoins: 0 // Añadir el campo TeachCoins con valor inicial 0
       };
 
       console.log('Guardando datos del usuario en la base de datos...');
