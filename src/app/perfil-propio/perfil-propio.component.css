@@ -21,7 +21,34 @@ body.modo-profesor {
   margin-bottom: 20px;
   text-align: center;
 }
+.teachcoins-amount {
+  font-size: 24px;
+  font-weight: bold;
+  color: #5A597A; /* Color morado para valores positivos */
+}
 
+.teachcoins-amount.zero {
+  color: #5A597A; /* Rojo claro para destacar el valor 0 */
+}
+/* Estilos para el título de la clase y la fecha de fin */
+section:first-child:not([ngIf*='modoEdicion']) .resena-details p {
+  font-size: 0.7em; /* Tamaño de fuente más pequeño */
+  color: #888; /* Color gris claro para distinguirlo del texto principal */
+  margin: 2px 0; /* Reducir el margen para que no ocupe mucho espacio */
+}
+
+section:first-child:not([ngIf*='modoEdicion']) .resena-details p em {
+  font-style: italic; /* Cursiva para "Clase:" y "Fecha de Fin:" */
+  color: #555; /* Color gris medio para destacar las etiquetas */
+  margin-right: 5px; /* Espacio entre la etiqueta y el valor */
+}
+
+/* Ajuste para el comentario de la reseña */
+section:first-child:not([ngIf*='modoEdicion']) .resena-details p:last-child {
+  font-size: 1em; /* Tamaño normal para el comentario */
+  color: #333; /* Color oscuro para el texto principal */
+  margin-top: 8px; /* Separación entre el título/fecha y el comentario */
+}
 .teachcoins-section h3 {
   font-size: 18px;
   color: #333;

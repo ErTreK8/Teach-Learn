@@ -16,7 +16,7 @@
 
     <div class="teachcoins-section" *ngIf="modoProfesor">
       <h3>TeachCoins</h3>
-      <p class="teachcoins-amount">{{ teachCoins }}</p>
+      <p class="teachcoins-amount" [class.zero]="teachCoins === 0">{{ teachCoins }}</p>
     </div>
 
     <div class="descripcionPerfil">
@@ -37,6 +37,8 @@
               <img [src]="resena.autorFoto || '../../assets/account_circle.png'" alt="Autor">
               <div class="resena-details">
                 <strong>{{ resena.autorNombre }}:</strong>
+                <p><em>Clase:</em> {{ resena.tituloClase }}</p>
+                <p><em>Fecha de Fin:</em> {{ resena.fechaFinClase | date:'dd/MM/yyyy' }}</p>
                 <p>{{ resena.comentario }}</p>
               </div>
               <span class="nota">{{ resena.nota }}/10</span>
