@@ -36,42 +36,49 @@ export class CrearClaseComponent {
       // Combinar fecha y hora
       const dataInici = `${this.nuevaClase.fechaInicio}T${this.nuevaClase.horaInicio}`;
       const dataFi = `${this.nuevaClase.fechaFin}T${this.nuevaClase.horaFin}`;
-
+  
       // Validaciones previas
       if (!this.validarCampos(dataInici, dataFi)) {
         return;
       }
-
-      // Verificar que el usuario no tenga más de 3 clases creadas
+  
+      // Verificar que el usuario no tenga más de 3 clases activas
       const userId = localStorage.getItem('idUsr');
       if (!userId) {
         alert('No se ha encontrado el ID del usuario.');
         return;
       }
-
+  
       const db = getDatabase();
       const classesRef = ref(db, 'Classes');
       const classesSnapshot = await get(classesRef);
-
+  
       if (classesSnapshot.exists()) {
         const classesData = classesSnapshot.val();
         const clasesUsuario = Object.values(classesData).filter(
           (clase: any) => clase.idProfesor === userId
         );
-
-        if (clasesUsuario.length >= 3) {
-          alert('Has alcanzado el límite máximo de 3 clases por usuario.');
+  
+        // Filtrar solo las clases cuya fecha de inicio sea mayor o igual a la fecha y hora actual
+        const fechaActual = new Date();
+        const clasesActivas = clasesUsuario.filter((clase: any) => {
+          const fechaInicioClase = new Date(clase.dataInici);
+          return fechaInicioClase >= fechaActual;
+        });
+  
+        if (clasesActivas.length >= 3) {
+          alert('Has alcanzado el límite máximo de 3 clases activas por usuario.');
           return;
         }
       }
-
+  
       // Generar una nueva clave para la clase y guardarla en Firebase
       const newClassKey = push(classesRef).key;
-
+  
       if (!newClassKey) {
         throw new Error('Error al generar la clave de la clase.');
       }
-
+  
       await set(ref(db, `Classes/${newClassKey}`), {
         idClass: newClassKey,
         idCurso: this.cursoId,
@@ -82,7 +89,7 @@ export class CrearClaseComponent {
         descripcio: this.nuevaClase.descripcio,
         maxAlumnes: this.nuevaClase.maxAlumnes
       });
-
+  
       alert('Clase creada exitosamente.');
       this.router.navigate(['/curso', this.cursoId]); // Redirigir al detalle del curso
     } catch (error: any) {
