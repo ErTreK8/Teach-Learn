@@ -21,7 +21,7 @@
         </div>
   
         <div class="messages-container">
-          <div *ngFor="let mensaje of mensajes | orderByFecha">
+          <div *ngFor="let mensaje of mensajes | orderByFecha" [ngStyle]="{ 'width': '100%', 'display': 'flex', 'justify-content': mensaje.idEnvia === idUsuario ? 'flex-end' : 'flex-start' }">
             <div class="message {{ mensaje.idEnvia === idUsuario ? 'alumne' : 'profe' }}">
               {{ mensaje.Mensaje }}
             </div>

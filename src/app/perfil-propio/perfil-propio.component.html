@@ -44,23 +44,24 @@
       </div>
     </section>
 
-    <section *ngIf="modoEdicion">
+    <section *ngIf="modoEdicion" class="editar-section">
       <h1>MODIFICAR</h1>
+    
       <label>Nombre</label>
-      <input [(ngModel)]="nombre" placeholder="Nombre">
-      <br>
+      <input [(ngModel)]="nombre" placeholder="Nombre" />
+    
       <label>Apellido</label>
-      <input [(ngModel)]="apellido" placeholder="Apellido">
-      <br>
+      <input [(ngModel)]="apellido" placeholder="Apellido" />
+    
       <label>Descripción</label>
       <textarea [(ngModel)]="nuevaDescripcion" placeholder="Descripción"></textarea>
-
-      <!-- Campo para subir la foto de perfil -->
-       <br>
+    
       <label for="fileInput">Cambiar Foto de Perfil:</label>
-      <input type="file" id="fileInput" (change)="onFileChange($event)" accept="image/*">
-<br>
-      <button (click)="guardarCambios()">Guardar</button>
-      <button (click)="cancelarEdicion()">Cancelar</button>
+      <input type="file" id="fileInput" (change)="onFileChange($event)" accept="image/*" />
+    
+      <div class="botones">
+        <button (click)="guardarCambios()">Guardar</button>
+        <button (click)="cancelarEdicion()">Cancelar</button>
+      </div>
     </section>
   </div>

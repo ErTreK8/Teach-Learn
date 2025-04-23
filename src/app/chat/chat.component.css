@@ -91,6 +91,7 @@
   margin-bottom: 1em;
   max-height: 60vh;
   scroll-behavior: smooth;
+  height: 100%;
 }
 
 .message {
@@ -116,8 +117,9 @@
 
 .input-container {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   gap: 10px;
+
 }
 
 input {
@@ -128,6 +130,7 @@ input {
   outline: none;
   font-size: 0.95em;
   background-color: #fafafa;
+  width: 100%;
 }
 
 button {
